@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+	:root {
+		--black: #1c1a1a;
+		--white: #ffffff;
+
+		--primary: 34, 255, 1;
+		--secondary: #ffffff;
+
+		--tag-red: #ffc5c8;
+		--tag-blue: #b9e2f8;
+		--tag-green: #40d39c;
+		--tag-yellow: #ffd05b;
+
+		--border-default: 2px;
+		--border-container: 3px;
+
+		--radius-default: 12px;
+		--radius-container: 21px;
+	}
+}
+
+@layer base {
+	*,
+	*:after,
+	*:before {
+		@apply box-border p-0 m-0;
+	}
+
+	html,
+	body {
+		@apply max-w-[100vw] overflow-x-clip font-normal font-sans text-sm lg:text-base bg-black text-black;
+		font-family: system-ui !important;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	svg {
+		@apply max-w-fit max-h-fit;
+	}
+}
+
+@layer utilities {
+	.flex-center {
+		@apply flex items-center justify-center;
+	}
+}
+
+@layer utilities {
+	.text-brand {
+		@apply text-primary font-bold uppercase;
+
+		--relative-px: 0.015em;
+		--4relative-px: calc(4 * var(--relative-px));
+
+		font-family: Inter, Arial;
+		text-shadow: calc(-1 * var(--4relative-px)) var(--4relative-px) 0 var(--black);
+
+		-webkit-text-stroke-width: 1px;
+		-webkit-text-stroke-color: black;
+	}
+
+	.text-brand-small {
+		-webkit-text-stroke: 1px var(--black);
+		text-shadow: -1.5px 1.5px 0 var(--black);
+
+		@apply text-primary font-bold uppercase;
+	}
+}
+
+@layer utilities {
+	.border-container {
+		border-width: var(--border-container);
+		@apply border-black rounded-xl;
+	}
+
+	.border-content {
+		border-width: var(--border-default);
+		@apply border-black rounded-md;
+	}
+
+	.card {
+		@apply bg-card border-px border-muted rounded-md lg:rounded-xl;
+	}
+
+	.shadow-brand {
+		box-shadow: -2px 2px 0 var(--black);
+	}
+
+	.shadow-brand-small {
+		box-shadow: -1px 1px 0 var(--black);
+	}
+
+	.shadow-none {
+		box-shadow: 0 0 0 var(--black);
+	}
+}

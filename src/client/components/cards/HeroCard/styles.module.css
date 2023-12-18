@@ -1,0 +1,51 @@
+.container {
+	@apply relative bg-white rounded-xl overflow-hidden isolate [&>*]:z-10;
+	@apply w-max h-[600px] flex gap-x-12;
+	@apply text-left;
+	@apply lg:min-w-[1100px];
+}
+
+.inner {
+	@apply max-w-max flex-1 z-10 pb-12 self-end flex flex-col space-y-5 px-12 pt-6;
+}
+
+.potato {
+	@apply !-z-0 h-52 w-auto absolute;
+}
+
+.image {
+	@apply w-full h-[500px] self-end;
+}
+
+.ellipse {
+	@apply z-0 pointer-events-none opacity-50 md:opacity-75;
+}
+
+.ellipse.left {
+	@apply left-0 bottom-0;
+}
+
+.ellipse.right {
+	@apply right-0 top-0;
+}
+
+@media (max-width: 1024px) {
+	.container {
+		@apply h-[500px] flex-col justify-between gap-y-2;
+		width: 100%;
+		max-width: 24rem;
+		min-width: 320px;
+	}
+
+	.inner {
+		@apply px-6 pt-4 self-start pb-0;
+	}
+
+	.potato {
+		@apply h-40 w-auto;
+	}
+
+	.image {
+		@apply self-center px-5 w-full h-auto;
+	}
+}

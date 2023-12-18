@@ -1,0 +1,7 @@
+.map {
+	@apply rounded-xl flex-1 min-h-[90vh] md:min-h-[85vh] lg:min-h-[74vh];
+}
+
+.zones__info {
+	@apply flex flex-col md:flex-row gap-[3px];
+}

@@ -1,0 +1,41 @@
+.others {
+	@apply space-y-5;
+}
+
+.others__title {
+	@apply col-span-2 !text-2xl;
+}
+
+.others__grid {
+	@apply grid gap-5 grid-flow-dense;
+	grid-template-rows: auto;
+	grid-template-columns: repeat(auto-fit, minmax(120px, auto));
+}
+
+.tariff__container {
+	@apply grid gap-4 grid-flow-dense;
+	grid-template-rows: auto;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+	grid-auto-rows: auto;
+	container-type: inline-size;
+}
+
+.tariff__filter {
+	@apply flex flex-wrap items-center gap-x-10 gap-y-6;
+}
+
+.tariff_conditions {
+	@apply flex flex-row flex-wrap gap-y-4 gap-x-20;
+}
+
+.chars__icons {
+	@apply grid gap-10 grid-flow-dense;
+	grid-template-rows: auto;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+}
+
+.chars__features {
+	@apply grid gap-4 grid-flow-dense;
+	grid-template-rows: auto;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}

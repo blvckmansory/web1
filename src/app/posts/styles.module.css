@@ -1,0 +1,12 @@
+.page {
+	@apply flex flex-col gap-y-8 pb-20;
+}
+
+.title {
+	@apply md:col-span-2;
+	font-size: clamp(32px, 3rem, 48px);
+}
+
+.container {
+	@apply grid gap-8 grid-cols-1 md:grid-cols-2;
+}
