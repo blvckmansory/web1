@@ -10,6 +10,8 @@ import { fetchPost, type PostMetadata } from '~/server/post'
 import { Image } from '~/client/ui/components/Image'
 import { Hint, Title } from '~/client/ui/components/Text'
 
+import { MarkdownContent } from '~/client/components/MarkdownContent'
+
 import styles from './styles.module.css'
 
 type PostProps = StyleProps & PostMetadata
@@ -37,7 +39,7 @@ const Post = async ({ id, cover, title, style, className, publishedAt }: PostPro
 					className={styles.cover__img}
 				/>
 			</div>
-			<Markdown className={styles.content}>{post.content}</Markdown>
+			<MarkdownContent>{post.content}</MarkdownContent>
 		</article>
 	)
 }

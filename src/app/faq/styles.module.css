@@ -1,0 +1,7 @@
+.page {
+	@apply !pb-20 items-center;
+}
+
+.inner {
+	@apply max-w-3xl w-full flex flex-col gap-y-7 md:gap-y-10;
+}

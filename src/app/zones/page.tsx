@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 
 import type { Page } from '~/lib/types'
@@ -7,6 +8,10 @@ import { Skeleton } from '~/client/ui/components/Skeleton'
 import { FeatureCard } from '~/client/components/cards/FeatureCard'
 
 import styles from './styles.module.css'
+
+const Map = dynamic(() => import('~/client/components/Map'), {
+	loading: () => <Skeleton className={styles.map} />,
+})
 
 const Zones: Page = () => (
 	<>
@@ -22,8 +27,10 @@ const Zones: Page = () => (
 	</>
 )
 
-const Map = dynamic(() => import('~/client/components/Map'), {
-	loading: () => <Skeleton className={styles.map} />,
-})
+export const metadata: Metadata = {
+	title: 'Зоны завершения | Каршеринг Hello - Поминутная аренда автомобилей в Минске',
+	description:
+		'КОНТАКТЫ: СЛУЖБА ПОДДЕРЖКИ +375 44 777 60 60 (Telegram, WhatsApp) | info@hello.by РАБОТА С КОРПОРАТИВНЫМИ КЛИЕНТАМИ partners@hello.by ПРЕДЛОЖЕНИЯ: СОТРУДНИЧЕСТВО | РЕКЛАМА offers@hello.by | marketing@hello.by РЕКВИЗИТЫ:',
+}
 
 export default Zones

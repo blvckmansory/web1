@@ -7,11 +7,12 @@ type ImageProps = Omit<NextImageProps, 'alt'> & {
 	alt?: string
 }
 
-const Image = ({ className, alt = '', width = 0, height = 0, ...props }: ImageProps) => (
+const Image = ({ style, className, alt = '', width = 0, height = 0, ...props }: ImageProps) => (
 	<NextImage
 		{...props}
 		alt={alt}
 		width={width}
+		style={style}
 		height={height}
 		className={clsx('h-full w-auto', className)}
 	/>

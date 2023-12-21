@@ -5,6 +5,7 @@ import '@splidejs/react-splide/css/core'
 import { useRef, useState, useCallback, Children } from 'react'
 
 import { Splide as SplideCore } from '@splidejs/splide'
+// @ts-expect-error
 import { Options, Splide, type SplideProps } from '@splidejs/react-splide'
 
 import { SliderContext } from './context'
@@ -36,9 +37,8 @@ const Slider = ({
 	const total = Children.count(children)
 
 	return (
-		<section>
-			{/** @ts-expect-error */}
-			<SliderContext.Provider value={{ loop, total, activeSlide, handleActiveSlide }}>
+		<SliderContext.Provider value={{ loop, total, activeSlide, handleActiveSlide }}>
+			<section role="slider">
 				<Splide
 					{...props}
 					ref={ref}
@@ -49,14 +49,13 @@ const Slider = ({
 					options={{
 						...options,
 						start: initial,
-					}}
-				>
+					}}>
 					{children}
 				</Splide>
 
 				{withPagination ? <SliderControls className="mt-[3px]" /> : null}
-			</SliderContext.Provider>
-		</section>
+			</section>
+		</SliderContext.Provider>
 	)
 }
 

@@ -1,7 +1,8 @@
+// @ts-expect-error
 import { SplideSlide } from '@splidejs/react-splide'
 
-import { clsx } from '../../../../lib/clsx'
-import type { StyleProps, ReactChildren } from '../../../../lib/types'
+import { clsx } from '~/lib/clsx'
+import type { StyleProps, ReactChildren } from '~/lib/types'
 
 type SlideProps = StyleProps & {
 	children: ReactChildren

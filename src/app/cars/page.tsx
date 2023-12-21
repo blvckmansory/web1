@@ -8,11 +8,15 @@ import { Text, Divider } from '~/client/ui/components'
 
 import { Section } from '~/client/components/Section'
 
-import { CarListName } from '~/client/modules/CarList/CarListName'
-import { CarListLoader } from '~/client/modules/CarList/loader'
+import { CarContainerName } from '~/client/modules/CarContainer/CarContainerName'
+import { CarContainerLoader } from '~/client/modules/CarContainer/loader'
 import { CarFilterType, CarFilterPasting } from '~/client/modules/CarFilter'
 
 import styles from './styles.module.css'
+
+const CarContainer = dynamic(() => import('~/client/modules/CarContainer'), {
+	loading: () => <CarContainerLoader />,
+})
 
 const CarsPage: Page = async () => {
 	const cars = await fetchPreviewCars()
@@ -36,17 +40,17 @@ const CarsPage: Page = async () => {
 			<Divider />
 
 			<div className={styles.list}>
-				<CarListName options={carTypes} />
-				<CarList initialData={cars} />
+				<CarContainerName options={carTypes} />
+				<CarContainer initialData={cars} />
 			</div>
 		</Section>
 	)
 }
 
-const CarList = dynamic(() => import('~/client/modules/CarList'), {
-	loading: () => <CarListLoader />,
-})
-
-export const metadata: Metadata = {}
+export const metadata: Metadata = {
+	title: 'Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске',
+	description:
+		'Просматривайте информацию о полюбившихся линейках автомоболей и их тарифов использования.',
+}
 
 export default CarsPage

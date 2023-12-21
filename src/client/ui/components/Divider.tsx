@@ -6,7 +6,6 @@ type DividerProps = MergeWithHTMLProps<
 	'div',
 	Partial<{
 		dir: 'x' | 'y'
-
 		children: never
 	}>
 >

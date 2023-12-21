@@ -9,8 +9,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => (
 	<html
 		dir="ltr"
 		lang="en"
-		suppressHydrationWarning
-	>
+		suppressHydrationWarning>
 		<body className="w-screen min-h-screen flex flex-col overflow-x-clip p-[3px] gap-y-[3px]">
 			<AppHeader />
 			{children}
@@ -23,6 +22,9 @@ export const metadata: Metadata = {
 	title: 'Hello каршеринг - Поминутная аренда автомобилей в Минске',
 	description:
 		'Hello - Минский каршеринг. Поминутная аренда авто через мобильное приложение без водителя. Приятные тарифы, новые автомобили, грамотная и вежливая техподдержка!',
+	alternates: {
+		canonical: 'http://localhost:3000',
+	},
 }
 
 export default AppLayout

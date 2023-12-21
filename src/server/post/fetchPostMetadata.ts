@@ -4,7 +4,7 @@ type PostMetadata = Pick<Post, 'id' | 'title' | 'description' | 'cover' | 'publi
 
 const fetchPostMetadata = async (id: string) => {
 	try {
-		return baseFetchStrapiPost<false, PostMetadata>(`/posts/${id}`)
+		return await baseFetchStrapiPost<false, PostMetadata>(`/posts/${id}`)
 	} catch (error) {
 		return { data: null }
 	}

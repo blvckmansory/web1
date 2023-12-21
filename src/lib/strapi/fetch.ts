@@ -2,8 +2,6 @@ import { STRAPI_API_KEY } from '~/env'
 
 import { getStrapiURL } from './utils'
 
-const locale = 'ru-RU'
-
 type FetchNextOptions = {
 	next?: {
 		revalidate?: number | 0 | false
@@ -37,7 +35,6 @@ const fetchStrapi = async <T = any>(
 
 		// Build request URL
 		const queries = new URLSearchParams(urlParamsObject)
-		queries.append('locale', locale)
 
 		const requestUrl = `${getStrapiURL(`/api${path}?${queries.toString()}`)}`
 

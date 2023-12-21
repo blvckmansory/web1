@@ -3,6 +3,7 @@
 import { clsx } from '~/lib/clsx'
 
 import { useResponsive } from '~/client/features/responsive'
+
 import { Dialog, type DialogProps } from '~/client/ui/components/Dialog'
 
 const AdaptiveDialog = ({ position, className, ...props }: DialogProps) => {

@@ -1,3 +1,5 @@
+'use client'
+
 import { tv, type VariantProps } from 'tailwind-variants'
 import { forwardRef, memo, type CSSProperties } from 'react'
 

@@ -6,6 +6,8 @@ const handler = (request: NextRequest) => {
 	revalidatePath('/tariff')
 
 	revalidateTag('/posts')
+	revalidateTag('/cars')
+	revalidateTag('/hints')
 
 	return NextResponse.json(
 		{ message: 'Revalidate' },

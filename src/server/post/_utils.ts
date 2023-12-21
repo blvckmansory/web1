@@ -32,6 +32,10 @@ const baseFetchStrapiPost = async <IsArray extends boolean = true, T = Post>(
 		},
 		{ ...options, next: { tags: [REVALIDATE_TAG], ...options.next } },
 	).then(({ data, meta }) => {
+		if (!data) {
+			throw new Error('>> Strapi fetch `data` is null')
+		}
+
 		const mappedData = Array.isArray(data)
 			? data.map(convertPostApiResponse)
 			: convertPostApiResponse(data)

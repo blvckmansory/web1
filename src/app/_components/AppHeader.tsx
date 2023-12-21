@@ -1,7 +1,7 @@
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
-import { Spacer } from '~/client/ui/components'
+import { Spacer } from '~/client/ui/components/Spacer'
 
 import { Logo } from '~/client/components/Logo'
 import { NavButton } from '~/client/components/NavButton'

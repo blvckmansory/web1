@@ -21,7 +21,7 @@ const APP_NAV_CONFIG = {
 		},
 		{
 			children: 'Подсказки',
-			href: '/hints',
+			href: '/faq/hints',
 		},
 		{
 			children: 'Новости',
@@ -77,7 +77,7 @@ const HEADER_NAV_CONFIG = {
 		},
 		{
 			children: 'Подсказки',
-			href: '/hints',
+			href: '/faq/hints',
 		},
 		{
 			children: 'Зоны завершения',
@@ -108,16 +108,16 @@ const FAQ_NAV_CONFIG = {
 	title: 'Все, что нужно знать О нас',
 	options: [
 		{
-			href: '/hints',
+			href: '/faq/hints',
 			children: 'Подсказки',
 		},
 		/** @fix */
 		{
-			href: '/help',
+			href: '/faq/help',
 			children: 'Инструкции',
 		},
 		{
-			href: '/rules',
+			href: '/faq/rules',
 			children: 'Правила дружбы',
 		},
 	],

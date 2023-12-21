@@ -3,14 +3,16 @@ import type { StyleProps } from '~/lib/types'
 
 import { HEADER_NAV_CONFIG } from '~/shared/config/nav'
 
-import { NavLink } from '~/client/ui/components'
+import { NavLink } from '~/client/ui/components/NavLink'
 
-const AppNav = async ({ className, ...props }: StyleProps) => {
+const AppNav = ({ className, ...props }: StyleProps) => {
 	// const { data } = await fetchStrapi('/menus/1', { nested: true, populate: '*' })
 	// console.log(data)
 
 	return (
-		<nav className={clsx('w-fit', className)}>
+		<nav
+			role="navigation"
+			className={clsx('w-fit', className)}>
 			<ul
 				{...props}
 				className="w-fit px-5 flex flex-row">

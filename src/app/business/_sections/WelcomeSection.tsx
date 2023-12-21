@@ -1,10 +1,15 @@
 import Link from 'next/link'
 
-import { Text, Title, Button, Spacer, Image, AbsoluteImage } from '~/client/ui/components'
+import { Button } from '~/client/ui/components/Button'
+import { Spacer } from '~/client/ui/components/Spacer'
+import { Text, Title } from '~/client/ui/components/Text'
+import { AbsoluteImage } from '~/client/ui/components/Image'
 
 import { BluredEllipse } from '~/client/components/BluredEllipse'
 import { SocialMediaGroup } from '~/client/components/SocialMediaGroup'
 import { Section, type SectionProps } from '~/client/components/Section/Section'
+
+import { BusinessWelcomeImage } from '~/client/modules/(images)/BusinessWelcomeImage'
 
 const WelcomeSection = (props: SectionProps) => (
 	<Section
@@ -42,11 +47,7 @@ const WelcomeSection = (props: SectionProps) => (
 
 		<SocialMediaGroup className="self-center md:self-start" />
 
-		<Image
-			alt=""
-			src="/assets/business-welcome.svg"
-			className="w-[100vw] h-auto lg:w-auto lg:h-full lg:absolute lg:right-5 lg:top-0"
-		/>
+		<BusinessWelcomeImage />
 	</Section>
 )
 

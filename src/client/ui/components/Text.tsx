@@ -1,5 +1,5 @@
+import type { CSSProperties } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
-import { memo, forwardRef, type CSSProperties, ForwardedRef } from 'react'
 
 import { clsx } from '~/lib/clsx'
 import type { As, MergeWithHTMLProps } from '~/lib/types'
@@ -14,53 +14,45 @@ type Props<T extends As> = VariantProps<typeof textVariants> &
 
 type TextProps<T extends As = 'p'> = MergeWithHTMLProps<T, Props<T>>
 
-const Text = memo(
-	forwardRef(
-		<T extends As>(
-			{
-				as,
-				size,
-				style,
+const Text = <T extends As>({
+	as,
+	size,
+	style,
+	color,
+	weight,
+	children,
+	lineClamp,
+	className,
+	brand = false,
+	inline = false,
+	disabled = false,
+	uppercase = false,
+	...props
+}: TextProps<T>) => {
+	const Comp = as || 'p'
+
+	if (!children) {
+		return null
+	}
+
+	return (
+		// @ts-expect-error
+		<Comp
+			{...props}
+			className={textVariants({
 				color,
-				weight,
-				children,
+				brand,
+				inline,
+				disabled,
 				lineClamp,
+				uppercase,
 				className,
-				brand = false,
-				inline = false,
-				disabled = false,
-				uppercase = false,
-				...props
-			}: TextProps<T>,
-			ref: ForwardedRef<T>,
-		) => {
-			const Comp = as || 'p'
-
-			if (!children) {
-				return null
-			}
-
-			return (
-				// @ts-expect-error
-				<Comp
-					{...props}
-					ref={ref}
-					className={textVariants({
-						color,
-						brand,
-						inline,
-						disabled,
-						lineClamp,
-						uppercase,
-						className,
-					})}
-					style={{ fontSize: size, fontWeight: weight, ...style }}>
-					{children}
-				</Comp>
-			)
-		},
-	),
-)
+			})}
+			style={{ fontSize: size, fontWeight: weight, ...style }}>
+			{children}
+		</Comp>
+	)
+}
 
 const Title = <T extends As = 'h1'>({ as = 'h1' as T, className, ...props }: TextProps<T>) => (
 	// @ts-expect-error

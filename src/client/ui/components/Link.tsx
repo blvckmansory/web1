@@ -25,6 +25,7 @@ const Link = ({ href, style, children, className, ...props }: LinkProps) => {
 	return (
 		<NextLink
 			{...props}
+			prefetch
 			href={href}
 			style={{ ...style, ..._style }}
 			className={clsx(

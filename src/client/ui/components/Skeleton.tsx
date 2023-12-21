@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import { clsx } from '~/lib/clsx'
 import type { MergeWithHTMLProps } from '~/lib/types'
 
@@ -10,12 +8,12 @@ type SkeletonProps = MergeWithHTMLProps<
 	}
 >
 
-const Skeleton = memo<SkeletonProps>(({ className, disableAnimation = false, ...props }) => (
+const Skeleton = ({ className, disableAnimation = false, ...props }: SkeletonProps) => (
 	<div
 		{...props}
 		className={clsx('w-full h-full select-none bg-gray-400 rounded-md', className)}
 	/>
-))
+)
 
 Skeleton.displayName = 'Skeleton'
 

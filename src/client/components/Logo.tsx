@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
-import { Image } from '../ui/components/Image'
+import { Image } from '~/client/ui/components/Image'
 
 const Logo = ({ className, ...props }: StyleProps) => (
 	<Link

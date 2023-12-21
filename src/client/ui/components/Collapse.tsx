@@ -125,10 +125,10 @@ const collapseVariants = tv({
 
 		disabled: {
 			true: {
-				container: 'opacity-50 cursor-not-allowed',
+				trigger: 'opacity-50 cursor-not-allowed',
 			},
 			false: {
-				container: 'cursor-pointer',
+				trigger: 'cursor-pointer',
 			},
 		},
 	},

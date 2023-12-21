@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import type { Page } from '~/lib/types'
 
 import { CONTACTS_CONFIG } from '~/shared/config/contacts'
@@ -57,5 +59,11 @@ const Contacts: Page = () => (
 		</article>
 	</Section>
 )
+
+export const metadata: Metadata = {
+	title: 'Контакты и реквизиты | Каршеринг Hello - Поминутная аренда автомобилей в Минске',
+	description:
+		'КОНТАКТЫ: СЛУЖБА ПОДДЕРЖКИ +375 44 777 60 60 (Telegram, WhatsApp) | info@hello.by РАБОТА С КОРПОРАТИВНЫМИ КЛИЕНТАМИ partners@hello.by ПРЕДЛОЖЕНИЯ: СОТРУДНИЧЕСТВО | РЕКЛАМА offers@hello.by | marketing@hello.by РЕКВИЗИТЫ:',
+}
 
 export default Contacts

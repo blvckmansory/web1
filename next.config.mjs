@@ -9,6 +9,13 @@ const config = {
 	eslint: {
 		ignoreDuringBuilds: true,
 	},
+	redirects: async () => [
+		{
+			permanent: true,
+			source: '/faq',
+			destination: '/faq/hints',
+		},
+	],
 	images: {
 		dangerouslyAllowSVG: true,
 		remotePatterns: [

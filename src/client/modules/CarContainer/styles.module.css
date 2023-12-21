@@ -1,0 +1,22 @@
+.container {
+	@apply space-y-8;
+}
+
+.inner {
+	@apply grid gap-x-5 gap-y-8 grid-flow-dense;
+
+	@apply grid-cols-2;
+	@apply sm:grid-cols-3;
+	@apply lg:grid-cols-4;
+	@apply 2xl:grid-cols-5;
+
+	grid-template-rows: auto;
+}
+
+.title {
+	@apply text-2xl md:text-3xl;
+}
+
+.card {
+	@apply h-52 rounded-xl;
+}

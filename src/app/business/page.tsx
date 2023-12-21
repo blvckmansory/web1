@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 import type { Page } from '~/lib/types'
 
 import { Road } from '~/client/components/Road'
@@ -14,5 +16,11 @@ const Business: Page = () => (
 		<ConnectSection />
 	</>
 )
+
+export const metadata: Metadata = {
+	title: 'Каршеринг Hello.by для бизнеса',
+	description:
+		'Расширьте корпоративный парк автомобилями или создайте с нуля автопарк компании. Все расходы мы берем на себя, вы платите только за пользование автомобилем.',
+}
 
 export default Business
