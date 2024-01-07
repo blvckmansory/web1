@@ -1,51 +1,79 @@
-import type { Metadata } from 'next'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
-import type { Page } from '~/lib/types'
+import type { Page, GenerateMetadata } from '~/lib/types'
 
-import { fetchCar, fetchPreviewCars } from '~/server/car'
+import { fetchCar, fetchCarIds, fetchCarMetadata } from '~/server/car'
 
-import { CarCard } from '~/client/components/cards/CarCard'
-import { SectionSuggests } from '~/client/components/Section'
+import { CarSuggests } from '~/client/modules/CarSuggests'
 
+import { RateSection } from './_sections/RateSection'
 import { CharSection } from './_sections/CharSection'
-import { TariffSection } from './_sections/TariffSection'
-
 import { PreviewSection } from './_sections/PreviewSection'
 
-const CarPage: Page<{ slug: string }> = async ({ params }) => {
+type Params = {
+	slug: string
+}
+
+const CarPage: Page<Params> = async ({ params }) => {
 	const { slug } = params
 
-	const car = await fetchCar(slug)
+	const { data: car } = await fetchCar(slug)
 
 	if (!car) {
 		redirect('/cars')
 	}
 
-	const randomCars = await fetchPreviewCars({ random: true, count: 3 })
-
 	return (
 		<>
 			<PreviewSection
-				nova={car.nova}
-				name={car.title}
-				pasting={car.pasting}
-				img="/assets/main-car-id.svg"
+				name={car.name}
+				carType={car.carType}
+				isWrapped={car.isWrapped}
+				sideImages={car.sideImages}
 			/>
-			<TariffSection />
-			<CharSection />
-			<SectionSuggests minmax={['260px', 'auto']}>
-				{randomCars.map((car) => (
-					<CarCard
-						key={car.id}
-						{...car}
-					/>
-				))}
-			</SectionSuggests>
+			<RateSection />
+			<CharSection
+				main={car.characteristics.mainFeatures}
+				other={car.characteristics.otherFeatures}
+			/>
+			<CarSuggests excludeId={slug} />
 		</>
 	)
 }
 
-export const metadata: Metadata = {}
+const generateStaticParams = async () => {
+	const { data: cars } = await fetchCarIds()
+
+	return cars.map((post) => ({
+		slug: String(post.id),
+	}))
+}
+
+const generateMetadata: GenerateMetadata<Params> = async ({ params }) => {
+	const slug = params.slug
+
+	const { data: car } = await fetchCarMetadata(slug)
+
+	if (!car) {
+		notFound()
+	}
+
+	return {
+		title: `${car.name} | Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
+		alternates: {
+			canonical: `/cars/${slug}`,
+		},
+		twitter: {
+			images: [car.previewImage.url],
+			title: `${car.name} | Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
+		},
+		openGraph: {
+			type: 'article',
+			images: [car.previewImage.url],
+			title: `${car.name} | Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
+		},
+	}
+}
 
 export default CarPage
+export { generateMetadata, generateStaticParams }

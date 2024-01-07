@@ -1,4 +1,6 @@
-import { baseFetchStrapiPost, type Post } from './_utils'
+import type { PostPreview } from '~/shared/entities/post'
+
+import { baseFetchStrapiPost } from './_utils'
 
 type FetchPreviewPostsArgs = {
 	end?: number
@@ -6,16 +8,11 @@ type FetchPreviewPostsArgs = {
 	start?: number
 }
 
-type PreviewPost = Pick<Post, 'id' | 'title' | 'description' | 'cover'>
-
-const fetchPreviewPosts = async ({ end, start = 0, limit = 2 }: FetchPreviewPostsArgs = {}) => {
+const fetchPreviewPosts = async ({ start = 0, limit = 2 }: FetchPreviewPostsArgs = {}) => {
 	try {
-		return await baseFetchStrapiPost<true, PreviewPost>('/posts', {
-			'fields[0]': 'title',
-			'fields[1]': 'description',
-			'pagination[limit]': limit,
-			'pagination[start]': start,
-			...(end ? { 'pagination[end]': end } : {}),
+		return await baseFetchStrapiPost<true, PostPreview>('/posts', {
+			start,
+			limit,
 		})
 	} catch (error) {
 		return { data: null, meta: null }
@@ -23,4 +20,4 @@ const fetchPreviewPosts = async ({ end, start = 0, limit = 2 }: FetchPreviewPost
 }
 
 export { fetchPreviewPosts }
-export type { PreviewPost, FetchPreviewPostsArgs }
+export type { FetchPreviewPostsArgs }

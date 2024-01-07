@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const config = {
 	experimental: {
-		// ppr: true,
+		ppr: true,
+		scrollRestoration: false,
 	},
 	typescript: {
 		ignoreBuildErrors: true,

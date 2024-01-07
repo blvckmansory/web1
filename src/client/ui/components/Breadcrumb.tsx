@@ -25,7 +25,7 @@ const Breadcrumb = ({ items, className, ...props }: BreadcrumbProps) => {
 	}
 
 	const last = items.at(-1) as BreadcrumbItem
-	const others = items.splice(items.length - 2, 1)
+	const others = items.slice(0, items.length - 1)
 
 	return (
 		<ul
@@ -43,6 +43,7 @@ const Breadcrumb = ({ items, className, ...props }: BreadcrumbProps) => {
 					/>
 				</Fragment>
 			))}
+
 			<Text color="muted">{last.text}</Text>
 		</ul>
 	)

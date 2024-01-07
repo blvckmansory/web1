@@ -7,10 +7,13 @@ import { Status, Wrapper } from '@googlemaps/react-wrapper'
 import { clsx } from '~/lib/clsx'
 import { StyleProps } from '~/lib/types'
 
+import type { ZonesType } from '~/server/zones'
+
 import { Skeleton } from '~/client/ui/components/Skeleton'
 
 type MapProps = StyleProps &
 	Partial<{
+		zones: ZonesType
 		zoom: number
 		center: google.maps.LatLngLiteral
 	}>
@@ -56,7 +59,7 @@ const MAP_OPTIONS: google.maps.MapOptions = {
 	streetViewControl: true,
 }
 
-const MapComponent = ({ zoom, style, center, className }: MapProps) => {
+const MapComponent = ({ zoom, style, zones, center, className }: MapProps) => {
 	const ref = useRef<HTMLDivElement>(null)
 	const [load, setLoad] = useState<boolean>(false)
 	const [map, setMap] = useState<google.maps.Map>()
@@ -78,16 +81,17 @@ const MapComponent = ({ zoom, style, center, className }: MapProps) => {
 			return
 		}
 
-		fetchZonesGeoJson().then((data: google.maps.LatLng[][]) => {
-			data.map(
-				(paths) =>
-					new window.google.maps.Polygon({
-						map,
-						paths,
-						fillColor: 'rgb(98, 143, 328)',
-					}),
-			)
-		})
+		zones?.map(
+			(paths) =>
+				new window.google.maps.Polygon({
+					map,
+					paths,
+					strokeWeight: 2,
+					fillOpacity: 0.25,
+					fillColor: 'rgb(98, 143, 328)',
+					strokeColor: 'rgb(98, 143, 328)',
+				}),
+		)
 
 		setLoad(true)
 	}, [map, load, setLoad])
@@ -100,33 +104,6 @@ const MapComponent = ({ zoom, style, center, className }: MapProps) => {
 			className={clsx('w-full rounded-xl bg-white', className)}
 		/>
 	)
-}
-
-type Coords = [number, number]
-
-type ZoneAPI = {
-	displayName: string
-	hasBonus: boolean
-	priority: number
-	bonusValue: number
-	bonusUnits: string
-	points: Coords[]
-	zoneMarkerUrl: string
-	speedMode: string
-}
-
-type ZonesAPI = {
-	rentEndZones: Array<ZoneAPI>
-}
-
-const fetchZonesGeoJson = async () => {
-	const json = (await fetch('https://hellominsk1.cartrek.online/api/zones').then((res) =>
-		res.json(),
-	)) as ZonesAPI
-
-	return json.rentEndZones.map(({ points }) => {
-		return points.map(([lng, lat]) => new window.google.maps.LatLng(lat, lng))
-	})
 }
 
 export default MapWrapper

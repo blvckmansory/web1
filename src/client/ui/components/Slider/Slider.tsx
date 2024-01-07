@@ -38,7 +38,7 @@ const Slider = ({
 
 	return (
 		<SliderContext.Provider value={{ loop, total, activeSlide, handleActiveSlide }}>
-			<section role="slider">
+			<section>
 				<Splide
 					{...props}
 					ref={ref}

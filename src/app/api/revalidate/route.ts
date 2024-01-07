@@ -1,16 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { revalidatePath, revalidateTag } from 'next/cache'
+
+import { revalidateStrapi } from '~/lib/strapi'
 
 const handler = (request: NextRequest) => {
-	revalidatePath('/posts')
-	revalidatePath('/tariff')
-
-	revalidateTag('/posts')
-	revalidateTag('/cars')
-	revalidateTag('/hints')
+	revalidateStrapi()
 
 	return NextResponse.json(
-		{ message: 'Revalidate' },
+		{ message: 'Revalidated' },
 		{ headers: new Headers(request.headers), status: 200, statusText: 'Success' },
 	)
 }

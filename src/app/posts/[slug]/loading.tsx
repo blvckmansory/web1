@@ -8,7 +8,13 @@ import styles from './styles.module.css'
 const Loading = () => (
 	<>
 		<Section className={styles.post__container}>
-			<Skeleton className="h-6 mb-8" />
+			<div className="w-full pb-8 border-b-px border-b-divider">
+				<Skeleton
+					height={32}
+					width={300}
+				/>
+			</div>
+
 			<PostLoader className={styles.post_inner} />
 		</Section>
 	</>

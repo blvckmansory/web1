@@ -1,21 +1,26 @@
 import Link from 'next/link'
 
+import { clsx } from '~/lib/clsx'
+
 import { Button } from '~/client/ui/components/Button'
 import { Spacer } from '~/client/ui/components/Spacer'
 import { Text, Title } from '~/client/ui/components/Text'
 import { AbsoluteImage } from '~/client/ui/components/Image'
 
+import { WelcomeImage } from '~/client/components/WelcomeImage'
 import { BluredEllipse } from '~/client/components/BluredEllipse'
 import { SocialMediaGroup } from '~/client/components/SocialMediaGroup'
 import { Section, type SectionProps } from '~/client/components/Section/Section'
 
-import { BusinessWelcomeImage } from '~/client/modules/(images)/BusinessWelcomeImage'
+type WelcomeSectionProps = SectionProps & {
+	cover?: string
+}
 
-const WelcomeSection = (props: SectionProps) => (
+const WelcomeSection = ({ cover, style, className }: WelcomeSectionProps) => (
 	<Section
 		id="welcome"
-		className="py-8 md:!py-14 md:min-h-[70vh] gap-7"
-		{...props}>
+		style={style}
+		className={clsx('py-8 md:!py-14 md:min-h-[70vh] gap-7', className)}>
 		<BluredEllipse
 			size={800}
 			className="opacity-40 -left-1/4 -bottom-full"
@@ -47,7 +52,7 @@ const WelcomeSection = (props: SectionProps) => (
 
 		<SocialMediaGroup className="self-center md:self-start" />
 
-		<BusinessWelcomeImage />
+		<WelcomeImage src={cover || '/assets/business-welcome.svg'} />
 	</Section>
 )
 

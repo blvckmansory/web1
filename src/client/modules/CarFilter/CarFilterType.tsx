@@ -4,7 +4,7 @@ import { useCallback } from 'react'
 
 import type { StyleProps } from '~/lib/types'
 
-import type { CarType } from '~/server/car/types'
+import { CarType } from '~/shared/entities/car'
 
 import { Label } from '~/client/ui/components/Text'
 import { Tab, Tabs } from '~/client/ui/components/Tabs'
@@ -23,7 +23,7 @@ type CarFilterTypeProps = {
 const CarFilterType = ({ style, className, options }: StyleProps & CarFilterTypeProps) => {
 	const [filter, setFilter] = useCarFilter()
 
-	const item = options.find((item) => item.id === filter.typeId) || ALL_TYPE
+	const item = options.find((item) => String(item.id) === filter.typeId) || ALL_TYPE
 
 	const handleChange = useCallback(
 		(_item?: SelectableItem) => {

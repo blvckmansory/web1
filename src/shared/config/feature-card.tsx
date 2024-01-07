@@ -1,4 +1,4 @@
-import { Tag, Text, List, ListItem, Label } from '~/client/ui/components'
+import { Text, List, ListItem, Label } from '~/client/ui/components'
 
 const FEATURE_CARD_CONFIG = [
 	{
@@ -29,9 +29,6 @@ const BUSINESS_REGISTRATION_OPTIONS = [
 	'Фото водительского удостоверения с обеих сторон',
 	'Селфи с ВУ или паспортом',
 ] as const
-
-const CARS =
-	'VW Polo, VW Polo NEW, Skoda Rapid, Kia Rio X, MINI Cooper, MINI Clubman, MINI Cooper S JCW, JAC J7, Skoda Karoq, VW Tiguan, VW Taos, Kia Seltos, Geely Coolray, Geely Atlas Pro, Geely Tugella, Ford Mustang, Dodge Challenger, Chevrolet Camaro, Tesla Model 3, Tesla Model S, Tesla Model X.'
 
 const FEATURE_BUSINESS_CARD_CONFIG = [
 	{
@@ -70,36 +67,6 @@ const FEATURE_BUSINESS_CARD_CONFIG = [
 		title: 'Быстрая интеграция',
 		description:
 			'Свяжитесь с нами по номеру +375447776060 можно (Telegram или WhatsApp) и заключить договор.',
-	},
-	{
-		icon: 'car',
-		title: 'Разнообразный автопарк',
-		description: '',
-		children: (
-			<>
-				<Label color="default">В нашем автопарке более 30 моделей автомобилей:</Label>
-
-				<div className="font-medium text-default">
-					<Text className="md:hidden ">{CARS}</Text>
-					<Text className="hidden md:flex md:flex-wrap md:gap-x-1 md:gap-y-2">
-						{CARS.split(',').map((car) => (
-							<Tag key={car}>{car}</Tag>
-						))}
-					</Text>
-				</div>
-
-				<Label color="default">Автомобили без оклейки:</Label>
-
-				<div className="font-medium text-default">
-					<Text className="md:hidden">{CARS}</Text>
-					<Text className="hidden md:flex md:flex-wrap md:gap-x-1 md:gap-y-2">
-						{CARS.split(',').map((car) => (
-							<Tag key={car}>{car}</Tag>
-						))}
-					</Text>
-				</div>
-			</>
-		),
 	},
 ] as const
 

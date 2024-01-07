@@ -1,7 +1,13 @@
-import { categories } from './_data'
+import { fetchStrapi, type StrapiResponse } from '~/lib/strapi'
 
-import type { CarType } from './types'
+import type { CarType } from '~/shared/entities/car'
 
-const fetchCarTypes = async (): Promise<CarType[]> => categories
+const fetchCarTypes = async () => {
+	try {
+		return await fetchStrapi<StrapiResponse<CarType[]>>('/car-type')
+	} catch (error) {
+		return { error, data: [] }
+	}
+}
 
 export { fetchCarTypes }

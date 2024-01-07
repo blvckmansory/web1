@@ -17,7 +17,11 @@ const RadioColor = memo(
 			value={value}
 			disabled={disabled}
 			style={{ backgroundColor: value }}
-			className={clsx('aspect-square rounded-full w-9 flex-center', className)}>
+			className={clsx(
+				'aspect-square rounded-full w-9 flex-center',
+				// 'outline-2 outline-offset-1 outline-black outline',
+				className,
+			)}>
 			{({ checked }) => (
 				<span
 					ref={ref}

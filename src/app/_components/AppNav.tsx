@@ -5,27 +5,23 @@ import { HEADER_NAV_CONFIG } from '~/shared/config/nav'
 
 import { NavLink } from '~/client/ui/components/NavLink'
 
-const AppNav = ({ className, ...props }: StyleProps) => {
-	// const { data } = await fetchStrapi('/menus/1', { nested: true, populate: '*' })
-	// console.log(data)
-
-	return (
-		<nav
-			role="navigation"
-			className={clsx('w-fit', className)}>
-			<ul
-				{...props}
-				className="w-fit px-5 flex flex-row">
-				{HEADER_NAV_CONFIG.options.map((link) => (
-					<NavLink
-						key={link.href}
-						{...link}
-						className="px-5"
-					/>
-				))}
-			</ul>
-		</nav>
-	)
-}
+const AppNav = ({ className, ...props }: StyleProps) => (
+	<nav
+		role="navigation"
+		className={clsx('w-fit', className)}>
+		<ul
+			{...props}
+			className="w-fit px-5 flex flex-row">
+			{HEADER_NAV_CONFIG.options.map((link) => (
+				<NavLink
+					{...link}
+					key={link.href}
+					href={link.name}
+					className="px-5"
+				/>
+			))}
+		</ul>
+	</nav>
+)
 
 export { AppNav }

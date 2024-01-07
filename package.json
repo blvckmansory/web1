@@ -16,12 +16,11 @@
 		"lucide-react": "^0.268.0",
 		"maplibre-gl": "3.6.2",
 		"markdown-to-jsx": "^7.3.2",
-		"next": "latest",
+		"next": "latest@canary",
 		"next-usequerystate": "1.13.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"react-map-gl": "7.1.6",
-		"react-youtube": "^10.1.0",
+		"sharp": "^0.33.1",
 		"tailwind-variants": "^0.1.13"
 	},
 	"devDependencies": {

@@ -11,12 +11,12 @@ type NoDataProps = {
 const NoData = ({ style, className, imgSize = 350 }: StyleProps & NoDataProps) => (
 	<article
 		style={style}
-		className={clsx('w-full h-auto flex flex-col items-center gap-y-4', className)}>
+		className={clsx('w-full h-auto flex flex-col items-center', className)}>
 		<Image
 			alt="no-data"
 			src="/no-data.svg"
 			height={imgSize}
-			style={{ width: 'auto', maxHeight: imgSize, height: '100%', ...style }}
+			style={{ width: 'auto', height: 300, ...style }}
 		/>
 		<Button
 			readOnly

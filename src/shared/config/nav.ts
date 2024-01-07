@@ -1,6 +1,6 @@
 type NavLinkConfig = {
 	href: string
-	children: string
+	name: string
 }
 
 type NavConfig = {
@@ -12,27 +12,27 @@ const APP_NAV_CONFIG = {
 	title: 'Навигация',
 	options: [
 		{
-			children: 'Тарифы',
+			name: 'Тарифы',
 			href: '/cars',
 		},
 		{
-			children: 'Зоны завершения',
+			name: 'Зоны завершения',
 			href: '/zones',
 		},
 		{
-			children: 'Подсказки',
+			name: 'Подсказки',
 			href: '/faq/hints',
 		},
 		{
-			children: 'Новости',
+			name: 'Новости',
 			href: '/posts',
 		},
 		{
-			children: 'Контакты',
+			name: 'Контакты',
 			href: '/contacts',
 		},
 		{
-			children: 'Каршеринг для бизнеса',
+			name: 'Каршеринг для бизнеса',
 			href: '/business',
 		},
 	],
@@ -42,27 +42,27 @@ const DOCUMENT_NAV_CONFIG = {
 	title: 'Прочее',
 	options: [
 		{
-			children: 'Договор соглашения',
+			name: 'Договор соглашения',
 			href: '/',
 		},
 		{
-			children: 'Пользовательское соглашение',
+			name: 'Пользовательское соглашение',
 			href: '/',
 		},
 		{
-			children: 'Политика обработки персональных данных',
+			name: 'Политика обработки персональных данных',
 			href: '/',
 		},
 		{
-			children: 'Информация о способах оплаты',
+			name: 'Информация о способах оплаты',
 			href: '/',
 		},
 		{
-			children: 'Положение о видеонаблюдении',
+			name: 'Положение о видеонаблюдении',
 			href: '/',
 		},
 		{
-			children: 'Согласие на обработку персональных данных',
+			name: 'Согласие на обработку персональных данных',
 			href: '/',
 		},
 	],
@@ -72,19 +72,19 @@ const HEADER_NAV_CONFIG = {
 	title: '',
 	options: [
 		{
-			children: 'Новости',
+			name: 'Новости',
 			href: '/posts',
 		},
 		{
-			children: 'Подсказки',
+			name: 'Подсказки',
 			href: '/faq/hints',
 		},
 		{
-			children: 'Зоны завершения',
+			name: 'Зоны завершения',
 			href: '/zones',
 		},
 		{
-			children: 'Тарифы',
+			name: 'Тарифы',
 			href: '/cars',
 		},
 	],
@@ -94,11 +94,11 @@ const CONTACT_NAV_CONFIG = {
 	title: 'Контакты',
 	options: [
 		{
-			children: 'Контакты и реквизиты',
+			name: 'Контакты и реквизиты',
 			href: '/',
 		},
 		{
-			children: 'Написать руководству',
+			name: 'Написать руководству',
 			href: '/',
 		},
 	],
@@ -109,16 +109,16 @@ const FAQ_NAV_CONFIG = {
 	options: [
 		{
 			href: '/faq/hints',
-			children: 'Подсказки',
+			name: 'Подсказки',
 		},
 		/** @fix */
 		{
 			href: '/faq/help',
-			children: 'Инструкции',
+			name: 'Инструкции',
 		},
 		{
 			href: '/faq/rules',
-			children: 'Правила дружбы',
+			name: 'Правила дружбы',
 		},
 	],
 } as NavConfig

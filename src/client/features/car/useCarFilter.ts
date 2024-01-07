@@ -41,5 +41,5 @@ const useCarFilter = () => {
 	return [filter, handleChange] as const
 }
 
-export { useCarFilter }
+export { useCarFilter, QUERY_TYPE, QUERY_PASTING }
 export type { Filter }

@@ -1,19 +1,23 @@
-import type { Populate, StrapiApiSchema } from '~/lib/strapi'
+import type { StrapiSchema } from '~/lib/strapi'
 
-import type { Locale } from './locale'
-import type { ImageAPI } from './image'
+import type { Media } from './image'
 
-type PostAPI = StrapiApiSchema<{
+type Post = StrapiSchema<{
 	title: string
 	content: string
 	description: string
 
-	locale: Locale
-	cover: Populate<ImageAPI, false>
+	cover: Media
 
 	createdAt: string
 	updatedAt: string
 	publishedAt: string
 }>
 
-export type { PostAPI }
+type PostId = Pick<Post, 'id'>
+
+type PostPreview = Pick<Post, 'id' | 'title' | 'description' | 'cover' | 'publishedAt'>
+
+type PostMetadata = Pick<Post, 'id' | 'title' | 'description' | 'cover' | 'publishedAt'>
+
+export type { Post, PostId, PostPreview, PostMetadata }

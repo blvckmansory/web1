@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import type { Metadata } from 'next'
 
 import type { Page } from '~/lib/types'
@@ -21,16 +22,13 @@ const Contacts: Page = () => (
 
 		<article className={styles.methods}>
 			{CONTACTS_CONFIG.map((config) => (
-				<>
-					<CommunicationMethod
-						{...config}
-						key={config.title}
-					/>
+				<Fragment key={config.title}>
+					<CommunicationMethod {...config} />
 					<Divider
 						dir="x"
 						className="block md:hidden"
 					/>
-				</>
+				</Fragment>
 			))}
 		</article>
 
@@ -64,6 +62,9 @@ export const metadata: Metadata = {
 	title: 'Контакты и реквизиты | Каршеринг Hello - Поминутная аренда автомобилей в Минске',
 	description:
 		'КОНТАКТЫ: СЛУЖБА ПОДДЕРЖКИ +375 44 777 60 60 (Telegram, WhatsApp) | info@hello.by РАБОТА С КОРПОРАТИВНЫМИ КЛИЕНТАМИ partners@hello.by ПРЕДЛОЖЕНИЯ: СОТРУДНИЧЕСТВО | РЕКЛАМА offers@hello.by | marketing@hello.by РЕКВИЗИТЫ:',
+	alternates: {
+		canonical: '/contacts',
+	},
 }
 
 export default Contacts

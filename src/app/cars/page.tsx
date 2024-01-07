@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
+import { notFound } from 'next/navigation'
 
 import type { Page } from '~/lib/types'
 import { fetchCarTypes, fetchPreviewCars } from '~/server/car'
@@ -19,8 +20,12 @@ const CarContainer = dynamic(() => import('~/client/modules/CarContainer'), {
 })
 
 const CarsPage: Page = async () => {
-	const cars = await fetchPreviewCars()
-	const carTypes = await fetchCarTypes()
+	const { data: cars } = await fetchPreviewCars()
+	const { data: carTypes } = await fetchCarTypes()
+
+	if (!cars) {
+		notFound()
+	}
 
 	return (
 		<Section className={styles.container}>
@@ -51,6 +56,9 @@ export const metadata: Metadata = {
 	title: 'Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске',
 	description:
 		'Просматривайте информацию о полюбившихся линейках автомоболей и их тарифов использования.',
+	alternates: {
+		canonical: '/cars',
+	},
 }
 
 export default CarsPage

@@ -5,18 +5,18 @@ import { useMemo } from 'react'
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
-import type { PreviewCar } from '~/server/car'
+import { CarPreview as CarPreviewType } from '~/shared/entities/car'
 
 import { useCarFilter } from '~/client/features/car/useCarFilter'
 import { selectFilteredCars } from '~/client/features/car/selectors'
 
 import { NoData } from '~/client/components/NoData'
-import { CarCard } from '~/client/components/cards/CarCard'
+import { CarPreview } from '~/client/components/CarPreview'
 
 import styles from './styles.module.css'
 
 type CarContainerProps = {
-	initialData: PreviewCar[]
+	initialData: CarPreviewType[]
 }
 
 const CarContainer = ({ style, className, initialData }: StyleProps & CarContainerProps) => {
@@ -38,7 +38,7 @@ const CarContainer = ({ style, className, initialData }: StyleProps & CarContain
 			style={style}
 			className={clsx(styles.inner, className)}>
 			{cars.map((card, key) => (
-				<CarCard
+				<CarPreview
 					{...card}
 					key={key}
 				/>

@@ -12,12 +12,16 @@ type NavLinkProps = NextLinkProps &
 		activeStyle?: CSSProperties
 		activeClassName?: string
 
+		text?: string
+		name?: string
 		children?: ReactChildren
 	}
 
 const NavLink = ({
 	href,
 	style,
+	text,
+	name,
 	children,
 	className,
 	activeStyle,
@@ -37,7 +41,7 @@ const NavLink = ({
 				className,
 				active ? activeClassName : '',
 			)}>
-			{children}
+			{children || text || name}
 		</NextLink>
 	)
 }

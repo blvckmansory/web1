@@ -25,7 +25,7 @@ const PostContainer = async ({
 		return <NoData />
 	}
 
-	const isMoreExists = meta.pagination.start + meta.pagination.limit < meta.pagination.total
+	const isMoreExists = meta.pagination.end < meta.pagination.total
 
 	return (
 		<div className="space-y-8 max-w-full h-auto">

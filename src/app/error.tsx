@@ -6,7 +6,7 @@ import { useEffect, useCallback } from 'react'
 import { Button } from '~/client/ui/components/Button'
 import { SectionError } from '~/client/components/Section/SectionError'
 
-import { InternalErrorImage } from '~/client/modules/(images)/InternalErrorImage'
+import { InternalErrorImage } from '~/client/components/InternalErrorImage'
 
 type ErrorProps = {
 	error: Error & { digest?: string }

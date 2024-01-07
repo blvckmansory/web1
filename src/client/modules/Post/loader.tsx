@@ -10,21 +10,23 @@ const PostLoader = ({ style, className }: StyleProps) => (
 		style={style}
 		className={clsx(styles.container, className)}>
 		<Skeleton
-			style={{ height: 40 }}
+			width="75%"
+			height={40}
 			className={styles.title}
 		/>
 		<Skeleton
-			style={{ height: 20 }}
+			width={100}
+			height={20}
 			className={styles.date}
 		/>
 
 		<div className={styles.cover__container}>
 			<Skeleton
-				style={{ height: 450 }}
+				height={450}
 				className={styles.cover__img}
 			/>
 		</div>
-		<Skeleton style={{ height: 150 }} />
+		<Skeleton height={150} />
 	</article>
 )
 

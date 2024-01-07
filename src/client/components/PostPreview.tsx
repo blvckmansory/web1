@@ -4,16 +4,13 @@ import Markdown from 'markdown-to-jsx'
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
+import type { PostPreview } from '~/shared/entities/post'
+
 import { Text } from '~/client/ui/components/Text'
 import { NavLink } from '~/client/ui/components/NavLink'
 import { ArrowIcon } from '~/client/ui/(icons)/ArrowIcon'
 
-type PostPreviewProps = StyleProps & {
-	id: number
-	title: string
-	description: string
-	cover: string
-}
+type PostPreviewProps = StyleProps & PostPreview
 
 const PostPreview = ({ id, title, cover, style, className, description }: PostPreviewProps) => (
 	<article
@@ -29,7 +26,7 @@ const PostPreview = ({ id, title, cover, style, className, description }: PostPr
 		<div className="relative w-full aspect-[2/1] !px-0">
 			<Image
 				fill
-				src={cover}
+				src={cover.url}
 				sizes="100vw"
 				alt="post-card-image"
 				className="object-cover"

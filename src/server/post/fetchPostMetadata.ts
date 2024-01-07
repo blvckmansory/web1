@@ -1,14 +1,15 @@
-import { baseFetchStrapiPost, type Post } from './_utils'
+import type { PostMetadata } from '~/shared/entities/post'
 
-type PostMetadata = Pick<Post, 'id' | 'title' | 'description' | 'cover' | 'publishedAt'>
+import { baseFetchStrapiPost } from './_utils'
 
 const fetchPostMetadata = async (id: string) => {
 	try {
-		return await baseFetchStrapiPost<false, PostMetadata>(`/posts/${id}`)
+		return await baseFetchStrapiPost<false, PostMetadata>('/post', {
+			id,
+		})
 	} catch (error) {
 		return { data: null }
 	}
 }
 
 export { fetchPostMetadata }
-export type { PostMetadata }

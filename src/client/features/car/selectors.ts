@@ -1,14 +1,14 @@
-import type { Car } from '~/server/car/types'
+import type { PreviewCar } from '~/server/car'
 
 import type { Filter } from './useCarFilter'
 
-type Data = Car[]
+type Data = PreviewCar[]
 
 const selectFilteredCars = (data: Data, filter: Filter) =>
 	data.filter((item) =>
 		[
-			filter.typeId ? item.type.id === filter.typeId : true,
-			filter.pasting === item.pasting,
+			filter.typeId ? String(item.carType.id) === filter.typeId : true,
+			filter.pasting === item.isWrapped,
 		].every(Boolean),
 	)
 

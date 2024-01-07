@@ -1,12 +1,11 @@
-import type { StrapiApiSchema } from '~/lib/strapi'
+import type { StrapiSchema } from '~/lib/strapi'
 
-import type { ImageAPI } from '../image'
-import { Populate } from '~/lib/strapi'
+import type { Media } from '../image'
 
-type SliderConfigAPI = StrapiApiSchema<{
-	first: Populate<ImageAPI, false>
-	second: Populate<ImageAPI, false>
-	third: Populate<ImageAPI, false>
+type SliderConfig = StrapiSchema<{
+	first: Media
+	second: Media
+	third: Media
 }>
 
-export type { SliderConfigAPI }
+export type { SliderConfig }

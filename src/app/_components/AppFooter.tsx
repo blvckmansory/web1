@@ -1,17 +1,11 @@
 import { clsx } from '~/lib/clsx'
 import type { ReactChildren, StyleProps } from '~/lib/types'
 
-import { APP_NAV_CONFIG, CONTACT_NAV_CONFIG, DOCUMENT_NAV_CONFIG } from '~/shared/config/nav'
+import { APP_NAV_CONFIG, CONTACT_NAV_CONFIG, type NavConfig } from '~/shared/config/nav'
 
-import {
-	Text,
-	Spacer,
-	Divider,
-	NavLink,
-	Collapse,
-	Responsive,
-	type NavLinkProps,
-} from '~/client/ui/components'
+import { fetchDocs } from '~/server/doc'
+
+import { Text, Spacer, Divider, NavLink, Collapse, Responsive } from '~/client/ui/components'
 
 import { Logo } from '~/client/components/Logo'
 import { Section } from '~/client/components/Section/Section'
@@ -19,48 +13,51 @@ import { CardOptions } from '~/client/components/CardOptions'
 import { PhoneText } from '~/client/components/buttons/PhoneButton'
 import { SocialMediaGroup } from '~/client/components/SocialMediaGroup'
 
-const AppFooter = ({ className, ...props }: StyleProps) => (
-	<Section
-		{...props}
-		as="footer"
-		className={clsx('gap-4 lg:grid lg:grid-cols-12 lg:gap-8 ', className)}>
-		<Logo className="lg:col-span-2 w-max h-fit max-lg:mb-4" />
+const AppFooter = async ({ className, ...props }: StyleProps) => {
+	const { data: docs } = await fetchDocs()
 
-		<FooterNavGrid
-			{...DOCUMENT_NAV_CONFIG}
-			className="lg:col-span-4"
-		/>
+	return (
+		<Section
+			{...props}
+			as="footer"
+			className={clsx('gap-4 lg:grid lg:grid-cols-12 lg:gap-8 ', className)}>
+			<Logo className="lg:col-span-2 w-max h-fit max-lg:mb-4" />
 
-		<FooterNavGrid
-			{...APP_NAV_CONFIG}
-			className="lg:col-span-3"
-		/>
-
-		<FooterNavGrid
-			{...CONTACT_NAV_CONFIG}
-			className="lg:col-span-3">
-			<Spacer
-				full
-				y={32}
+			<FooterNavGrid
+				title="Прочее"
+				options={docs}
+				className="lg:col-span-4"
 			/>
-			<PhoneText />
-			<Spacer y={16} />
-			<SocialMediaGroup />
-		</FooterNavGrid>
 
-		<article className="lg:col-span-12">
-			<Divider className="my-5 lg:mt-10" />
-			<CardOptions />
-		</article>
-	</Section>
-)
+			<FooterNavGrid
+				{...APP_NAV_CONFIG}
+				className="lg:col-span-3"
+			/>
 
-type FooterNavProps = StyleProps & {
-	title: string
-	options: NavLinkProps[]
+			<FooterNavGrid
+				{...CONTACT_NAV_CONFIG}
+				className="lg:col-span-3">
+				<Spacer
+					full
+					y={32}
+				/>
+				<PhoneText />
+				<Spacer y={16} />
+				<SocialMediaGroup />
+			</FooterNavGrid>
 
-	children?: ReactChildren
+			<article className="lg:col-span-12">
+				<Divider className="my-5 lg:mt-10" />
+				<CardOptions />
+			</article>
+		</Section>
+	)
 }
+
+type FooterNavProps = StyleProps &
+	NavConfig & {
+		children?: ReactChildren
+	}
 
 const FooterNavGrid = ({ title, options, children, className, ...props }: FooterNavProps) => (
 	<article
@@ -110,10 +107,11 @@ const FooterNav = ({ title, options }: FooterNavProps) => (
 		<ul className="flex flex-col">
 			{options.map((link, idx) => (
 				<NavLink
-					{...link}
 					key={`${title} ${link.href.toString()} ${idx}`}
-					className="py-1.5 font-normal text-sm"
-				/>
+					href={link.href}
+					className="py-1.5 font-normal text-sm">
+					{link.name}
+				</NavLink>
 			))}
 		</ul>
 	</nav>

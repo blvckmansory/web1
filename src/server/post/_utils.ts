@@ -1,52 +1,50 @@
 import { revalidateTag } from 'next/cache'
 
-import { fetchStrapi, getStrapiMedia, type Populate, type FetchStrapiOptions } from '~/lib/strapi'
+import {
+	fetchStrapi,
+	getStrapiMedia,
+	type StrapiResponse,
+	type FetchStrapiOptions,
+} from '~/lib/strapi'
 
-import type { PostAPI } from '~/shared/entities/post'
-
-const convertPostApiResponse = (response: PostAPI) => ({
-	...response.attributes,
-	id: response.id,
-	cover: getStrapiMedia(response.attributes.cover.data.attributes.url),
-})
-
-type Post = ReturnType<typeof convertPostApiResponse>
+import { Media } from '~/shared/entities/image'
+import type { Post } from '~/shared/entities/post'
 
 const REVALIDATE_TAG = '/posts'
-const defaultQueries = {
-	'sort[0]': 'publishedAt',
-	'populate[cover][fields][0]': 'url',
-	'populate[cover][fields][1]': 'placeholder',
-} as const
+const defaultQueries = {} as const
+
+const convertPostResponse = <T extends { cover: Media }>(post: T) => ({
+	...post,
+	cover: {
+		...post.cover,
+		url: getStrapiMedia(post.cover.url),
+	},
+})
 
 const baseFetchStrapiPost = async <IsArray extends boolean = true, T = Post>(
 	path: string,
 	urlParamsObject: any = {},
 	options: FetchStrapiOptions = {},
-): Promise<Populate<T, IsArray>> =>
-	fetchStrapi<Populate<PostAPI, IsArray>>(
+): Promise<StrapiResponse<T, IsArray>> =>
+	fetchStrapi<StrapiResponse<Post, IsArray>>(
 		path,
 		{
 			...defaultQueries,
 			...urlParamsObject,
 		},
 		{ ...options, next: { tags: [REVALIDATE_TAG], ...options.next } },
-	).then(({ data, meta }) => {
-		if (!data) {
-			throw new Error('>> Strapi fetch `data` is null')
-		}
-
+	).then(({ data, ...rest }) => {
 		const mappedData = Array.isArray(data)
-			? data.map(convertPostApiResponse)
-			: convertPostApiResponse(data)
+			? data.map(convertPostResponse)
+			: convertPostResponse(data)
 
 		return {
-			meta,
+			...rest,
 			data: mappedData as IsArray extends true ? T[] : T,
 		}
 	})
 
 const revalidatePosts = () => revalidateTag(REVALIDATE_TAG)
 
-export { defaultQueries, revalidatePosts, convertPostApiResponse, baseFetchStrapiPost }
+export { defaultQueries, revalidatePosts, baseFetchStrapiPost }
 export type { Post }

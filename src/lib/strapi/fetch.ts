@@ -1,16 +1,21 @@
 import { STRAPI_API_KEY } from '~/env'
 
 import { getStrapiURL } from './utils'
+import { revalidateTag } from 'next/cache'
 
 type FetchNextOptions = {
-	next?: {
-		revalidate?: number | 0 | false
-		cache?: 'force-cache' | 'no-store'
-		tags?: string[]
-	}
+	next?: Partial<{
+		tags: string[]
+		revalidate: number | 0 | false
+		cache: 'force-cache' | 'no-store'
+	}>
 }
 
 type FetchStrapiOptions = RequestInit & FetchNextOptions
+
+const REVALIDATE_TAG = '/strapi'
+
+const revalidateStrapi = () => revalidateTag(REVALIDATE_TAG)
 
 const fetchStrapi = async <T = any>(
 	path: string,
@@ -28,10 +33,11 @@ const fetchStrapi = async <T = any>(
 			next: {
 				revalidate: 15,
 				cache: 'force-cache',
-				...options?.next,
+				tags: [REVALIDATE_TAG],
+				// ...options?.next,
 			},
 			...options,
-		} as const
+		}
 
 		// Build request URL
 		const queries = new URLSearchParams(urlParamsObject)
@@ -41,11 +47,17 @@ const fetchStrapi = async <T = any>(
 		// Trigger API call
 		const response = await fetch(requestUrl, mergedOptions)
 
-		return response.json()
+		const json = await response.json()
+
+		if (!json.data) {
+			throw new Error()
+		}
+
+		return json
 	} catch (error) {
 		throw new Error(`>> Strapi Fetch Error: ${path}`)
 	}
 }
 
-export { fetchStrapi }
+export { fetchStrapi, revalidateStrapi }
 export type { FetchStrapiOptions }

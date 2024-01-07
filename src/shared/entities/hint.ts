@@ -1,19 +1,19 @@
-import type { StrapiApiSchema } from '~/lib/strapi'
-
 enum HintType {
 	HINT = 'HINT',
 	INSTRUCTION = 'INSTRUCTION',
 	FRIENDSHIP_RULE = 'FRIENDSHIP_RULE',
 }
 
-type HintAPI = StrapiApiSchema<{
+type Hint = {
+	id: string | number
+
 	hintType: HintType
 
 	title: string
 	content: string
 
-	videoURL?: string
-}>
+	videoURL?: string | null | undefined
+}
 
 export { HintType }
-export type { HintAPI }
+export type { Hint }

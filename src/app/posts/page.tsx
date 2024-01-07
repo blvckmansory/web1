@@ -37,6 +37,9 @@ const Posts: Page<{}, SearchParams> = async ({ searchParams }) => {
 export const metadata: Metadata = {
 	title: 'Новости | Каршеринг Hello - Поминутная аренда автомобилей в Минске',
 	description: 'Новости от Helloшки, все самые свежие и интересные новости.',
+	alternates: {
+		canonical: '/posts',
+	},
 }
 
 export default Posts

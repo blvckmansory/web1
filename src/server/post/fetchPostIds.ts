@@ -1,16 +1,13 @@
-import { baseFetchStrapiPost, type Post } from './_utils'
+import type { PostId } from '~/shared/entities/post'
 
-type PostId = Pick<Post, 'id'>
+import { baseFetchStrapiPost } from './_utils'
 
 const fetchPostIds = async () => {
 	try {
-		return await baseFetchStrapiPost<true, PostId>('/posts', {
-			'fields[0]': 'id',
-		})
+		return await baseFetchStrapiPost<true, PostId>('/post/ids')
 	} catch (error) {
 		return { data: [] }
 	}
 }
 
 export { fetchPostIds }
-export type { PostId }

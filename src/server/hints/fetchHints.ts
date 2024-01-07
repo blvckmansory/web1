@@ -1,4 +1,6 @@
-import { baseFetchStrapiHint, HintType, type Hint } from './_utils'
+import type { HintType } from '~/shared/entities/hint'
+
+import { baseFetchStrapiHint } from './_utils'
 
 type FetchHintsArgs = {
 	type: HintType
@@ -6,8 +8,8 @@ type FetchHintsArgs = {
 
 const fetchHints = async ({ type }: FetchHintsArgs) => {
 	try {
-		return await baseFetchStrapiHint<true, Hint>('/hints', {
-			'filters[hintType]': type,
+		return await baseFetchStrapiHint('/hints', {
+			type,
 		})
 	} catch (error) {
 		return { data: null }

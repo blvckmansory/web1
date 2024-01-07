@@ -8,19 +8,19 @@ const config: Config = {
 		extend: {
 			colors: {
 				black: '#1c1a1a',
-				white: 'var(--white)',
+				white: '#ffffff',
 
 				card: '#F9F9F9',
 				divider: '#DADADA',
 				link: {
 					active: '#1BCC00',
-					default: 'var(--black)',
+					default: '#1c1a1a',
 				},
 
-				primary: 'rgb(var(--primary))',
-				primaryLight: 'rgba(var(--primary), 0.15)',
+				primary: 'rgb(34, 255, 1)',
+				primaryLight: 'rgba(34, 255, 1, 0.15)',
 
-				secondary: 'var(--secondary)',
+				secondary: '#ffffff',
 
 				ghost: '#969696',
 
@@ -39,10 +39,10 @@ const config: Config = {
 				},
 
 				tag: {
-					red: 'var(--tag-red)',
-					blue: 'var(--tag-blue)',
-					green: 'var(--tag-green)',
-					yellow: 'var(--tag-yellow)',
+					red: '#ffc5c8',
+					blue: '#b9e2f8',
+					green: '#40d39c',
+					yellow: '#ffd05b',
 				},
 			},
 			fontFamily: {

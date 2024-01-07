@@ -1,8 +1,13 @@
-import type { StrapiApiSchema } from '~/lib/strapi'
+import type { StrapiApiSchema, StrapiSchema } from '~/lib/strapi'
+
+type Media = StrapiSchema<{
+	url: string
+}>
 
 type ImageAPI = StrapiApiSchema<{
+	id: number | string
 	url: string
 	name: string
 }>
 
-export type { ImageAPI }
+export type { Media, ImageAPI }

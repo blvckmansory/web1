@@ -19,8 +19,6 @@ import {
 	AdaptiveDialogFooter,
 } from '~/client/components/AdaptiveDialog'
 
-import { SocialMediaGroup } from '~/client/components/SocialMediaGroup'
-
 import { BluredEllipse } from './BluredEllipse'
 
 const NavButton = () => {
@@ -65,16 +63,14 @@ const NavButton = () => {
 
 					{APP_NAV_CONFIG.options.map((link, idx) => (
 						<NavLink
-							{...link}
+							href={link.href}
 							onClick={close}
 							className="w-full py-3 text-2xl"
-							key={`${link.href.toString()} ${idx}`}
-						/>
+							key={`${link.href.toString()} ${idx}`}>
+							{link.name}
+						</NavLink>
 					))}
 				</AdaptiveDialogBody>
-				<AdaptiveDialogFooter>
-					<SocialMediaGroup />
-				</AdaptiveDialogFooter>
 			</AdaptiveDialog>
 		</>
 	)

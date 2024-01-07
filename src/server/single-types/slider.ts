@@ -1,24 +1,32 @@
-import { fetchStrapi, getStrapiMedia, Populate } from '~/lib/strapi'
+import { fetchStrapi, getStrapiMedia, type StrapiResponse } from '~/lib/strapi'
 
-import type { SliderConfigAPI } from '~/shared/entities/single-types/slider'
+import type { SliderConfig } from '~/shared/entities/single-types/slider'
+
+const convertSliderConfigResponse = (sliderConfig: SliderConfig) => ({
+	first: {
+		...sliderConfig.first,
+		url: getStrapiMedia(sliderConfig.first.url),
+	},
+	second: {
+		...sliderConfig.second,
+		url: getStrapiMedia(sliderConfig.second.url),
+	},
+	third: {
+		...sliderConfig.third,
+		url: getStrapiMedia(sliderConfig.third.url),
+	},
+})
 
 const fetchSliderConfig = async () => {
 	try {
-		const { data } = await fetchStrapi<Populate<SliderConfigAPI>>('/slider', {
-			populate: '*',
-		})
+		const { data } = await fetchStrapi<StrapiResponse<SliderConfig>>('/slider')
 
-		if (!data) {
-			return {}
-		}
-
-		return {
-			first: getStrapiMedia(data.attributes.first.data.attributes.url),
-			second: getStrapiMedia(data.attributes.second.data.attributes.url),
-			third: getStrapiMedia(data.attributes.third.data.attributes.url),
-		}
+		return { data: convertSliderConfigResponse(data) }
 	} catch (error) {
-		return {}
+		return {
+			data: null,
+			error,
+		}
 	}
 }
 
