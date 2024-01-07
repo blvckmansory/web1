@@ -17,7 +17,7 @@ const PostContainer = async ({
 	style,
 	className,
 	page = 1,
-	perPage = 2,
+	perPage = 4,
 }: StyleProps & PostContainerProps) => {
 	const { data: posts, meta } = await fetchPreviewPosts({ start: 0, limit: page * perPage })
 

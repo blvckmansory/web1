@@ -28,7 +28,7 @@ const Posts: Page<{}, SearchParams> = async ({ searchParams }) => {
 
 			<PostContainer
 				page={page}
-				perPage={2}
+				perPage={4}
 			/>
 		</Section>
 	)
