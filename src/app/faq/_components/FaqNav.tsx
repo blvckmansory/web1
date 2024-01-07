@@ -17,7 +17,7 @@ const FaqNav = ({ className, ...props }: StyleProps) => (
 				<li
 					key={link.href}
 					className="w-max">
-					<FaqNavLink {...link} />
+					<FaqNavLink href={link.href}>{link.name}</FaqNavLink>
 				</li>
 			))}
 		</ul>

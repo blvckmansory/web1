@@ -12,7 +12,7 @@ import { Title, type TextProps } from '~/client/ui/components/Text'
 const FaqTitle = ({ className, ...props }: TextProps) => {
 	const pathname = usePathname()
 	const title = useMemo(
-		() => FAQ_NAV_CONFIG.options.find((link) => pathname.includes(link.href))?.children,
+		() => FAQ_NAV_CONFIG.options.find((link) => pathname.includes(link.href))?.name,
 		[pathname],
 	)
 

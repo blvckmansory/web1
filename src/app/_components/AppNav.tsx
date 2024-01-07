@@ -16,7 +16,7 @@ const AppNav = ({ className, ...props }: StyleProps) => (
 				<NavLink
 					{...link}
 					key={link.href}
-					href={link.name}
+					href={link.href}
 					className="px-5"
 				/>
 			))}

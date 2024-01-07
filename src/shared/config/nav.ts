@@ -95,11 +95,11 @@ const CONTACT_NAV_CONFIG = {
 	options: [
 		{
 			name: 'Контакты и реквизиты',
-			href: '/',
+			href: '/contacts',
 		},
 		{
 			name: 'Написать руководству',
-			href: '/',
+			href: '/contacts',
 		},
 	],
 } as NavConfig
