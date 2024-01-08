@@ -1,0 +1,11 @@
+.icons {
+	@apply grid gap-10 grid-flow-dense;
+	grid-template-rows: auto;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+}
+
+.features {
+	@apply grid gap-4 grid-flow-dense;
+	grid-template-rows: auto;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}

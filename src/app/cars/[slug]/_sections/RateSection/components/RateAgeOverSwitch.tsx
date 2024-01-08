@@ -6,7 +6,7 @@ import { useCarRate } from '~/client/features/car/useCarRate'
 
 import { Switch, type SwitchProps } from '~/client/ui/components/Toggle'
 
-const CarRateAgeOverSwitch = (props: SwitchProps) => {
+const RateAgeOverSwitch = (props: SwitchProps) => {
 	const [filter, setFilter] = useCarRate()
 
 	const handleChange = useCallback((value: boolean) => {
@@ -24,4 +24,4 @@ const CarRateAgeOverSwitch = (props: SwitchProps) => {
 	)
 }
 
-export { CarRateAgeOverSwitch }
+export { RateAgeOverSwitch }

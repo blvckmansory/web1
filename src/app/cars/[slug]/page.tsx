@@ -31,7 +31,7 @@ const CarPage: Page<Params> = async ({ params }) => {
 				isWrapped={car.isWrapped}
 				sideImages={car.sideImages}
 			/>
-			<RateSection />
+			<RateSection rates={car.rates} />
 			<CharSection
 				main={car.characteristics.mainFeatures}
 				other={car.characteristics.otherFeatures}

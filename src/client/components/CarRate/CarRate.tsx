@@ -1,9 +1,14 @@
+import { memo } from 'react'
+
 import type { StyleProps } from '~/lib/types'
 
 import { Text, Title } from '~/client/ui/components/Text'
 import { List, ListItem } from '~/client/ui/components/List'
 
-import { HeroIcon } from '~/client/components/HeroIcon'
+import { MarkdownContent } from '~/client/components/MarkdownContent'
+import { PriceWithDiscount } from '~/client/components/PriceWithDiscount'
+
+import { CarDiscount } from './CarDiscount'
 
 import styles from './styles.module.css'
 
@@ -18,41 +23,34 @@ type CarRateProps = StyleProps & {
 	footer: string
 
 	discount?: number
-	options: Option[]
+	options?: Option[]
 }
 
-const CarRate = ({ title, footer, options, discount, description }: CarRateProps) => (
+const CarRate = memo<CarRateProps>(({ title, footer, options, discount, description }) => (
 	<article className={`card ${styles.container}`}>
 		<Title className="!text-xl">{title}</Title>
 
-		{discount ? (
-			<div className={styles.discount}>
-				<HeroIcon
-					name="percent"
-					color="#22FF01"
-				/>
-				<Text>
-					Действует скидка до <b>{discount}</b> %
-				</Text>
-			</div>
-		) : null}
+		<CarDiscount discount={discount} />
 
 		<Text weight={400}>{description}</Text>
 
 		<List>
-			{options.map((option, key) => (
+			{options?.map((option, key) => (
 				<ListItem
 					key={key}
 					className={styles.option__item}>
 					<Text>{option.name}</Text> —
-					<Text className="text-link-active">{option.price} BYN</Text>
+					<PriceWithDiscount
+						discount={discount}
+						price={option.price}
+					/>
 				</ListItem>
 			))}
 		</List>
 
-		<Text className={styles.footer}>{footer}</Text>
+		<MarkdownContent className={styles.footer}>{footer}</MarkdownContent>
 	</article>
-)
+))
 
 export { CarRate }
 export type { CarRateProps }

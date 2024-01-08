@@ -96,6 +96,7 @@ const textVariants = tv({
 			default: 'text-default',
 			ghost: 'text-ghost',
 			muted: 'text-muted',
+			primary: 'text-primaryText',
 		},
 		lineClamp: {
 			none: 'line-clamp-none',

@@ -1,7 +1,5 @@
 .container {
-	@apply px-5 py-6 md:py-8 md:px-7 grid gap-y-5 text-sm;
-	grid-template-rows: subgrid;
-	grid-row: span 5;
+	@apply px-5 py-6 md:py-8 md:px-7 grid gap-y-4 text-sm;
 }
 
 .discount {
@@ -13,5 +11,5 @@
 }
 
 .footer {
-	@apply mt-12;
+	@apply mt-12 text-sm;
 }

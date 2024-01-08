@@ -8,7 +8,7 @@ import { List, ListItem } from '~/client/ui/components/List'
 
 import { Section, type SectionProps } from '~/client/components/Section'
 
-import { MainChar } from './components/MainChar'
+import { MainChar } from './MainChar'
 
 import styles from './styles.module.css'
 
@@ -31,7 +31,7 @@ const CharSection = ({ main, other, className, ...props }: CharSectionProps) => 
 				className="text-sm">
 				Основные
 			</Label>
-			<List className={styles.chars__icons}>
+			<List className={styles.icons}>
 				{main.map((item, key) => (
 					<MainChar
 						key={key}
@@ -52,7 +52,7 @@ const CharSection = ({ main, other, className, ...props }: CharSectionProps) => 
 						className="text-sm">
 						Особенности
 					</Label>
-					<List className={styles.chars__features}>
+					<List className={styles.features}>
 						{other.map((feature, key) => (
 							<ListItem key={key}>{feature.name}</ListItem>
 						))}

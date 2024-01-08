@@ -16,6 +16,7 @@ const convertCarResponse = (car: Car) => ({
 			},
 		})),
 	},
+
 	sideImages: car.sideImages.map((sideImage) => ({
 		...sideImage,
 		image: {

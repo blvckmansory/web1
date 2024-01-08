@@ -1,5 +1,3 @@
-import { revalidateTag } from 'next/cache'
-
 import {
 	fetchStrapi,
 	getStrapiMedia,
@@ -18,32 +16,22 @@ const convertCarResponse = <T extends { previewImage: Media }>(car: T) => ({
 	},
 })
 
-const REVALIDATE_TAG = '/cars'
-const defaultQueries = {} as const
-
-const revalidateCars = () => revalidateTag(REVALIDATE_TAG)
-
 const baseFetchStrapiCar = async <IsArray extends boolean = true, T = Car>(
 	path: string,
 	urlParamsObject: any = {},
 	options: FetchStrapiOptions = {},
 ): Promise<StrapiResponse<T, IsArray>> =>
-	fetchStrapi<StrapiResponse<Car, IsArray>>(
-		path,
-		{
-			...defaultQueries,
-			...urlParamsObject,
+	fetchStrapi<StrapiResponse<Car, IsArray>>(path, urlParamsObject, { ...options }).then(
+		({ data, ...rest }) => {
+			const mappedData = Array.isArray(data)
+				? data.map(convertCarResponse)
+				: convertCarResponse(data)
+
+			return {
+				...rest,
+				data: mappedData as IsArray extends true ? T[] : T,
+			}
 		},
-		{ ...options, next: { tags: [REVALIDATE_TAG], ...options.next } },
-	).then(({ data, ...rest }) => {
-		const mappedData = Array.isArray(data)
-			? data.map(convertCarResponse)
-			: convertCarResponse(data)
+	)
 
-		return {
-			...rest,
-			data: mappedData as IsArray extends true ? T[] : T,
-		}
-	})
-
-export { baseFetchStrapiCar, revalidateCars }
+export { baseFetchStrapiCar }

@@ -1,24 +1,20 @@
 import type { StrapiSchema } from '~/lib/strapi'
 
+import type { Rate } from './rate'
 import type { Media } from './image'
 
-type CarCharacteristic<Main = true> = StrapiSchema<
-	{
-		name: string
-	} & (Main extends true
-		? {
-				icon: Media
-				description: string
-			}
-		: {})
+type CarCharacteristicBase = {
+	name: string
+}
+
+type CarCharacteristicExtended = {
+	icon: Media
+	description: string
+}
+
+type CarCharacteristic<Extended = true> = StrapiSchema<
+	CarCharacteristicBase & (Extended extends true ? CarCharacteristicExtended : {})
 >
-
-type CarMinuteRate = StrapiSchema<{
-	minuteRate: number
-	minuteRateParking: number
-
-	isResident: boolean
-}>
 
 type CarColorImage = StrapiSchema<{
 	color: string
@@ -41,13 +37,14 @@ type Car = StrapiSchema<{
 
 	previewImage: Media
 
+	rates: Rate[]
+
+	sideImages: CarColorImage[]
+
 	characteristics: StrapiSchema<{
 		mainFeatures: CarCharacteristic<true>[]
 		otherFeatures: CarCharacteristic<false>[]
 	}>
-
-	minutes: CarMinuteRate[]
-	sideImages: CarColorImage[]
 }>
 
 type CarId = Pick<Car, 'id' | 'name'>
@@ -59,13 +56,4 @@ type CarPreview = Pick<
 	'name' | 'minMinuteRate' | 'isWrapped' | 'isNew' | 'isHot' | 'carType' | 'id' | 'previewImage'
 >
 
-export type {
-	Car,
-	CarId,
-	CarType,
-	CarPreview,
-	CarMetadata,
-	CarMinuteRate,
-	CarColorImage,
-	CarCharacteristic,
-}
+export type { Car, CarId, CarType, CarPreview, CarMetadata, CarColorImage, CarCharacteristic }

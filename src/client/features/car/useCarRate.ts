@@ -4,15 +4,21 @@ import { useMemo, useCallback } from 'react'
 import { useQueryState, parseAsBoolean } from 'next-usequerystate'
 
 type Filter = {
-	ageOver: boolean
 	isResident: boolean
+	overTwentyThreeYears: boolean
+	experienceMoreThanYear: boolean
 }
 
 const QUERY_AGE = 'ageOver' as const
 const QUERY_RESIDENT = 'isResident' as const
 
 const useCarRate = () => {
-	const [ageOver, setAgeOver] = useQueryState(QUERY_AGE, {
+	const [overTwentyThreeYears, setAgeOver] = useQueryState(QUERY_AGE, {
+		...parseAsBoolean,
+		shallow: false,
+		defaultValue: true,
+	})
+	const [experienceMoreThanYear, setExpOver] = useQueryState(QUERY_AGE, {
 		...parseAsBoolean,
 		shallow: false,
 		defaultValue: true,
@@ -25,19 +31,22 @@ const useCarRate = () => {
 
 	const filter = useMemo<Filter>(
 		() => ({
-			ageOver,
 			isResident,
+			overTwentyThreeYears,
+			experienceMoreThanYear,
 		}),
-		[ageOver, isResident],
+		[overTwentyThreeYears, experienceMoreThanYear, isResident],
 	)
 
-	const handleChange = useCallback(
-		(_filter: Partial<Filter>) => {
-			typeof _filter.ageOver !== 'undefined' ? setAgeOver(_filter.ageOver) : null
-			typeof _filter.isResident !== 'undefined' ? setIsResident(_filter.isResident) : null
-		},
-		[setAgeOver, setIsResident],
-	)
+	const handleChange = useCallback((_filter: Partial<Filter>) => {
+		typeof _filter.overTwentyThreeYears !== 'undefined'
+			? setAgeOver(_filter.overTwentyThreeYears)
+			: null
+		typeof _filter.experienceMoreThanYear !== 'undefined'
+			? setExpOver(_filter.experienceMoreThanYear)
+			: null
+		typeof _filter.isResident !== 'undefined' ? setIsResident(_filter.isResident) : null
+	}, [])
 
 	return [filter, handleChange] as const
 }

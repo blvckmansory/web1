@@ -1,0 +1,7 @@
+.container {
+	@apply flex flex-wrap gap-4;
+}
+
+.container > * {
+	width: clamp(300px, 25%, 380px);
+}

@@ -17,6 +17,7 @@ const config: Config = {
 					default: '#1c1a1a',
 				},
 
+				primaryText: '#15A000',
 				primary: 'rgb(34, 255, 1)',
 				primaryLight: 'rgba(34, 255, 1, 0.15)',
 
