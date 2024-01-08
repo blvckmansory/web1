@@ -1,47 +1,91 @@
-import { getCurrency } from '~/shared/helpers/currency'
-import { compareObject } from '~/shared/helpers/object'
+import { computePriceWithDiscount } from '~/shared/helpers/currency'
 import type { Rate, RateWithConditions } from '~/shared/entities/rate'
 
 import type { Filter } from '~/client/features/car/useCarRate'
 
-const getAvailableFilters = (rates: Rate[]) => {
-	let available: Filter = {
-		isResident: true,
-		overTwentyThreeYears: false,
-		experienceMoreThanYear: false,
+type AvailableFilter = Record<keyof Filter, boolean>
+
+const getAvailableFilters = (rates: Rate[]): AvailableFilter => {
+	let available = {
+		isResident: {
+			true: false,
+			false: false,
+		},
+		overTwentyThreeYears: {
+			true: false,
+			false: false,
+		},
+		experienceMoreThanYear: {
+			true: false,
+			false: false,
+		},
 	}
 
-	rates.forEach((rate) => {
-		available.isResident = rate.customRates.some(
-			(customRate) => customRate.conditions.isResident,
-		)
-		available.experienceMoreThanYear = rate.customRates.some(
-			(customRate) => customRate.conditions.experienceMoreThanYear,
-		)
-		available.overTwentyThreeYears = rate.customRates.some(
-			(customRate) => customRate.conditions.overTwentyThreeYears,
-		)
-	})
+	rates.forEach(({ customRates }) =>
+		customRates.forEach(({ conditions }) => {
+			Object.entries(conditions).forEach(([key, value]) => {
+				if (typeof value !== 'boolean') {
+					return
+				}
+				// @ts-expect-error
+				return (available[key][value] = true)
+			})
+		}),
+	)
 
-	return available
-}
-
-const findRateWithConditions = (ratesWithConditions: RateWithConditions[], filter: Filter) => {
-	return (
-		ratesWithConditions.find((customRate) =>
-			compareObject(
-				{
-					isResident: customRate.conditions.isResident,
-					overTwentyThreeYears: customRate.conditions.overTwentyThreeYears,
-					experienceMoreThanYear: customRate.conditions.experienceMoreThanYear,
-				},
-				filter,
-			),
-		) || ratesWithConditions[0]
+	return Object.entries(available).reduce(
+		(acc, [key, value]) => {
+			// @ts-expect-error
+			acc[key] = value.true && value.false ? true : false
+			return acc
+		},
+		{
+			isResident: false,
+			overTwentyThreeYears: false,
+			experienceMoreThanYear: false,
+		},
 	)
 }
 
-const generateFooter = (start: string, price?: number) =>
-	price ? `${start} **${price} ${getCurrency()}**` : start
+const findRateWithConditions = (_0: RateWithConditions[], filter: Filter) => {
+	const _1 = _0.filter((_rate) => _rate.conditions.isResident === filter.isResident)
+
+	if (!_1.length) {
+		return _0.at(0)
+	}
+
+	const _2 = _1.filter(
+		(_rate) => _rate.conditions.experienceMoreThanYear === filter.experienceMoreThanYear,
+	)
+
+	if (!_2.length) {
+		return _1.at(0)
+	}
+
+	const _3 = _2.filter(
+		(_rate) => _rate.conditions.overTwentyThreeYears === filter.overTwentyThreeYears,
+	)
+
+	if (!_3.length) {
+		return _2.at(0)
+	}
+
+	return _3.at(0)
+}
+
+const generateFooter = (
+	start: string,
+	opts: { price: number; discount?: number } | undefined | null,
+) => {
+	if (!opts) {
+		return start
+	}
+
+	const { price, discount } = opts
+
+	const newPrice = computePriceWithDiscount(price, discount)
+
+	return `${start} **${newPrice}**`
+}
 
 export { generateFooter, getAvailableFilters, findRateWithConditions }

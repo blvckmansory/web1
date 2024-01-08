@@ -7,4 +7,14 @@ const compareObject = (obj1: Object, obj2: any): boolean => {
 	return res
 }
 
-export { compareObject }
+type nullable<T> = T | null
+
+const compareBoolean = (t1: nullable<boolean>, t2: nullable<boolean>) => {
+	if (t1 === null) {
+		return true
+	}
+
+	return t1 === t2
+}
+
+export { compareObject, compareBoolean }

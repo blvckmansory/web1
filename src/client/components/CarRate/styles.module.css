@@ -11,5 +11,5 @@
 }
 
 .footer {
-	@apply mt-12 text-sm;
+	@apply text-sm;
 }

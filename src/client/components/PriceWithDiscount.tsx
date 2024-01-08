@@ -1,4 +1,4 @@
-import { getCurrency } from '~/shared/helpers/currency'
+import { formatCurrency, computePriceWithDiscount } from '~/shared/helpers/currency'
 
 import { Text } from '~/client/ui/components/Text'
 
@@ -8,26 +8,16 @@ type PriceWithDiscountProps = {
 }
 
 const PriceWithDiscount = ({ price, discount }: PriceWithDiscountProps) => {
-	const currency = getCurrency()
+	const newPrice = computePriceWithDiscount(price, discount)
 
 	if (!discount) {
-		return (
-			<Text>
-				{price} {currency}
-			</Text>
-		)
+		return <Text>{newPrice}</Text>
 	}
-
-	const newPrice = Math.ceil((price * (100 - discount)) / 100).toFixed(2)
 
 	return (
 		<>
-			<Text color="primary">
-				{newPrice} {currency}
-			</Text>
-			<Text className="line-through mb-px text-sm">
-				{price} {currency}
-			</Text>
+			<Text color="primary">{newPrice}</Text>
+			<Text className="line-through mb-px text-sm">{formatCurrency(price)}</Text>
 		</>
 	)
 }

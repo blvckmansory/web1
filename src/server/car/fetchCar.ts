@@ -1,8 +1,21 @@
 import { getStrapiMedia } from '~/lib/strapi'
 
 import type { Car } from '~/shared/entities/car'
+import type { Rate } from '~/shared/entities/rate'
 
 import { baseFetchStrapiCar } from './utils'
+
+const sortRates = (rate1: Rate, rate2: Rate) => {
+	const rateId1 = rate1.rateType.id
+	const rateId2 = rate2.rateType.id
+
+	if (rateId1 === rateId2) {
+		return 0
+	} else if (rateId1 > rateId2) {
+		return 1
+	}
+	return -1
+}
 
 const convertCarResponse = (car: Car) => ({
 	...car,
@@ -16,7 +29,7 @@ const convertCarResponse = (car: Car) => ({
 			},
 		})),
 	},
-
+	rates: car.rates.sort(sortRates),
 	sideImages: car.sideImages.map((sideImage) => ({
 		...sideImage,
 		image: {

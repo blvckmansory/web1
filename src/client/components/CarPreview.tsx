@@ -7,6 +7,7 @@ import type { StyleProps } from '~/lib/types'
 import type { CarPreview } from '~/shared/entities/car'
 
 import { Text } from '~/client/ui/components/Text'
+import { computePriceWithDiscount } from '~/shared/helpers/currency'
 
 type CarPreviewProps = StyleProps & CarPreview
 
@@ -50,10 +51,9 @@ const CarPreview = ({
 
 				<Text
 					weight={500}
-					className={clsx(
-						'text-sm sm:text-base md:text-lg text-link-active line-clamp-1',
-					)}>
-					от {minMinuteRate} BYN / 1 мин.
+					color="primary"
+					className={clsx('text-sm sm:text-base md:text-lg line-clamp-1')}>
+					от {computePriceWithDiscount(minMinuteRate)} / 1 мин.
 				</Text>
 			</div>
 		</article>

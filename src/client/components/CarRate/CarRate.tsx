@@ -11,6 +11,7 @@ import { PriceWithDiscount } from '~/client/components/PriceWithDiscount'
 import { CarDiscount } from './CarDiscount'
 
 import styles from './styles.module.css'
+import { Spacer } from '~/client/ui/components'
 
 type Option = {
 	name: string
@@ -47,6 +48,11 @@ const CarRate = memo<CarRateProps>(({ title, footer, options, discount, descript
 				</ListItem>
 			))}
 		</List>
+
+		<Spacer
+			y={48}
+			full
+		/>
 
 		<MarkdownContent className={styles.footer}>{footer}</MarkdownContent>
 	</article>

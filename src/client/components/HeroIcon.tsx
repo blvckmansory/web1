@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { Button } from '~/client/ui/components/Button'
 import { Icon, type IconProps } from '~/client/ui/components/Icon'
 
@@ -5,7 +7,7 @@ type HeroIconProps = IconProps & {
 	color?: string
 }
 
-const HeroIcon = ({ color = '#A8FFA8', ...props }: HeroIconProps) => (
+const HeroIcon = memo<HeroIconProps>(({ color = '#A8FFA8', ...props }) => (
 	<Button
 		readOnly
 		iconLeft={
@@ -16,7 +18,7 @@ const HeroIcon = ({ color = '#A8FFA8', ...props }: HeroIconProps) => (
 		}
 		style={{ backgroundColor: color }}
 	/>
-)
+))
 
 export { HeroIcon }
 export type { HeroIconProps }

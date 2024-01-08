@@ -16,6 +16,10 @@ type CarCharacteristic<Extended = true> = StrapiSchema<
 	CarCharacteristicBase & (Extended extends true ? CarCharacteristicExtended : {})
 >
 
+type CarConditon = StrapiSchema<{
+	name: string
+}>
+
 type CarColorImage = StrapiSchema<{
 	color: string
 	image: Media
@@ -41,6 +45,7 @@ type Car = StrapiSchema<{
 
 	sideImages: CarColorImage[]
 
+	conditions: CarConditon[]
 	characteristics: StrapiSchema<{
 		mainFeatures: CarCharacteristic<true>[]
 		otherFeatures: CarCharacteristic<false>[]
@@ -56,4 +61,13 @@ type CarPreview = Pick<
 	'name' | 'minMinuteRate' | 'isWrapped' | 'isNew' | 'isHot' | 'carType' | 'id' | 'previewImage'
 >
 
-export type { Car, CarId, CarType, CarPreview, CarMetadata, CarColorImage, CarCharacteristic }
+export type {
+	Car,
+	CarId,
+	CarConditon,
+	CarType,
+	CarPreview,
+	CarMetadata,
+	CarColorImage,
+	CarCharacteristic,
+}
