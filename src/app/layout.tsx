@@ -30,6 +30,10 @@ export const metadata: Metadata = {
 		google: GOOGLE_VERIFICATION,
 		yandex: YANDEX_VERIFICATION,
 	},
+	icons: {
+		icon: '/favicon.ico',
+		shortcut: '/favicon.ico',
+	},
 	generator: 'Next.JS',
 	metadataBase: new URL(DOMAIN_URL),
 	robots: { index: true, follow: true },
