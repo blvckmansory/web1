@@ -30,12 +30,13 @@ export const metadata: Metadata = {
 		google: GOOGLE_VERIFICATION,
 		yandex: YANDEX_VERIFICATION,
 	},
+	generator: 'Next.JS',
 	metadataBase: new URL(DOMAIN_URL),
 	robots: { index: true, follow: true },
 	manifest: `${DOMAIN_URL}/manifest.json`,
 	creator: 'Vadzim Zakharov, https://github.com/vzkharov',
 	title: 'Hello каршеринг - Поминутная аренда автомобилей в Минске',
-	abstract: 'Hello каршеринг - Поминутная аренда автомобилей в Минске',
+	abstract: 'Hello каршеринг',
 	description:
 		'Hello - Минский каршеринг. Поминутная аренда авто через мобильное приложение без водителя. Приятные тарифы, новые автомобили, грамотная и вежливая техподдержка!',
 	alternates: {
