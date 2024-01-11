@@ -52,8 +52,8 @@ const config = {
 			{
 				hostname: STRAPI_DOMAIN,
 				pathname: '/uploads/**',
-				port: NODE_ENV === 'development' ? STRAPI_PORT : undefined,
-				protocol: NODE_ENV === 'development' ? 'http' : 'https',
+				// port: NODE_ENV === 'development' ? STRAPI_PORT : undefined,
+				protocol: 'https',
 			},
 		],
 	},
