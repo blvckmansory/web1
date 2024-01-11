@@ -25,6 +25,7 @@ const AppHeader = ({ className, ...props }: StyleProps) => (
 		<PhoneButton
 			withText
 			withButton
+			className="[&>p]:max-xl:hidden"
 		/>
 		<Spacer x={10} />
 		<SupportButton className="ml-6 hidden lg:block" />
