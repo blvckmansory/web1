@@ -19,7 +19,10 @@ const RadioColor = memo(
 			ref={ref}
 			value={color}
 			disabled={disabled}
-			style={{ backgroundColor: color }}
+			style={{
+				backgroundColor: !src ? color : undefined,
+				backgroundImage: src ? `url(${src})` : undefined,
+			}}
 			className={clsx(
 				'aspect-square rounded-full w-9 flex-center',
 				'outline-[1.5px] outline-offset-[3px] outline-divider outline',
