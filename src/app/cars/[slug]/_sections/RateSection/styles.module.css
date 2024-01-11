@@ -1,7 +1,11 @@
 .container {
-	@apply flex flex-wrap gap-4;
+	@apply w-fit max-w-full grid gap-4 grid-flow-dense auto-rows-auto;
+
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 }
 
-.container > * {
-	width: clamp(300px, 25%, 380px);
+@media (width <= 640px) {
+	.container {
+		@apply w-full flex flex-col gap-4;
+	}
 }
