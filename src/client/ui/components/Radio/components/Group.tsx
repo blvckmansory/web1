@@ -54,7 +54,7 @@ const RadioGroup = memo(
 							{label}
 						</Label>
 
-						<div className={clsx('flex items-center gap-x-3', className)}>
+						<div className={clsx('flex items-center gap-x-4', className)}>
 							{children}
 						</div>
 					</fieldset>

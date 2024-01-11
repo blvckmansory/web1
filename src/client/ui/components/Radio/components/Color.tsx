@@ -8,18 +8,21 @@ import { CheckIcon } from '../../../(icons)'
 
 import { RadioOption, type RadioOptionProps } from './Option'
 
-type RadioColorProps = Omit<RadioOptionProps, 'children'>
+type RadioColorProps = Omit<RadioOptionProps, 'value' | 'children'> & {
+	src?: string
+	color: string
+}
 
 const RadioColor = memo(
-	forwardRef<HTMLInputElement, RadioColorProps>(({ value, disabled, className }, ref) => (
+	forwardRef<HTMLInputElement, RadioColorProps>(({ src, color, disabled, className }, ref) => (
 		<RadioOption
 			ref={ref}
-			value={value}
+			value={color}
 			disabled={disabled}
-			style={{ backgroundColor: value }}
+			style={{ backgroundColor: color }}
 			className={clsx(
 				'aspect-square rounded-full w-9 flex-center',
-				// 'outline-2 outline-offset-1 outline-black outline',
+				'outline-[1.5px] outline-offset-[3px] outline-divider outline',
 				className,
 			)}>
 			{({ checked }) => (
