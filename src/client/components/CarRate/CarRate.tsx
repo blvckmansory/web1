@@ -34,6 +34,7 @@ const CarRate = memo<CarRateProps>(({ title, footer, options, discount, descript
 		<CarDiscount discount={discount} />
 
 		<Text weight={400}>{description}</Text>
+		{discount ? <Text weight={400}>* Стоимость указана с учетом скидки.</Text> : null}
 
 		<List>
 			{options?.map((option, key) => (
