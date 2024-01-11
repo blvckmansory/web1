@@ -92,11 +92,11 @@ const PreviewSection = ({
 						label="Цвет"
 						initialValue={color}
 						onChange={handleChangeColor}
-						className="min-w-[300px]">
+						className="w-full sm:min-w-[300px]">
 						{colors.map((color) => (
 							<RadioColor
 								key={color}
-								value={color}
+								color={color}
 							/>
 						))}
 					</RadioGroup>
