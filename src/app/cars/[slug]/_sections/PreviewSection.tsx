@@ -71,17 +71,18 @@ const PreviewSection = ({
 				]}
 			/>
 
-			<div className="flex flex-col lg:flex-row gap-10 justify-between">
-				<article className="flex-1 flex flex-col">
+			<div className="flex flex-col lg:flex-row gap-5 lg:gap-10 justify-between">
+				<article className="flex-1 flex flex-col gap-10 lg:gap-5">
 					<Title className="text-3xl md:text-4xl flex items-center">
 						{name}
 						{!isWrapped ? <Tag className="ml-4">Без оклейки</Tag> : null}
 					</Title>
+
 					<Image
 						alt="car-side-image"
 						width={857}
 						height={368}
-						className="h-auto"
+						className="h-auto object-contain"
 						src={sideImage.image.url}
 					/>
 				</article>
