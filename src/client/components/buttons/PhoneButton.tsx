@@ -25,7 +25,7 @@ const PhoneButton = ({
 }: PhoneButtonProps) => (
 	<div
 		{...props}
-		className={clsx('flex flex-row items-center gap-x-2', className)}>
+		className={clsx('min-w-0 flex flex-row items-center gap-x-2', className)}>
 		{withButton ? (
 			<NextLink href={`tel:${phoneNumber}`}>
 				<Button
@@ -42,7 +42,7 @@ const PhoneButton = ({
 			</NextLink>
 		) : null}
 
-		{withText ? <PhoneText className="hidden md:block" /> : null}
+		{withText ? <PhoneText className="truncate hidden md:block" /> : null}
 	</div>
 )
 
