@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 	generator: 'Next.JS',
 	metadataBase: new URL(DOMAIN_URL),
 	robots: { index: true, follow: true },
-	manifest: `${DOMAIN_URL}/manifest.json`,
+	manifest: `${DOMAIN_URL}/manifest.webmanifest`,
 	creator: 'Vadzim Zakharov, https://github.com/vzkharov',
 	title: 'Hello каршеринг - Поминутная аренда автомобилей в Минске',
 	abstract: 'Hello каршеринг',
