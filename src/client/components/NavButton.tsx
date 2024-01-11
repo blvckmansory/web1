@@ -40,7 +40,7 @@ const NavButton = () => {
 						full
 						x={20}
 					/>
-					<SupportButton />
+					<SupportButton onClick={close} />
 					<Spacer x={20} />
 					<Button
 						onClick={close}
