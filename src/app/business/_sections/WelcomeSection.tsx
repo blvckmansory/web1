@@ -43,7 +43,7 @@ const WelcomeSection = ({ cover, style, className }: WelcomeSectionProps) => (
 		</Text>
 
 		<Link
-			href="/tariff"
+			href="/cars"
 			className="w-max">
 			<Button className="w-full md:w-fit">Смотреть тарифы</Button>
 		</Link>
