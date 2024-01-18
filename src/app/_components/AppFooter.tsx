@@ -17,40 +17,42 @@ const AppFooter = async ({ className, ...props }: StyleProps) => {
 	const { data: docs } = await fetchDocs()
 
 	return (
-		<Section
-			{...props}
-			as="footer"
-			className={clsx('gap-4 lg:grid lg:grid-cols-12 lg:gap-8 ', className)}>
-			<Logo className="lg:col-span-2 w-max h-fit max-lg:mb-4" />
+		<div className="w-full p-[3px] bg-black">
+			<Section
+				{...props}
+				as="footer"
+				className={clsx('gap-4 lg:grid lg:grid-cols-12 lg:gap-8 ', className)}>
+				<Logo className="lg:col-span-2 w-max h-fit max-lg:mb-4" />
 
-			<FooterNavGrid
-				title="Прочее"
-				options={docs}
-				className="lg:col-span-4"
-			/>
-
-			<FooterNavGrid
-				{...APP_NAV_CONFIG}
-				className="lg:col-span-3"
-			/>
-
-			<FooterNavGrid
-				{...CONTACT_NAV_CONFIG}
-				className="lg:col-span-3">
-				<Spacer
-					full
-					y={32}
+				<FooterNavGrid
+					title="Прочее"
+					options={docs}
+					className="lg:col-span-4"
 				/>
-				<PhoneText />
-				<Spacer y={16} />
-				<SocialMediaGroup />
-			</FooterNavGrid>
 
-			<article className="lg:col-span-12">
-				<Divider className="my-5 lg:mt-10" />
-				<CardOptions />
-			</article>
-		</Section>
+				<FooterNavGrid
+					{...APP_NAV_CONFIG}
+					className="lg:col-span-3"
+				/>
+
+				<FooterNavGrid
+					{...CONTACT_NAV_CONFIG}
+					className="lg:col-span-3">
+					<Spacer
+						full
+						y={32}
+					/>
+					<PhoneText />
+					<Spacer y={16} />
+					<SocialMediaGroup />
+				</FooterNavGrid>
+
+				<article className="lg:col-span-12">
+					<Divider className="my-5 lg:mt-10" />
+					<CardOptions />
+				</article>
+			</Section>
+		</div>
 	)
 }
 
@@ -67,6 +69,7 @@ const FooterNavGrid = ({ title, options, children, className, ...props }: Footer
 			mobile={
 				<Collapse
 					title={title}
+					iconProps={{ size: 14 }}
 					classNames={{
 						container: 'border-0 rounded-none shadow-none',
 						trigger:

@@ -9,14 +9,14 @@ type Filter = {
 }
 
 const QUERY_TYPE = 'typeId' as const
-const QUERY_PASTING = 'pasting' as const
+const QUERY_WRAPPED = 'wrapped' as const
 
 const useCarFilter = () => {
 	const [typeId, setTypeId] = useQueryState(QUERY_TYPE, {
 		...parseAsString,
 		shallow: false,
 	})
-	const [pasting, setPasting] = useQueryState(QUERY_PASTING, {
+	const [pasting, setPasting] = useQueryState(QUERY_WRAPPED, {
 		...parseAsBoolean,
 		shallow: false,
 		defaultValue: true,
@@ -41,5 +41,5 @@ const useCarFilter = () => {
 	return [filter, handleChange] as const
 }
 
-export { useCarFilter, QUERY_TYPE, QUERY_PASTING }
+export { useCarFilter, QUERY_TYPE, QUERY_WRAPPED }
 export type { Filter }

@@ -52,7 +52,7 @@ type Car = StrapiSchema<{
 	}>
 }>
 
-type CarId = Pick<Car, 'id' | 'name'>
+type CarId = Pick<Car, 'id' | 'name' | 'isWrapped'>
 
 type CarMetadata = Pick<Car, 'name' | 'carType' | 'minMinuteRate' | 'previewImage'>
 

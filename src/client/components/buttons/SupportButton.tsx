@@ -7,7 +7,7 @@ const SupportButton = (props: ButtonProps) => (
 		<Button
 			size="sm"
 			{...props}>
-			Поддержка
+			ТЕХПОДДЕРЖКА
 		</Button>
 	</Link>
 )

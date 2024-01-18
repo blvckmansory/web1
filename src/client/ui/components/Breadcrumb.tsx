@@ -3,9 +3,10 @@ import { Fragment } from 'react'
 import { clsx } from '~/lib/clsx'
 import type { MergeWithHTMLProps } from '~/lib/types'
 
+import { ArrowIcon } from '../(icons)'
+
 import { Link } from './Link'
 import { Text } from './Text'
-import { Icon } from './Icon'
 
 type BreadcrumbItem = {
 	href: string
@@ -37,9 +38,10 @@ const Breadcrumb = ({ items, className, ...props }: BreadcrumbProps) => {
 			{others?.map((item) => (
 				<Fragment key={item.href}>
 					<Link href={item.href}>{item.text}</Link>
-					<Icon
-						size={16}
-						name="chevron-right"
+					<ArrowIcon
+						size={10}
+						strokeWidth={2}
+						dir="right"
 					/>
 				</Fragment>
 			))}

@@ -109,6 +109,7 @@ coverage
 .pnp.js
 yarn.lock
 bun.lockb
+package-lock.json
 
 ############################
 # Next

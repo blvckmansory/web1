@@ -16,6 +16,7 @@ const FeatureSection = ({ className, ...props }: StyleProps) => (
 		{FEATURE_CARD_CONFIG.map((card, key) => (
 			<FeatureCard
 				key={key}
+				className="[&>span]:text-sm gap-y-2"
 				{...card}
 			/>
 		))}

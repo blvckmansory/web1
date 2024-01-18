@@ -4,44 +4,40 @@ import Image from 'next/image'
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
-import type { CarPreview } from '~/shared/entities/car'
+import type { CarPreview as CarPreviewType } from '~/shared/entities/car'
 
 import { Text } from '~/client/ui/components/Text'
 import { computePriceWithDiscount } from '~/shared/helpers/currency'
 
-type CarPreviewProps = StyleProps & CarPreview
+type CarPreviewProps = StyleProps & CarPreviewType
 
 const CarPreview = ({
 	id,
-	previewImage,
 	name,
 	style,
-	minMinuteRate,
 	className,
+	previewImage,
+	minMinuteRate,
 }: CarPreviewProps) => (
 	<Link href={`/cars/${id}`}>
 		<article
 			style={style}
 			className={clsx(
 				'relative flex flex-col w-full card transition-all',
-				'pt-4 pb-3 px-3 lg:px-6 lg:pt-6 lg:pb-4',
-				'gap-y-4 lg:gap-y-4',
+				'gap-y-2 pt-2',
 				className,
 			)}>
 			<div className="relative w-full aspect-[3/1]">
 				<Image
 					fill
 					src={previewImage.url}
-					sizes="(min-width: 808px) 33vw, 100vw"
 					alt="car-card-image"
+					sizes="(min-width: 808px) 33vw, 100vw"
 					className="object-cover"
-					style={{
-						objectFit: 'cover', // cover, contain, none
-					}}
 				/>
 			</div>
 
-			<div className="flex flex-col md:gap-0">
+			<div className="pb-3 px-3 lg:px-6 lg:pb-4 flex flex-col">
 				<Text
 					as="h2"
 					weight={500}

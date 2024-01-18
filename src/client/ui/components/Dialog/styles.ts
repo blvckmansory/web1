@@ -3,7 +3,7 @@ import { tv, type VariantProps } from 'tailwind-variants'
 const dialogVariants = tv({
 	slots: {
 		root: 'fixed z-20 inset-0 flex',
-		panel: 'relative flex flex-col bg-white border-[3px] border-default shadow-brand px-6 md:px-10 pt-7 pb-10',
+		panel: 'relative flex flex-col bg-white border-[3px] border-default shadow-brand px-6 md:px-10 pt-7 pb-10 overflow-x-hidden',
 		closeButton: 'absolute top-6 right-10 p-2',
 	},
 	variants: {

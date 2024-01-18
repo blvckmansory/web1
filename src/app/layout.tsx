@@ -1,6 +1,6 @@
 import './globals.css'
 
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import { DOMAIN_URL, GOOGLE_VERIFICATION, YANDEX_VERIFICATION } from '~/env'
 
@@ -12,13 +12,24 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => (
 		dir="ltr"
 		lang="en"
 		suppressHydrationWarning>
-		<body className="w-screen min-h-screen flex flex-col overflow-x-clip p-[3px] gap-y-[3px]">
+		<body className="w-screen min-h-screen flex flex-col overflow-x-clip">
 			<AppHeader />
-			{children}
+			<main className="w-full flex flex-col gap-y-[3px] px-[3px]">{children}</main>
 			<AppFooter />
 		</body>
 	</html>
 )
+
+export const viewport: Viewport = {
+	themeColor: [
+		{ media: '(prefers-color-scheme: light)', color: 'black' },
+		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+	],
+	initialScale: 1,
+	maximumScale: 1,
+	userScalable: false,
+	width: 'device-width',
+}
 
 export const metadata: Metadata = {
 	referrer: 'origin',

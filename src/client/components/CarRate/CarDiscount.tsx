@@ -25,9 +25,7 @@ const CarDiscount = memo<CarDiscountProps>(({ style, discount, className }) => (
 			<Text>
 				Действует скидка <b>{discount}</b> %
 			</Text>
-		) : (
-			<Text>Скидка не действует</Text>
-		)}
+		) : null}
 	</div>
 ))
 

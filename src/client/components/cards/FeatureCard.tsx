@@ -1,10 +1,11 @@
 import { clsx } from '~/lib/clsx'
 import type { MergeWithHTMLProps } from '~/lib/types'
 
-import { Text, Title } from '~/client/ui/components/Text'
+import { Title } from '~/client/ui/components/Text'
 import type { IconNames } from '~/client/ui/components/Icon'
 
 import { HeroIcon } from '../HeroIcon'
+import { MarkdownContent } from '../MarkdownContent'
 
 type FeatureCardProps = MergeWithHTMLProps<
 	'article',
@@ -40,11 +41,15 @@ const FeatureCard = ({
 		<Title
 			as="h2"
 			size={18}
-			className="text-default !leading-6 !mt-4">
+			className="text-default !leading-6 !mt-2">
 			{title}
 		</Title>
 
-		<Text color="ghost">{description}</Text>
+		{description ? (
+			<MarkdownContent className="text-ghost leading-5 text-left">
+				{description}
+			</MarkdownContent>
+		) : null}
 
 		{children}
 	</article>

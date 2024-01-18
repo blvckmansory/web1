@@ -47,11 +47,13 @@ const PhoneButton = ({
 )
 
 const PhoneText = (props: TextProps) => (
-	<Text
-		{...props}
-		weight={600}>
-		{phoneNumber}
-	</Text>
+	<NextLink href={`tel:${phoneNumber}`}>
+		<Text
+			{...props}
+			weight={600}>
+			{phoneNumber}
+		</Text>
+	</NextLink>
 )
 
 export { PhoneText, PhoneButton }

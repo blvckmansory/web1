@@ -1,16 +1,16 @@
-import Image from 'next/image'
 import Markdown from 'markdown-to-jsx'
 
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
-import type { PostPreview } from '~/shared/entities/post'
+import type { PostPreview as PostPreviewType } from '~/shared/entities/post'
 
 import { Text } from '~/client/ui/components/Text'
+import { Image } from '~/client/ui/components/Image'
 import { NavLink } from '~/client/ui/components/NavLink'
 import { ArrowIcon } from '~/client/ui/(icons)/ArrowIcon'
 
-type PostPreviewProps = StyleProps & PostPreview
+type PostPreviewProps = StyleProps & PostPreviewType
 
 const PostPreview = ({ id, title, cover, style, className, description }: PostPreviewProps) => (
 	<article

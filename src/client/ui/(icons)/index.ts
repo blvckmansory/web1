@@ -1,6 +1,6 @@
 export * from './ArrowIcon'
 export * from './CheckIcon'
-export * from './PlusIcon'
-export * from './MinusIcon'
+export * from './CrossIcon'
+export * from './LoaderIcon'
 
 export type * from './types'

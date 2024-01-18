@@ -118,7 +118,7 @@ const FAQ_NAV_CONFIG = {
 		},
 		{
 			href: '/faq/rules',
-			name: 'Правила дружбы',
+			name: 'Правила',
 		},
 	],
 } as NavConfig

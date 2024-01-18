@@ -7,6 +7,7 @@ import { clsx } from '~/lib/clsx'
 import type { Car, CarColorImage } from '~/shared/entities/car'
 
 import { useCarColor } from '~/client/features/car/useCarColor'
+import { QUERY_TYPE, QUERY_WRAPPED } from '~/client/features/car/useCarFilter'
 
 import { Tag } from '~/client/ui/components/Tag'
 import { Title } from '~/client/ui/components/Text'
@@ -54,6 +55,13 @@ const PreviewSection = ({
 		[findImageByColor],
 	)
 
+	const backUrl = useMemo(() => {
+		const searchParams = new URLSearchParams()
+		searchParams.set(QUERY_TYPE, String(carType.id))
+		searchParams.set(QUERY_WRAPPED, String(isWrapped))
+		return '/cars?' + searchParams.toString()
+	}, [carType.id, isWrapped])
+
 	return (
 		<Section
 			style={style}
@@ -62,7 +70,7 @@ const PreviewSection = ({
 				items={[
 					{
 						text: 'Тарифы',
-						href: '/cars',
+						href: backUrl,
 					},
 					{
 						href: '#',
@@ -73,16 +81,19 @@ const PreviewSection = ({
 
 			<div className="flex flex-col lg:flex-row gap-5 lg:gap-10 justify-between">
 				<article className="flex-1 flex flex-col gap-10 lg:gap-5">
-					<Title className="text-3xl md:text-4xl flex items-center">
-						{name}
-						{!isWrapped ? <Tag className="ml-4">Без оклейки</Tag> : null}
-					</Title>
+					<div className="font-bold flex flex-wrap items-center gap-x-4 gap-y-2">
+						<Title className="text-3xl md:text-4xl">{name}</Title>
+						{!isWrapped ? <Tag>Без оклейки</Tag> : null}
+					</div>
 
 					<Image
 						alt="car-side-image"
-						width={857}
-						height={368}
-						className="h-auto object-contain"
+						priority
+						width={1800}
+						height={800}
+						quality={100}
+						className="w-full h-auto"
+						sizes="(max-width: 768px) 100vw, 100vw"
 						src={sideImage.image.url}
 					/>
 				</article>

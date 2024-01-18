@@ -8,7 +8,7 @@ import { motion, useWillChange, AnimatePresence } from 'framer-motion'
 import type { ArrowFunction, MergeWithHTMLProps } from '~/lib/types'
 
 import { useToggle } from '../(hooks)'
-import { MinusIcon, PlusIcon } from '../(icons)'
+import { ArrowIcon } from '../(icons)'
 
 import { TRANSITION_VARIANTS } from '../(utils)/framer-motion'
 
@@ -21,6 +21,10 @@ type CollapseProps = MergeWithHTMLProps<
 		initialOpen?: boolean
 		onChange?: ArrowFunction<[boolean]>
 
+		iconProps?: Partial<{
+			size: number
+			className: string
+		}>
 		styles?: {
 			[key in CollapseStyleSlots]?: CSSProperties
 		}
@@ -43,6 +47,7 @@ const Collapse = memo(
 				classNames,
 				initialOpen,
 				disabled = false,
+				iconProps = { size: 16 },
 				...props
 			},
 			ref,
@@ -61,10 +66,6 @@ const Collapse = memo(
 				open: isOpen,
 			})
 
-			const iconProps = {
-				size: 18,
-			} as const
-
 			return (
 				<article
 					ref={ref}
@@ -75,7 +76,10 @@ const Collapse = memo(
 						className={trigger({ className: classNames?.trigger })}>
 						<h6>{title}</h6>
 						<span className={openButton({ className: classNames?.openButton })}>
-							{isOpen ? <MinusIcon {...iconProps} /> : <PlusIcon {...iconProps} />}
+							<ArrowIcon
+								{...iconProps}
+								dir={isOpen ? 'up' : 'down'}
+							/>
 						</span>
 					</div>
 

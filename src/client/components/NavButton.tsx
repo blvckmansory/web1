@@ -2,21 +2,19 @@
 
 import { APP_NAV_CONFIG } from '~/shared/config/nav'
 
-import { Icon } from '~/client/ui/components/Icon'
+import { CrossIcon } from '~/client/ui/(icons)'
 import { Spacer } from '~/client/ui/components/Spacer'
 import { Button } from '~/client/ui/components/Button'
 import { NavLink } from '~/client/ui/components/NavLink'
-import { AbsoluteImage } from '~/client/ui/components/Image'
 import { useToggle } from '~/client/ui/(hooks)/useToggle'
+import { AbsoluteImage } from '~/client/ui/components/Image'
 
-import { PhoneButton } from '~/client/components/buttons/PhoneButton'
 import { BurgerButton } from '~/client/components/buttons/BurgerButton'
 import { SupportButton } from '~/client/components/buttons/SupportButton'
 import {
 	AdaptiveDialog,
 	AdaptiveDialogBody,
 	AdaptiveDialogHeader,
-	AdaptiveDialogFooter,
 } from '~/client/components/AdaptiveDialog'
 
 import { BluredEllipse } from './BluredEllipse'
@@ -32,20 +30,12 @@ const NavButton = () => {
 				position="right"
 				className="lg:min-w-[600px]">
 				<AdaptiveDialogHeader>
-					<PhoneButton
-						withText
-						withButton
-					/>
-					<Spacer
-						full
-						x={20}
-					/>
 					<SupportButton onClick={close} />
-					<Spacer x={20} />
+					<Spacer full />
 					<Button
 						onClick={close}
 						color="secondary"
-						iconLeft={<Icon name="x" />}
+						iconLeft={<CrossIcon />}
 					/>
 				</AdaptiveDialogHeader>
 				<AdaptiveDialogBody

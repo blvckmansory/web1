@@ -4,6 +4,7 @@ import type { StyleProps } from '~/lib/types'
 
 import type { PostPreview } from '~/shared/entities/post'
 
+import { Image } from '~/client/ui/components/Image'
 import { Hint, Title } from '~/client/ui/components/Text'
 import { MarkdownContent } from '~/client/components/MarkdownContent'
 
@@ -21,12 +22,19 @@ const Post = async ({ cover, title, style, className, children, publishedAt }: P
 		<Title className={styles.title}>{title}</Title>
 		<Hint className={styles.date}>Дата публикации: {formatDate(publishedAt)}</Hint>
 
-		<div
-			style={{ backgroundImage: `url(${cover.url})` }}
-			className={`${styles.cover__container} border-content shadow-brand`}
-		/>
+		<div className="relative w-full aspect-[2/1] rounded-md my-8 overflow-hidden bg-no-repeat bg-cover border-content shadow-brand">
+			<Image
+				fill
+				priority
+				src={cover.url}
+				sizes="100vw"
+				quality={100}
+				alt="post-card-image"
+				className="object-cover"
+			/>
+		</div>
 
-		<MarkdownContent>{children}</MarkdownContent>
+		<MarkdownContent className="text-justify">{children}</MarkdownContent>
 	</article>
 )
 

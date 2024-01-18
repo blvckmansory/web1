@@ -20,7 +20,7 @@ type DialogProps = MergeWithHTMLProps<
 			open: boolean
 			preventClose: boolean
 
-			overflow: CSSProperties['overflow']
+			overflow: CSSProperties['overflowY']
 			onChange: (val: boolean) => unknown
 		}>
 >
@@ -78,7 +78,7 @@ const Dialog = memo(
 									<StopPropogation
 										{...props}
 										ref={ref}
-										style={{ ...style, overflow }}
+										style={{ ...style, overflowY: overflow }}
 										className={panel({ className })}>
 										{children}
 									</StopPropogation>

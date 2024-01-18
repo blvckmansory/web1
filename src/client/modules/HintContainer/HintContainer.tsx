@@ -35,7 +35,7 @@ const HintContainer = async ({ type, style, className }: StyleProps & HintContai
 						/>
 					) : null}
 
-					<MarkdownContent>{item.content}</MarkdownContent>
+					<MarkdownContent className="text-justify">{item.content}</MarkdownContent>
 				</Collapse>
 			))}
 		</section>

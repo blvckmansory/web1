@@ -32,23 +32,15 @@ const HeroCard = ({
 
 		<Image
 			alt="heroImage"
-			src={imageUrl}
+			priority
 			width={650}
 			height={480}
-			priority
+			src={imageUrl}
+			quality={100}
+			sizes="(min-width: 350px) 100vw, (min-width: 700px) 50vw, 80vw"
 			className={styles.image}
 		/>
 
-		{/* <BluredEllipse
-			size={150}
-			color={color}
-			className={clsx(styles.ellipse, styles.left)}
-		/>
-		<BluredEllipse
-			size={150}
-			color={color}
-			className={clsx(styles.ellipse, styles.right)}
-		/> */}
 		{potatoImageUrl ? (
 			<Image
 				alt="heroPotato"

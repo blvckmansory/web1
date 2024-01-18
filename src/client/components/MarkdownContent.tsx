@@ -10,7 +10,7 @@ type MarkdownContentProps = StyleProps & {
 const MarkdownContent = ({ style, className, children }: MarkdownContentProps) => (
 	<Markdown
 		style={style}
-		className={clsx('prose max-w-none text-justify', className)}>
+		className={clsx('prose max-w-none', className)}>
 		{children}
 	</Markdown>
 )

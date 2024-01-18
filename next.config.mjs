@@ -6,7 +6,6 @@ const STRAPI_DOMAIN = process.env.STRAPI_DOMAIN
 /** @type {import('next').NextConfig} */
 const config = {
 	experimental: {
-		ppr: true,
 		scrollRestoration: false,
 	},
 	typescript: {
@@ -50,10 +49,9 @@ const config = {
 		dangerouslyAllowSVG: true,
 		remotePatterns: [
 			{
+				protocol: 'https',
 				hostname: STRAPI_DOMAIN,
 				pathname: '/uploads/**',
-				// port: NODE_ENV === 'development' ? STRAPI_PORT : undefined,
-				protocol: 'https',
 			},
 		],
 	},
