@@ -7,7 +7,7 @@ const QUERY_COLOR = 'color' as const
 const useCarColor = (defaultValue: string) => {
 	const [carColor, setCarColor] = useQueryState(QUERY_COLOR, {
 		...parseAsString,
-		shallow: false,
+		shallow: true,
 		defaultValue,
 	})
 

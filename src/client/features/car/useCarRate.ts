@@ -15,17 +15,17 @@ const QUERY_RESIDENT = 'isResident' as const
 const useCarRate = () => {
 	const [overTwentyThreeYears, setAgeOver] = useQueryState(QUERY_AGE, {
 		...parseAsBoolean,
-		shallow: false,
+		shallow: true,
 		defaultValue: true,
 	})
 	const [experienceMoreThanYear, setExpOver] = useQueryState(QUERY_AGE, {
 		...parseAsBoolean,
-		shallow: false,
+		shallow: true,
 		defaultValue: true,
 	})
 	const [isResident, setIsResident] = useQueryState(QUERY_RESIDENT, {
 		...parseAsBoolean,
-		shallow: false,
+		shallow: true,
 		defaultValue: true,
 	})
 

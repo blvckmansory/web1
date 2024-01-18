@@ -14,11 +14,11 @@ const QUERY_WRAPPED = 'wrapped' as const
 const useCarFilter = () => {
 	const [typeId, setTypeId] = useQueryState(QUERY_TYPE, {
 		...parseAsString,
-		shallow: false,
+		shallow: true,
 	})
 	const [pasting, setPasting] = useQueryState(QUERY_WRAPPED, {
 		...parseAsBoolean,
-		shallow: false,
+		shallow: true,
 		defaultValue: true,
 	})
 

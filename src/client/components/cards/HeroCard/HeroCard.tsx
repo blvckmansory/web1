@@ -3,8 +3,6 @@ import type { StyleProps, ReactChildren } from '~/lib/types'
 
 import { Image } from '~/client/ui/components/Image'
 
-import { BluredEllipse } from '~/client/components/BluredEllipse'
-
 import styles from './styles.module.css'
 
 type HeroCardProps = StyleProps & {

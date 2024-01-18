@@ -53,7 +53,7 @@ const FeatureSection = async ({ className, ...props }: StyleProps) => {
 					</Text>
 				</div>
 
-				<Label color="default">Автомобили без оклейки::</Label>
+				<Label color="default">Автомобили без оклейки:</Label>
 
 				<div className="font-medium text-default">
 					<Text className="md:hidden ">{unwrappedCarsText}</Text>
