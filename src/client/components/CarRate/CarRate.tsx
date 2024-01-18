@@ -31,7 +31,7 @@ const CarRate = memo<CarRateProps>(({ title, footer, options, discount, descript
 	<article className={`card ${styles.container}`}>
 		<Title className="!text-xl">{title}</Title>
 
-		<CarDiscount discount={discount} />
+		{discount ? <CarDiscount discount={discount} /> : null}
 
 		<Text weight={400}>{description}</Text>
 		{discount ? <Text weight={400}>* Стоимость указана с учетом скидки.</Text> : null}

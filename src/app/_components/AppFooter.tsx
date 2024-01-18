@@ -8,7 +8,7 @@ import { fetchDocs } from '~/server/doc'
 import { Text, Spacer, Divider, NavLink, Collapse, Responsive } from '~/client/ui/components'
 
 import { Logo } from '~/client/components/Logo'
-import { Section } from '~/client/components/Section/Section'
+import { Section } from '~/client/components/Section'
 import { CardOptions } from '~/client/components/CardOptions'
 import { PhoneText } from '~/client/components/buttons/PhoneButton'
 import { SocialMediaGroup } from '~/client/components/SocialMediaGroup'

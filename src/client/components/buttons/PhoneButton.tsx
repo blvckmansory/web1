@@ -1,5 +1,3 @@
-import NextLink from 'next/link'
-
 import { clsx } from '~/lib/clsx'
 import type { MergeWithHTMLProps } from '~/lib/types'
 
@@ -27,7 +25,7 @@ const PhoneButton = ({
 		{...props}
 		className={clsx('min-w-0 flex flex-row items-center gap-x-2', className)}>
 		{withButton ? (
-			<NextLink href={`tel:${phoneNumber}`}>
+			<a href={`tel:${phoneNumber}`}>
 				<Button
 					color="secondary"
 					className="group"
@@ -39,7 +37,7 @@ const PhoneButton = ({
 						/>
 					}
 				/>
-			</NextLink>
+			</a>
 		) : null}
 
 		{withText ? <PhoneText className="truncate hidden md:block" /> : null}
@@ -47,13 +45,13 @@ const PhoneButton = ({
 )
 
 const PhoneText = (props: TextProps) => (
-	<NextLink href={`tel:${phoneNumber}`}>
+	<a href={`tel:${phoneNumber.split(' ').join('')}`}>
 		<Text
 			{...props}
 			weight={600}>
 			{phoneNumber}
 		</Text>
-	</NextLink>
+	</a>
 )
 
 export { PhoneText, PhoneButton }
