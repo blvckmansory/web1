@@ -3,8 +3,8 @@ import { Text, List, ListItem, Label } from '~/client/ui/components'
 const FEATURE_CARD_CONFIG = [
 	{
 		icon: 'clock-12',
-		title: 'Регистрация в течении 30 минут',
-		description: 'Нужен паспорт В/У категории В и банковская карта',
+		title: 'Регистрация в течение 30 минут',
+		description: 'Нужен паспорт, В/У категории В и банковская карта',
 	},
 	{
 		icon: 'smartphone',

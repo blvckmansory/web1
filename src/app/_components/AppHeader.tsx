@@ -7,7 +7,7 @@ import { Logo } from '~/client/components/Logo'
 import { Section } from '~/client/components/Section'
 import { NavButton } from '~/client/components/NavButton'
 
-import { SupportButton } from '~/client/components/buttons/SupportButton'
+import { SupportButton } from '~/client/components/SupportButton'
 
 import { AppNav } from './AppNav'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { memo, forwardRef, type CSSProperties } from 'react'
+import { memo, forwardRef, type CSSProperties, useId } from 'react'
 
 import type { MergeWithHTMLProps } from '~/lib/types'
 
@@ -11,7 +11,7 @@ import { TRANSITION_VARIANTS, TRANSTION_TRANSLATES } from '../../(utils)/framer-
 
 import { useDialog } from '../../(hooks)'
 
-import { DialogVariants, dialogVariants } from './styles'
+import { dialogVariants, type DialogVariants } from './styles'
 
 type DialogProps = MergeWithHTMLProps<
 	'div',
@@ -41,7 +41,9 @@ const Dialog = memo(
 			},
 			ref,
 		) => {
-			const { id, isOpen, clickOutside } = useDialog({
+			const id = useId()
+
+			const { isOpen, clickOutside } = useDialog({
 				onChange,
 				value: open,
 				preventClose,

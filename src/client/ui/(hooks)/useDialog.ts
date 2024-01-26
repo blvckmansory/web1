@@ -1,7 +1,6 @@
 'use client'
 
-import { useId } from 'react'
-
+import { useCallback } from 'react'
 import { useToggle, type UseToggleProps } from './useToggle'
 
 type UseDialogProps = UseToggleProps & {
@@ -9,13 +8,14 @@ type UseDialogProps = UseToggleProps & {
 }
 
 const useDialog = ({ preventClose, ...toggleProps }: UseDialogProps) => {
-	const id = useId()
-
 	const [isOpen, { set, close, open }] = useToggle(toggleProps)
 
-	const handleClickOutside = () => isOpen && !preventClose && close()
+	const handleClickOutside = useCallback(
+		() => isOpen && !preventClose && close(),
+		[isOpen, preventClose, close],
+	)
 
-	return { id, set, close, open, isOpen, clickOutside: handleClickOutside }
+	return { set, close, open, isOpen, clickOutside: handleClickOutside }
 }
 
 type UseDialogReturn = ReturnType<typeof useDialog>

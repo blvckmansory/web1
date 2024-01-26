@@ -10,13 +10,14 @@ import { useToggle } from '~/client/ui/(hooks)/useToggle'
 import { AbsoluteImage } from '~/client/ui/components/Image'
 
 import { BurgerButton } from '~/client/components/buttons/BurgerButton'
-import { SupportButton } from '~/client/components/buttons/SupportButton'
+import { SupportButton } from '~/client/components/SupportButton'
 import {
 	AdaptiveDialog,
 	AdaptiveDialogBody,
 	AdaptiveDialogHeader,
 } from '~/client/components/AdaptiveDialog'
 
+import { Logo } from './Logo'
 import { BluredEllipse } from './BluredEllipse'
 
 const NavButton = () => {
@@ -30,7 +31,7 @@ const NavButton = () => {
 				position="right"
 				className="lg:min-w-[600px]">
 				<AdaptiveDialogHeader>
-					<SupportButton onClick={close} />
+					<Logo />
 					<Spacer full />
 					<Button
 						onClick={close}

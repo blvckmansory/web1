@@ -1,11 +1,11 @@
 import { clsx } from '~/lib/clsx'
 import type { MergeWithHTMLProps } from '~/lib/types'
 
+import { SUPPORT_CONFIG } from '~/shared/config/support'
+
 import { Icon } from '~/client/ui/components/Icon'
 import { Button } from '~/client/ui/components/Button'
 import { Text, type TextProps } from '~/client/ui/components/Text'
-
-const phoneNumber = '+375 44 777 60 60'
 
 type PhoneButtonProps = MergeWithHTMLProps<
 	'div',
@@ -25,7 +25,7 @@ const PhoneButton = ({
 		{...props}
 		className={clsx('min-w-0 flex flex-row items-center gap-x-2', className)}>
 		{withButton ? (
-			<a href={`tel:${phoneNumber}`}>
+			<a href={SUPPORT_CONFIG.phone.href}>
 				<Button
 					color="secondary"
 					className="group"
@@ -45,11 +45,11 @@ const PhoneButton = ({
 )
 
 const PhoneText = (props: TextProps) => (
-	<a href={`tel:${phoneNumber.split(' ').join('')}`}>
+	<a href={SUPPORT_CONFIG.phone.href}>
 		<Text
 			{...props}
 			weight={600}>
-			{phoneNumber}
+			{SUPPORT_CONFIG.phone.value}
 		</Text>
 	</a>
 )

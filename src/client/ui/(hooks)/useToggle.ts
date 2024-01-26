@@ -1,5 +1,7 @@
 'use client'
 
+import { useCallback } from 'react'
+
 import type { ArrowFunction } from '~/lib/types'
 
 import { useControlledValue } from './useControlledValue'
@@ -39,18 +41,21 @@ const useToggle = ({
 		value: externalValue,
 	})
 
-	const set = (newValue: boolean) => {
-		if (disabled || readOnly) {
-			return null
-		}
+	const set = useCallback(
+		(newValue: boolean) => {
+			if (disabled || readOnly) {
+				return null
+			}
 
-		setValue(newValue)
-		newValue ? onActive?.(newValue) : onUnactive?.(newValue)
-	}
+			setValue(newValue)
+			newValue ? onActive?.(newValue) : onUnactive?.(newValue)
+		},
+		[disabled, readOnly],
+	)
 
-	const open = () => set(true)
-	const close = () => set(false)
-	const toggle = () => set(!value)
+	const open = useCallback(() => set(true), [])
+	const close = useCallback(() => set(false), [])
+	const toggle = useCallback(() => set(!value), [value])
 
 	return [
 		value,
