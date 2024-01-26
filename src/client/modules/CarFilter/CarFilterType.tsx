@@ -62,7 +62,7 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 					<Select
 						item={item}
 						onChange={handleChange}>
-						{renderOption(Tab, ALL_TYPE)}
+						{renderOption(SelectItem, ALL_TYPE)}
 						{options.map((option) => renderOption(SelectItem, option))}
 					</Select>
 				}
