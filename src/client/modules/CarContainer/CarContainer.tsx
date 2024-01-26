@@ -40,10 +40,10 @@ const CarContainer = ({ style, className, initialData }: StyleProps & CarContain
 		<section
 			style={style}
 			className={clsx(styles.inner, className)}>
-			{cars.map((card, key) => (
+			{cars.map((card) => (
 				<CarPreview
 					{...card}
-					key={key}
+					key={card.id}
 				/>
 			))}
 		</section>
