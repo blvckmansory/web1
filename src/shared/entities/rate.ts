@@ -9,6 +9,7 @@ type RateType = StrapiSchema<{
 type RateOption = StrapiSchema<{
 	name: string
 	price: number
+	newPrice: number | null | undefined
 }>
 
 type RateConditions = StrapiSchema<{

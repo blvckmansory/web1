@@ -1,0 +1,16 @@
+.embla {
+}
+
+.embla__viewport {
+	@apply overflow-hidden;
+}
+
+.embla__container {
+	@apply relative flex touch-pan-y gap-[3px];
+	backface-visibility: hidden;
+}
+
+.embla__slide {
+	min-width: 0;
+	flex: 0 0 auto;
+}

@@ -54,9 +54,7 @@ const RadioGroup = memo(
 							{label}
 						</Label>
 
-						<div className={clsx('flex items-center gap-x-4', className)}>
-							{children}
-						</div>
+						<div className={clsx('flex items-center gap-4', className)}>{children}</div>
 					</fieldset>
 				</RadioContext.Provider>
 			)

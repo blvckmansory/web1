@@ -1,23 +1,23 @@
-import { formatCurrency, computePriceWithDiscount } from '~/shared/helpers/currency'
+import { formatCurrency } from '~/shared/helpers/currency'
 
 import { Text } from '~/client/ui/components/Text'
 
 type PriceWithDiscountProps = {
 	price: number
-	discount?: number
+	newPrice?: number | null | undefined
 }
 
-const PriceWithDiscount = ({ price, discount }: PriceWithDiscountProps) => {
-	const newPrice = computePriceWithDiscount(price, discount)
+const PriceWithDiscount = ({ price, newPrice }: PriceWithDiscountProps) => {
+	const priceFormatted = formatCurrency(price)
 
-	if (!discount) {
-		return <Text>{newPrice}</Text>
+	if (!newPrice) {
+		return <Text>{priceFormatted}</Text>
 	}
 
 	return (
 		<>
-			<Text color="primary">{newPrice}</Text>
-			<Text className="line-through mb-px text-sm">{formatCurrency(price)}</Text>
+			<Text color="primary">{formatCurrency(newPrice)}</Text>
+			<Text className="line-through mb-px text-sm">{priceFormatted}</Text>
 		</>
 	)
 }

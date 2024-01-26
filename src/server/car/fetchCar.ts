@@ -36,6 +36,12 @@ const convertCarResponse = (car: Car) => ({
 			...sideImage.image,
 			url: getStrapiMedia(sideImage.image.url),
 		},
+		colorImage: sideImage.colorImage
+			? {
+					...sideImage.colorImage,
+					url: getStrapiMedia(sideImage.colorImage.url),
+				}
+			: null,
 	})),
 })
 

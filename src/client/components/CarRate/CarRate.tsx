@@ -2,6 +2,7 @@ import { memo } from 'react'
 
 import type { StyleProps } from '~/lib/types'
 
+import { Spacer } from '~/client/ui/components/Spacer'
 import { Text, Title } from '~/client/ui/components/Text'
 import { List, ListItem } from '~/client/ui/components/List'
 
@@ -11,11 +12,11 @@ import { PriceWithDiscount } from '~/client/components/PriceWithDiscount'
 import { CarDiscount } from './CarDiscount'
 
 import styles from './styles.module.css'
-import { Spacer } from '~/client/ui/components'
 
 type Option = {
 	name: string
 	price: number
+	newPrice?: number | null
 }
 
 type CarRateProps = StyleProps & {
@@ -43,8 +44,8 @@ const CarRate = memo<CarRateProps>(({ title, footer, options, discount, descript
 					className={styles.option__item}>
 					<Text>{option.name}</Text> —
 					<PriceWithDiscount
-						discount={discount}
 						price={option.price}
+						newPrice={option.newPrice}
 					/>
 				</ListItem>
 			))}

@@ -1,6 +1,6 @@
 import type { SelectableItem } from '~/client/ui/(utils)/types'
 
-const CAR_FILTER_PASTING = [
+const CAR_FILTER_WRAPPED = [
 	{
 		id: true,
 		name: 'С оклейкой',
@@ -12,8 +12,15 @@ const CAR_FILTER_PASTING = [
 ] satisfies SelectableItem[]
 
 const ALL_TYPE = {
-	id: 'ALL',
+	id: '',
 	name: 'Все',
 } as const
 
-export { ALL_TYPE, CAR_FILTER_PASTING }
+const renderOption = (Item: React.JSXElementConstructor<any>, props: SelectableItem) => (
+	<Item
+		key={props.id}
+		{...props}
+	/>
+)
+
+export { ALL_TYPE, CAR_FILTER_WRAPPED, renderOption }

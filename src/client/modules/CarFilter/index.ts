@@ -1,2 +1,2 @@
 export * from './CarFilterType'
-export * from './CarFilterPasting'
+export * from './CarFilterWrapped'

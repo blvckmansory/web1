@@ -6,9 +6,11 @@ type SliderConfig = {
 	loop?: boolean
 
 	total: number
-
 	activeSlide: number
-	handleActiveSlide: (idx: number) => unknown
+
+	next: () => unknown
+	prev: () => unknown
+	scrollTo: (idx: number) => unknown
 }
 
 const SliderContext = createContext<SliderConfig>({} as SliderConfig)

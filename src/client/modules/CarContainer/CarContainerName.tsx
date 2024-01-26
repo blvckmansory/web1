@@ -6,16 +6,16 @@ import type { StyleProps } from '~/lib/types'
 import { CarType } from '~/shared/entities/car'
 
 import { Text } from '~/client/ui/components'
-import { useCarFilter } from '~/client/features/car/useCarFilter'
+import { useCarsFilter } from '~/client/features/car/useCarsFilter'
 
 type CarContainerNameProps = {
 	options: CarType[]
 }
 
 const CarContainerName = ({ options, style, className }: StyleProps & CarContainerNameProps) => {
-	const [filter] = useCarFilter()
+	const carTypeId = useCarsFilter((store) => store.carTypeId)
 
-	const type = options.find((option) => String(option.id) === filter.typeId)
+	const type = options.find((option) => String(option.id) === carTypeId)
 
 	return (
 		<Text

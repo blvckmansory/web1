@@ -28,7 +28,11 @@ type RateSectionProps = SectionProps & {
 }
 
 const RateSection = memo<RateSectionProps>(({ rates, conditions, className, ...props }) => {
-	const [filter] = useCarRate()
+	const filter = useCarRate((store) => ({
+		isResident: store.isResident,
+		overTwentyThreeYears: store.overTwentyThreeYears,
+		experienceMoreThanYear: store.experienceMoreThanYear,
+	}))
 
 	const availableFilters = useMemo(() => getAvailableFilters(rates), [rates])
 
@@ -65,12 +69,7 @@ const RateSection = memo<RateSectionProps>(({ rates, conditions, className, ...p
 						key={id}
 						options={current?.options}
 						discount={current?.discount}
-						footer={generateFooter(
-							footer,
-							current?.cost
-								? { price: current?.cost, discount: current.discount }
-								: undefined,
-						)}
+						footer={generateFooter(footer, current?.cost)}
 					/>
 				))}
 			</article>

@@ -1,12 +1,11 @@
 import { Title } from '~/client/ui/components/Text'
 
-import { Section } from './Section'
-import { SectionGrid, type SectionGridProps } from './SectionGrid'
+import { Section, type SectionProps } from './Section'
 
-const SectionSuggests = (props: SectionGridProps) => (
+const SectionSuggests = (props: SectionProps) => (
 	<Section className="space-y-5">
 		<Title className="col-span-2 !text-2xl">Смотрите также</Title>
-		<SectionGrid {...props} />
+		<div {...props} />
 	</Section>
 )
 

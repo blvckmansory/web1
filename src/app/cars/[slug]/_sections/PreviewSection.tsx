@@ -1,13 +1,10 @@
 'use client'
 
-import { useMemo, useState, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 
 import { clsx } from '~/lib/clsx'
 
-import type { Car, CarColorImage } from '~/shared/entities/car'
-
-import { useCarColor } from '~/client/features/car/useCarColor'
-import { QUERY_TYPE, QUERY_WRAPPED } from '~/client/features/car/useCarFilter'
+import type { Car } from '~/shared/entities/car'
 
 import { Tag } from '~/client/ui/components/Tag'
 import { Title } from '~/client/ui/components/Text'
@@ -23,44 +20,29 @@ type PreviewSectionProps = SectionProps &
 const PreviewSection = ({
 	name,
 	style,
-	carType,
 	className,
 	sideImages,
 	isWrapped = false,
 }: PreviewSectionProps) => {
-	const colors = useMemo(() => sideImages.map((sideImage) => sideImage.color), [sideImages])
-
-	const [color, setColor] = useCarColor(colors[0] as string)
+	const [sideImageId, setSideImageId] = useState<string>(String(sideImages[0]?.id) as string)
 
 	const findImageByColor = useCallback(
 		(_color: string) => sideImages.find((_sideImage) => _sideImage.color === _color),
 		[sideImages],
 	)
 
-	const [sideImage, setSideImage] = useState<CarColorImage>(
-		() => findImageByColor(color) as CarColorImage,
-	)
-
 	const handleChangeColor = useCallback(
-		(_color: string) => {
-			const newSideImage = findImageByColor(_color)
+		(_id: string) => {
+			const newSideImage = sideImages.find((_sideImage) => String(_sideImage.id) === _id)
 
 			if (!newSideImage) {
 				return null
 			}
 
-			setColor(newSideImage.color)
-			setSideImage(newSideImage)
+			setSideImageId(String(newSideImage.id))
 		},
 		[findImageByColor],
 	)
-
-	const backUrl = useMemo(() => {
-		const searchParams = new URLSearchParams()
-		searchParams.set(QUERY_TYPE, String(carType.id))
-		searchParams.set(QUERY_WRAPPED, String(isWrapped))
-		return '/cars?' + searchParams.toString()
-	}, [carType.id, isWrapped])
 
 	return (
 		<Section
@@ -70,7 +52,7 @@ const PreviewSection = ({
 				items={[
 					{
 						text: 'Тарифы',
-						href: backUrl,
+						href: '/cars',
 					},
 					{
 						href: '#',
@@ -86,29 +68,37 @@ const PreviewSection = ({
 						{!isWrapped ? <Tag>Без оклейки</Tag> : null}
 					</div>
 
-					<Image
-						alt="car-side-image"
-						priority
-						width={1800}
-						height={800}
-						quality={100}
-						className="w-full h-auto"
-						sizes="(max-width: 768px) 100vw, 100vw"
-						src={sideImage.image.url}
-					/>
+					{sideImages.map((_sideImage) => (
+						<Image
+							key={_sideImage.id}
+							priority
+							width={1800}
+							height={800}
+							quality={100}
+							alt="car-side-image"
+							className={clsx(
+								'w-full h-auto',
+								String(_sideImage.id) !== sideImageId ? 'hidden' : '',
+							)}
+							src={_sideImage.image.url}
+							sizes="(max-width: 768px) 100vw, 80vw"
+						/>
+					))}
 				</article>
 
 				<div className="flex flex-col gap-6">
 					<RadioGroup
 						dir="x"
 						label="Цвет"
-						initialValue={color}
+						initialValue={sideImageId}
 						onChange={handleChangeColor}
-						className="w-full sm:min-w-[300px]">
-						{colors.map((color) => (
+						className="w-full sm:w-80 flex-wrap">
+						{sideImages.map((_sideImage) => (
 							<RadioColor
-								key={color}
-								color={color}
+								key={_sideImage.id}
+								color={_sideImage.color}
+								value={String(_sideImage.id)}
+								src={_sideImage.colorImage?.url}
 							/>
 						))}
 					</RadioGroup>

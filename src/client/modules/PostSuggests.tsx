@@ -1,3 +1,4 @@
+import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
 import { fetchRandomPosts } from '~/server/post'
@@ -19,8 +20,7 @@ const PostSuggests = async ({ style, className, excludeId }: PostSuggestsProps) 
 	return (
 		<SectionSuggests
 			style={style}
-			className={className}
-			minmax={['450px', '1fr']}>
+			className={clsx('grid grid-cols-1 sm:grid-cols-2 gap-5', className)}>
 			{posts.slice(0, 2).map((_post) => (
 				<PostPreview
 					{..._post}

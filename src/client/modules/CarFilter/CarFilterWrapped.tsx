@@ -4,49 +4,34 @@ import { useCallback } from 'react'
 
 import type { StyleProps } from '~/lib/types'
 
-import { CarType } from '~/shared/entities/car'
-
 import { Label } from '~/client/ui/components/Text'
 import { Tab, Tabs } from '~/client/ui/components/Tabs'
 import { Responsive } from '~/client/ui/components/Responsive'
 import { Select, SelectItem } from '~/client/ui/components/Select'
-
 import type { SelectableItem } from '~/client/ui/(utils)/types'
 
 import { useCarsFilter } from '~/client/features/car/useCarsFilter'
 
-import { renderOption, ALL_TYPE } from './utils'
+import { renderOption, CAR_FILTER_WRAPPED } from './utils'
 
-type CarFilterTypeProps = StyleProps & {
-	options: CarType[]
-}
-
-const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
+const CarFilterWrapped = ({ style, className }: StyleProps) => {
 	const { value, onChange } = useCarsFilter((store) => ({
-		value: store.carTypeId,
-		onChange: store.setCarTypeId,
+		value: store.wrapped,
+		onChange: store.setWrapped,
 	}))
 
-	const item = options.find((item) => String(item.id) === value) || ALL_TYPE
+	const item = CAR_FILTER_WRAPPED.find((item) => item.id === value)
 
 	const handleChange = useCallback(
 		(_item?: SelectableItem) => {
-			if (!_item) {
-				return null
-			}
-
-			if (_item.id === ALL_TYPE.id) {
-				return onChange(null)
-			}
-
-			return onChange(String(_item.id))
+			_item && onChange(_item.id as boolean)
 		},
 		[onChange],
 	)
 
 	return (
 		<div>
-			<Label>Тип машины</Label>
+			<Label>Оклейка</Label>
 			<Responsive
 				style={style}
 				className={className}
@@ -54,16 +39,14 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 					<Tabs
 						item={item}
 						onChange={handleChange}>
-						{renderOption(Tab, ALL_TYPE)}
-						{options.map((option) => renderOption(Tab, option))}
+						{CAR_FILTER_WRAPPED.map((tab) => renderOption(Tab, tab))}
 					</Tabs>
 				}
 				mobile={
 					<Select
 						item={item}
 						onChange={handleChange}>
-						{renderOption(Tab, ALL_TYPE)}
-						{options.map((option) => renderOption(SelectItem, option))}
+						{CAR_FILTER_WRAPPED.map((tab) => renderOption(SelectItem, tab))}
 					</Select>
 				}
 			/>
@@ -71,5 +54,4 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 	)
 }
 
-export { CarFilterType }
-export type { CarFilterTypeProps }
+export { CarFilterWrapped }

@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 
 import type { Page } from '~/lib/types'
@@ -9,15 +8,10 @@ import { Text, Divider } from '~/client/ui/components'
 
 import { Section } from '~/client/components/Section'
 
-import { CarContainerName } from '~/client/modules/CarContainer/CarContainerName'
-import { CarContainerLoader } from '~/client/modules/CarContainer/loader'
-import { CarFilterType, CarFilterPasting } from '~/client/modules/CarFilter'
+import { CarContainer, CarContainerName } from '~/client/modules/CarContainer'
+import { CarFilterType, CarFilterWrapped } from '~/client/modules/CarFilter'
 
 import styles from './styles.module.css'
-
-const CarContainer = dynamic(() => import('~/client/modules/CarContainer'), {
-	loading: () => <CarContainerLoader />,
-})
 
 const CarsPage: Page = async () => {
 	const { data: cars } = await fetchPreviewCars()
@@ -39,7 +33,7 @@ const CarsPage: Page = async () => {
 
 			<div className={styles.filter}>
 				<CarFilterType options={carTypes} />
-				<CarFilterPasting />
+				<CarFilterWrapped />
 			</div>
 
 			<Divider />

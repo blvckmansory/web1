@@ -4,10 +4,10 @@ import Image from 'next/image'
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
+import { formatCurrency } from '~/shared/helpers/currency'
 import type { CarPreview as CarPreviewType } from '~/shared/entities/car'
 
 import { Text } from '~/client/ui/components/Text'
-import { computePriceWithDiscount } from '~/shared/helpers/currency'
 
 type CarPreviewProps = StyleProps & CarPreviewType
 
@@ -32,7 +32,8 @@ const CarPreview = ({
 					fill
 					src={previewImage.url}
 					alt="car-card-image"
-					sizes="(min-width: 808px) 33vw, 100vw"
+					quality={75}
+					sizes="(min-width: 606px) 330px, 200px"
 					className="object-cover"
 				/>
 			</div>
@@ -49,7 +50,7 @@ const CarPreview = ({
 					weight={500}
 					color="primary"
 					className={clsx('text-sm sm:text-base md:text-lg line-clamp-1')}>
-					от {computePriceWithDiscount(minMinuteRate)} / 1 мин.
+					от {formatCurrency(minMinuteRate)} / 1 мин.
 				</Text>
 			</div>
 		</article>

@@ -18,18 +18,19 @@
 	"dependencies": {
 		"@googlemaps/js-api-loader": "1.16.2",
 		"@googlemaps/react-wrapper": "1.1.35",
-		"@splidejs/react-splide": "0.7.12",
+		"embla-carousel-autoplay": "^8.0.0-rc21",
+		"embla-carousel-react": "^8.0.0-rc21",
 		"framer-motion": "^10.16.1",
 		"lodash.uniqby": "4.7.0",
 		"lucide-react": "^0.268.0",
 		"maplibre-gl": "3.6.2",
 		"markdown-to-jsx": "^7.3.2",
 		"next": "14.0.4",
-		"next-usequerystate": "1.13.0",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"sharp": "^0.33.2",
-		"tailwind-variants": "^0.1.13"
+		"tailwind-variants": "^0.1.13",
+		"zustand": "^4.5.0"
 	},
 	"devDependencies": {
 		"@next/eslint-plugin-next": "^13.4.19",

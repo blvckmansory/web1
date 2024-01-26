@@ -23,6 +23,7 @@ type CarConditon = StrapiSchema<{
 type CarColorImage = StrapiSchema<{
 	color: string
 	image: Media
+	colorImage: Media | null
 }>
 
 type CarType = StrapiSchema<{

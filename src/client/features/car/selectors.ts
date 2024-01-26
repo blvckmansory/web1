@@ -1,14 +1,14 @@
-import type { PreviewCar } from '~/server/car'
+import type { CarPreview } from '~/shared/entities/car'
 
-import type { Filter } from './useCarFilter'
+import type { CarsFilter } from './useCarsFilter'
 
-type Data = PreviewCar[]
+type Data = CarPreview[]
 
-const selectFilteredCars = (data: Data, filter: Filter) =>
+const selectFilteredCars = (data: Data, filter: CarsFilter) =>
 	data.filter((item) =>
 		[
-			filter.typeId ? String(item.carType.id) === filter.typeId : true,
-			filter.pasting === item.isWrapped,
+			filter.carTypeId ? String(item.carType.id) === filter.carTypeId : true,
+			filter.wrapped === item.isWrapped,
 		].every(Boolean),
 	)
 

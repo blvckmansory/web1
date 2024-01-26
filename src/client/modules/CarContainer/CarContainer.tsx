@@ -7,7 +7,7 @@ import type { StyleProps } from '~/lib/types'
 
 import { CarPreview as CarPreviewType } from '~/shared/entities/car'
 
-import { useCarFilter } from '~/client/features/car/useCarFilter'
+import { useCarsFilter } from '~/client/features/car/useCarsFilter'
 import { selectFilteredCars } from '~/client/features/car/selectors'
 
 import { NoData } from '~/client/components/NoData'
@@ -20,7 +20,10 @@ type CarContainerProps = {
 }
 
 const CarContainer = ({ style, className, initialData }: StyleProps & CarContainerProps) => {
-	const [filter] = useCarFilter()
+	const filter = useCarsFilter((store) => ({
+		wrapped: store.wrapped,
+		carTypeId: store.carTypeId,
+	}))
 
 	const cars = useMemo(() => selectFilteredCars(initialData, filter), [filter, initialData])
 

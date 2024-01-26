@@ -21,21 +21,20 @@ const SliderPagination = ({
 	containerStyle,
 	containerClassName,
 }: SliderPaginationProps) => {
-	const { total, activeSlide, handleActiveSlide } = useSliderContext()
+	const { total, activeSlide, scrollTo } = useSliderContext()
 
 	const handleClick = useCallback(
 		(idx: number) => {
-			handleActiveSlide(idx)
+			scrollTo(idx)
 			onChange?.(idx)
 		},
-		[onChange, handleActiveSlide],
+		[onChange, scrollTo],
 	)
 
 	return (
 		<div
 			style={containerStyle}
-			className={clsx('w-fit flex items-center gap-x-1', containerClassName)}
-		>
+			className={clsx('w-fit flex items-center gap-x-1', containerClassName)}>
 			{...new Array(total).fill(0).map((_, idx) => (
 				<span
 					key={idx}

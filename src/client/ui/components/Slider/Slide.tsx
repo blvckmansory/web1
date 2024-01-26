@@ -1,19 +1,18 @@
-// @ts-expect-error
-import { SplideSlide } from '@splidejs/react-splide'
-
 import { clsx } from '~/lib/clsx'
 import type { StyleProps, ReactChildren } from '~/lib/types'
+
+import styles from './styles.module.css'
 
 type SlideProps = StyleProps & {
 	children: ReactChildren
 }
 
 const Slide = ({ style, children, className }: SlideProps) => (
-	<SplideSlide
+	<article
 		style={style}
-		className={clsx('', className)}>
+		className={clsx(styles.embla__slide, className)}>
 		{children}
-	</SplideSlide>
+	</article>
 )
 
 Slide.displayName = '@hello/Slide'

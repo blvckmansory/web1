@@ -41,7 +41,7 @@ const PostPreview = ({ id, title, cover, style, className, description }: PostPr
 			{title}
 		</Text>
 
-		<Markdown className="mt-3 text-sm font-normal line-clamp-2 max-w-none text-justify">
+		<Markdown className="mt-3 text-sm font-normal line-clamp-2 max-w-none">
 			{description}
 		</Markdown>
 

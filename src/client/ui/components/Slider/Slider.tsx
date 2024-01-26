@@ -1,57 +1,72 @@
 'use client'
 
-import '@splidejs/react-splide/css/core'
+import { useState, useEffect, useCallback, Children } from 'react'
 
-import { useRef, useState, useCallback, Children } from 'react'
+import Autoplay from 'embla-carousel-autoplay'
+import useEmblaCarousel from 'embla-carousel-react'
+import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel'
 
-import { Splide as SplideCore } from '@splidejs/splide'
-// @ts-expect-error
-import { Options, Splide, type SplideProps } from '@splidejs/react-splide'
+import { clsx } from '~/lib/clsx'
+import type { StyleProps, ReactChildren } from '~/lib/types'
 
 import { SliderContext } from './context'
 import { SliderControls } from './SliderControls'
 
-type SliderProps = SplideProps & {
+import styles from './styles.module.css'
+
+type SliderProps = StyleProps & {
 	loop?: boolean
 	initial?: number
 	withPagination?: boolean
+
+	children: ReactChildren
 }
 
 const Slider = ({
+	style,
 	children,
+	className,
 	initial = 0,
 	loop = false,
 	withPagination = false,
-	...props
 }: SliderProps) => {
-	const ref = useRef<Splide>(null)
+	const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+
+	const [total] = useState<number>(() => Children.count(children))
 	const [activeSlide, setActiveSlide] = useState<number>(initial)
 
-	const handleActiveSlide = useCallback((idx: number) => ref.current?.splide?.go(idx), [ref])
+	const prev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
+	const next = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
 
-	const handleChange = useCallback(
-		(props: SplideCore) => setActiveSlide(props.index),
-		[setActiveSlide],
+	const scrollTo = useCallback(
+		(index: number) => emblaApi && emblaApi.scrollTo(index),
+		[emblaApi],
 	)
 
-	const total = Children.count(children)
+	const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+		setActiveSlide(emblaApi.selectedScrollSnap())
+	}, [])
+
+	useEffect(() => {
+		if (!emblaApi) {
+			return
+		}
+
+		onSelect(emblaApi)
+
+		emblaApi.on('reInit', onSelect)
+		emblaApi.on('select', onSelect)
+	}, [emblaApi, onSelect])
 
 	return (
-		<SliderContext.Provider value={{ loop, total, activeSlide, handleActiveSlide }}>
-			<section>
-				<Splide
-					{...props}
-					ref={ref}
-					tag="section"
-					role="group"
-					aria-label="target-slider"
-					onActive={handleChange}
-					options={{
-						...options,
-						start: initial,
-					}}>
-					{children}
-				</Splide>
+		<SliderContext.Provider value={{ loop, total, activeSlide, next, prev, scrollTo }}>
+			<section className={styles.embla}>
+				<div
+					ref={emblaRef}
+					style={style}
+					className={clsx(styles.embla__viewport, className)}>
+					<div className={styles.embla__container}>{children}</div>
+				</div>
 
 				{withPagination ? <SliderControls className="mt-[3px]" /> : null}
 			</section>
@@ -59,15 +74,11 @@ const Slider = ({
 	)
 }
 
-const options: Options = {
-	gap: 3,
-	type: 'loop',
-	arrows: false,
-	lazyLoad: true,
-	autoWidth: true,
-	pagination: false,
-	updateOnMove: true,
-	labelledby: 'Target',
+const options: EmblaOptionsType = {
+	loop: false,
+	align: 'start',
+	dragFree: false,
+	slidesToScroll: 1,
 }
 
 export { Slider }

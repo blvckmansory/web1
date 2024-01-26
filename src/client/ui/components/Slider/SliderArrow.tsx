@@ -18,7 +18,7 @@ type SliderArrowProps = StyleProps & {
 }
 
 const SliderArrow = ({ style, state, onClick, className }: SliderArrowProps) => {
-	const { loop, total, activeSlide, handleActiveSlide } = useSliderContext()
+	const { loop, total, activeSlide, scrollTo } = useSliderContext()
 
 	const nextSlide = useMemo(() => {
 		let newSlide = activeSlide
@@ -43,9 +43,9 @@ const SliderArrow = ({ style, state, onClick, className }: SliderArrowProps) => 
 	}, [loop, state, total, activeSlide])
 
 	const handleClick = useCallback(() => {
-		handleActiveSlide(nextSlide)
+		scrollTo(nextSlide)
 		onClick?.(nextSlide)
-	}, [nextSlide, onClick, handleActiveSlide])
+	}, [nextSlide, onClick, scrollTo])
 
 	return (
 		<div

@@ -1,0 +1,3 @@
+.slide {
+	height: clamp(500px, 60vh, 600px);
+}

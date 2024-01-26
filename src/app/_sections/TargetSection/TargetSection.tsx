@@ -11,7 +11,6 @@ const TargetSection = async ({ style, className }: StyleProps) => {
 
 	return (
 		<Slider
-			loop
 			withPagination
 			style={style}
 			className={className}>

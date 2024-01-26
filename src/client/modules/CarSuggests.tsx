@@ -1,3 +1,4 @@
+import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
 import { fetchRandomCars } from '~/server/car'
@@ -10,7 +11,7 @@ type PostSuggestsProps = StyleProps & {
 }
 
 const CarSuggests = async ({ style, className, excludeId }: PostSuggestsProps) => {
-	const { data: cars } = await fetchRandomCars({ excludeId, limit: 3 })
+	const { data: cars } = await fetchRandomCars({ excludeId, limit: 4 })
 
 	if (!cars) {
 		return null
@@ -19,8 +20,7 @@ const CarSuggests = async ({ style, className, excludeId }: PostSuggestsProps) =
 	return (
 		<SectionSuggests
 			style={style}
-			className={className}
-			minmax={['260px', 'auto']}>
+			className={clsx('grid grid-cols-2 md:grid-cols-4 gap-5', className)}>
 			{cars.map((car) => (
 				<CarPreview
 					{...car}

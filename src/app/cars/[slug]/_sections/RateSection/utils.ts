@@ -1,4 +1,4 @@
-import { computePriceWithDiscount } from '~/shared/helpers/currency'
+import { formatCurrency } from '~/shared/helpers/currency'
 import type { Rate, RateWithConditions } from '~/shared/entities/rate'
 
 import type { Filter } from '~/client/features/car/useCarRate'
@@ -73,19 +73,12 @@ const findRateWithConditions = (_0: RateWithConditions[], filter: Filter) => {
 	return _3.at(0)
 }
 
-const generateFooter = (
-	start: string,
-	opts: { price: number; discount?: number } | undefined | null,
-) => {
-	if (!opts) {
+const generateFooter = (start: string, cost?: number) => {
+	if (!cost) {
 		return start
 	}
 
-	const { price, discount } = opts
-
-	const newPrice = computePriceWithDiscount(price, discount)
-
-	return `${start} **${newPrice}**`
+	return `${start} **${formatCurrency(cost)}**`
 }
 
 export { generateFooter, getAvailableFilters, findRateWithConditions }
