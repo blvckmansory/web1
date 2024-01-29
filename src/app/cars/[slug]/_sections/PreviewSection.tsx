@@ -25,7 +25,7 @@ const PreviewSection = ({
 	isWrapped = false,
 }: PreviewSectionProps) => {
 	const initialSideImageId = String(sideImages[0]?.id) as string
-	const [sideImageId, setSideImageId] = useState<string>(initialSideImageId)
+	const [activeSideImageId, setActiveSideImageId] = useState<string>(initialSideImageId)
 
 	const findImageByColor = useCallback(
 		(_color: string) => sideImages.find((_sideImage) => _sideImage.color === _color),
@@ -40,7 +40,7 @@ const PreviewSection = ({
 				return null
 			}
 
-			setSideImageId(String(newSideImage.id))
+			setActiveSideImageId(String(newSideImage.id))
 		},
 		[findImageByColor],
 	)
@@ -62,7 +62,7 @@ const PreviewSection = ({
 				]}
 			/>
 
-			<div className="2xl:w-[1500px] mx-auto flex flex-col lg:flex-row gap-5 lg:gap-10 justify-between">
+			<div className="2xl:w-[1500px] 2xl:mx-auto flex flex-col lg:flex-row gap-5 lg:gap-10 justify-between">
 				<article className="flex-1 flex flex-col gap-10 lg:gap-5">
 					<div className="font-bold flex flex-wrap items-center gap-x-4 gap-y-2">
 						<Title className="text-3xl md:text-4xl">{name}</Title>
@@ -70,17 +70,19 @@ const PreviewSection = ({
 					</div>
 
 					{sideImages.map((_sideImage) => {
-						const isActive = String(_sideImage.id) === initialSideImageId
+						const sideImageId = String(_sideImage.id)
+						const isActive = sideImageId === activeSideImageId
+						const isInitial = sideImageId === initialSideImageId
 						return (
 							<Image
 								key={_sideImage.id}
 								width={1140}
 								height={510}
 								quality={100}
-								priority={isActive}
+								priority={isInitial}
 								alt="car-side-image"
 								src={_sideImage.image.url}
-								loading={isActive ? 'eager' : 'lazy'}
+								loading={isInitial ? 'eager' : 'lazy'}
 								sizes="(max-width: 768px) 100vw, 1200px"
 								className={clsx('w-full h-auto', !isActive ? 'hidden' : '')}
 							/>
@@ -92,8 +94,8 @@ const PreviewSection = ({
 					<RadioGroup
 						dir="x"
 						label="Цвет"
-						initialValue={sideImageId}
 						onChange={handleChangeColor}
+						initialValue={initialSideImageId}
 						className="w-full sm:w-80 flex-wrap">
 						{sideImages.map((_sideImage) => (
 							<RadioColor
