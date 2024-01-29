@@ -1,5 +1,6 @@
+import { Text } from '~/client/ui/components/Text'
 import { Spacer } from '~/client/ui/components/Spacer'
-import { Text, Title } from '~/client/ui/components/Text'
+import { Collapse } from '~/client/ui/components/Collapse'
 import { List, ListItem } from '~/client/ui/components/List'
 
 import { MarkdownContent } from '~/client/components/MarkdownContent'
@@ -8,9 +9,9 @@ import { PriceWithDiscount } from '~/client/components/PriceWithDiscount'
 import { CarDiscount } from './CarDiscount'
 import type { CarRateProps } from './types'
 
-import styles from './styles.module.css'
+import styles from './styles.mobile.module.css'
 
-const CarRate: React.FC<CarRateProps> = ({
+const CarRateMobile: React.FC<CarRateProps> = ({
 	style,
 	title,
 	footer,
@@ -19,11 +20,10 @@ const CarRate: React.FC<CarRateProps> = ({
 	className,
 	description,
 }) => (
-	<article
-		style={style}
-		className={`card ${styles.container} ${className}`}>
-		<Title className="!text-xl">{title}</Title>
-
+	<Collapse
+		title={title}
+		styles={{ content: style }}
+		classNames={{ container: className, content: styles.content, trigger: styles.trigger }}>
 		{discount ? <CarDiscount discount={discount} /> : null}
 
 		<Text weight={400}>{description}</Text>
@@ -49,7 +49,7 @@ const CarRate: React.FC<CarRateProps> = ({
 		/>
 
 		<MarkdownContent className={styles.footer}>{footer}</MarkdownContent>
-	</article>
+	</Collapse>
 )
 
-export { CarRate }
+export { CarRateMobile }

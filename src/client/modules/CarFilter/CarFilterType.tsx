@@ -7,6 +7,7 @@ import type { StyleProps } from '~/lib/types'
 import { CarType } from '~/shared/entities/car'
 
 import { Label } from '~/client/ui/components/Text'
+import { Image } from '~/client/ui/components/Image'
 import { Tab, Tabs } from '~/client/ui/components/Tabs'
 import { Responsive } from '~/client/ui/components/Responsive'
 import { Select, SelectItem } from '~/client/ui/components/Select'
@@ -16,7 +17,6 @@ import type { SelectableItem } from '~/client/ui/(utils)/types'
 import { useCarsFilter } from '~/client/features/car/useCarsFilter'
 
 import { renderOption, ALL_TYPE } from './utils'
-import { Image } from '~/client/ui/components'
 
 type CarFilterTypeProps = StyleProps & {
 	options: CarType[]
@@ -47,6 +47,18 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 
 	return (
 		<div>
+			{options
+				.filter((option) => !!option.image)
+				.map((option) => (
+					<Image
+						width={250}
+						height={125}
+						className="hidden"
+						// @ts-expect-error
+						src={option.image.url}
+						style={{ width: 0, height: 0 }}
+					/>
+				))}
 			<Label>Тип машины</Label>
 			<Responsive
 				style={style}
@@ -72,8 +84,8 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 								name: option.name,
 								iconLeft: option.image ? (
 									<Image
-										width={78}
-										height={34}
+										width={250}
+										height={125}
 										src={option.image.url}
 										style={{ width: 78, height: 34 }}
 									/>

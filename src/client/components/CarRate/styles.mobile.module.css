@@ -1,0 +1,19 @@
+.content {
+	@apply flex flex-col gap-y-4 text-base;
+}
+
+.trigger {
+	@apply font-bold;
+}
+
+.discount {
+	@apply flex items-center gap-3;
+}
+
+.option__item {
+	@apply text-base flex items-center;
+}
+
+.footer {
+	@apply text-base;
+}
