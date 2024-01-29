@@ -16,6 +16,7 @@ import type { SelectableItem } from '~/client/ui/(utils)/types'
 import { useCarsFilter } from '~/client/features/car/useCarsFilter'
 
 import { renderOption, ALL_TYPE } from './utils'
+import { Image } from '~/client/ui/components'
 
 type CarFilterTypeProps = StyleProps & {
 	options: CarType[]
@@ -55,7 +56,9 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 						item={item}
 						onChange={handleChange}>
 						{renderOption(Tab, ALL_TYPE)}
-						{options.map((option) => renderOption(Tab, option))}
+						{options.map((option) =>
+							renderOption(Tab, { id: option.id, name: option.name }),
+						)}
 					</Tabs>
 				}
 				mobile={
@@ -63,7 +66,20 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 						item={item}
 						onChange={handleChange}>
 						{renderOption(SelectItem, ALL_TYPE)}
-						{options.map((option) => renderOption(SelectItem, option))}
+						{options.map((option) =>
+							renderOption(SelectItem, {
+								id: option.id,
+								name: option.name,
+								iconLeft: option.image ? (
+									<Image
+										width={78}
+										height={34}
+										src={option.image.url}
+										style={{ width: 78, height: 34 }}
+									/>
+								) : null,
+							}),
+						)}
 					</Select>
 				}
 			/>

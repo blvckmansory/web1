@@ -28,6 +28,7 @@ type CarColorImage = StrapiSchema<{
 
 type CarType = StrapiSchema<{
 	name: string
+	image?: Media | null | undefined
 }>
 
 type Car = StrapiSchema<{

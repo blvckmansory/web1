@@ -46,6 +46,7 @@ const config = {
 		]
 	},
 	images: {
+		minimumCacheTTL: 60,
 		dangerouslyAllowSVG: true,
 		remotePatterns: [
 			{

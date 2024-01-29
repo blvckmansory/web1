@@ -14,6 +14,7 @@ const Logo = ({ className, ...props }: StyleProps) => (
 			alt="logo"
 			width={1000}
 			height={1000}
+			loading="eager"
 			src="/assets/logo.png"
 			className="aspect-[2/1] w-20"
 		/>

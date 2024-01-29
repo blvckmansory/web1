@@ -40,7 +40,7 @@ const AbsoluteImage = ({
 		{...props}
 		alt={alt}
 		style={{ top, left, right, bottom, ...style }}
-		className={clsx('pointer-events-none absolute', className)}
+		className={clsx('pointer-events-none absolute -z-50', className)}
 	/>
 )
 

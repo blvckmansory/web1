@@ -7,6 +7,7 @@ import type { ReactChildren, MergeWithHTMLProps } from '~/lib/types'
 
 import type { Item } from './types'
 import { useSelectContext } from './context'
+import { Image } from '..'
 
 type SelectItemProps = MergeWithHTMLProps<
 	'button',
@@ -37,6 +38,7 @@ const SelectItem = memo(
 					onClick={handleClick}
 					className={selectItemStyles({ active, className })}>
 					{name}
+					{iconLeft}
 				</button>
 			)
 		},
@@ -44,7 +46,7 @@ const SelectItem = memo(
 )
 
 const selectItemStyles = tv({
-	base: 'rounded-none h-12 w-full border-none flex items-center px-4 text-base font-medium text-black',
+	base: 'rounded-none h-12 w-full border-none flex items-center justify-between px-4 text-base font-medium text-black',
 	variants: {
 		active: {
 			true: 'bg-gray-400',

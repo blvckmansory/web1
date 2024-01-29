@@ -16,7 +16,10 @@ const ALL_TYPE = {
 	name: 'Все',
 } as const
 
-const renderOption = (Item: React.JSXElementConstructor<any>, props: SelectableItem) => (
+const renderOption = <T extends SelectableItem>(
+	Item: React.JSXElementConstructor<any>,
+	props: T,
+) => (
 	<Item
 		key={props.id}
 		{...props}

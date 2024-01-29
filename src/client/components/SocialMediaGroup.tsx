@@ -28,7 +28,7 @@ const SocialMediaGroup = async ({ className, ...props }: StyleProps) => {
 								src={media.icon}
 							/>
 						}
-						className="p-2.5"
+						className="p-2"
 					/>
 				</Link>
 			))}

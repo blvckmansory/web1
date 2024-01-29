@@ -24,7 +24,8 @@ const PreviewSection = ({
 	sideImages,
 	isWrapped = false,
 }: PreviewSectionProps) => {
-	const [sideImageId, setSideImageId] = useState<string>(String(sideImages[0]?.id) as string)
+	const initialSideImageId = String(sideImages[0]?.id) as string
+	const [sideImageId, setSideImageId] = useState<string>(initialSideImageId)
 
 	const findImageByColor = useCallback(
 		(_color: string) => sideImages.find((_sideImage) => _sideImage.color === _color),
@@ -61,29 +62,30 @@ const PreviewSection = ({
 				]}
 			/>
 
-			<div className="flex flex-col lg:flex-row gap-5 lg:gap-10 justify-between">
+			<div className="2xl:w-[1500px] mx-auto flex flex-col lg:flex-row gap-5 lg:gap-10 justify-between">
 				<article className="flex-1 flex flex-col gap-10 lg:gap-5">
 					<div className="font-bold flex flex-wrap items-center gap-x-4 gap-y-2">
 						<Title className="text-3xl md:text-4xl">{name}</Title>
 						{!isWrapped ? <Tag>Без оклейки</Tag> : null}
 					</div>
 
-					{sideImages.map((_sideImage) => (
-						<Image
-							key={_sideImage.id}
-							priority
-							width={1800}
-							height={800}
-							quality={100}
-							alt="car-side-image"
-							className={clsx(
-								'w-full h-auto',
-								String(_sideImage.id) !== sideImageId ? 'hidden' : '',
-							)}
-							src={_sideImage.image.url}
-							sizes="(max-width: 768px) 100vw, 80vw"
-						/>
-					))}
+					{sideImages.map((_sideImage) => {
+						const isActive = String(_sideImage.id) === initialSideImageId
+						return (
+							<Image
+								key={_sideImage.id}
+								width={1140}
+								height={510}
+								quality={100}
+								priority={isActive}
+								alt="car-side-image"
+								src={_sideImage.image.url}
+								loading={isActive ? 'eager' : 'lazy'}
+								sizes="(max-width: 768px) 100vw, 1200px"
+								className={clsx('w-full h-auto', !isActive ? 'hidden' : '')}
+							/>
+						)
+					})}
 				</article>
 
 				<div className="flex flex-col gap-6">

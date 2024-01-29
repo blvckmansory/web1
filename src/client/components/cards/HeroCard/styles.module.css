@@ -2,7 +2,7 @@
 	@apply relative bg-white rounded-xl overflow-hidden isolate [&>*]:z-10;
 	@apply w-max h-[600px] flex gap-x-12;
 	@apply text-left;
-	@apply lg:min-w-[1100px];
+	@apply lg:w-[1200px];
 }
 
 .inner {
