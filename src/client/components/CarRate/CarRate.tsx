@@ -10,18 +10,8 @@ import type { CarRateProps } from './types'
 
 import styles from './styles.module.css'
 
-const CarRate: React.FC<CarRateProps> = ({
-	style,
-	title,
-	footer,
-	options,
-	discount,
-	className,
-	description,
-}) => (
-	<article
-		style={style}
-		className={`card ${styles.container} ${className}`}>
+const CarRate: React.FC<CarRateProps> = ({ title, footer, options, discount, description }) => (
+	<article className={`card ${styles.container}`}>
 		<Title className="!text-xl">{title}</Title>
 
 		{discount ? <CarDiscount discount={discount} /> : null}

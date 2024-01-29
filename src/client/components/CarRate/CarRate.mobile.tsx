@@ -12,18 +12,16 @@ import type { CarRateProps } from './types'
 import styles from './styles.mobile.module.css'
 
 const CarRateMobile: React.FC<CarRateProps> = ({
-	style,
 	title,
 	footer,
 	options,
 	discount,
-	className,
+
 	description,
 }) => (
 	<Collapse
 		title={title}
-		styles={{ content: style }}
-		classNames={{ container: className, content: styles.content, trigger: styles.trigger }}>
+		classNames={{ content: styles.content, trigger: styles.trigger }}>
 		{discount ? <CarDiscount discount={discount} /> : null}
 
 		<Text weight={400}>{description}</Text>

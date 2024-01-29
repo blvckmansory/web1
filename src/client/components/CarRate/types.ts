@@ -1,12 +1,10 @@
-import type { StyleProps } from '~/lib/types'
-
 type CarRateOption = {
 	name: string
 	price: number
 	newPrice?: number | null
 }
 
-type CarRateProps = StyleProps & {
+type CarRateProps = {
 	title: string
 	description: string
 	footer: string

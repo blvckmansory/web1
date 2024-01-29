@@ -1,4 +1,12 @@
 .container {
 	@apply w-fit max-w-full grid gap-4 grid-flow-dense auto-rows-auto;
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+
+	@apply max-md:!hidden;
+}
+
+.container__mobile {
+	@apply flex flex-col gap-4;
+
+	@apply md:!hidden;
 }

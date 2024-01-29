@@ -1,11 +1,11 @@
 'use client'
 
-import { memo, useMemo } from 'react'
+import { memo, useMemo, type JSXElementConstructor } from 'react'
 
 import { clsx } from '~/lib/clsx'
 
-import type { Rate } from '~/shared/entities/rate'
 import type { CarConditon } from '~/shared/entities/car'
+import type { Rate, RateWithConditions } from '~/shared/entities/rate'
 
 import { useCarRate } from '~/client/features/car/useCarRate'
 
@@ -13,7 +13,7 @@ import { Divider } from '~/client/ui/components/Divider'
 import { Label, Title } from '~/client/ui/components/Text'
 import { List, ListItem } from '~/client/ui/components/List'
 
-import { CarRate } from '~/client/components/CarRate'
+import { CarRate, CarRateMobile, type CarRateProps } from '~/client/components/CarRate'
 import { Section, type SectionProps } from '~/client/components/Section'
 
 import { RateFilters } from './components'
@@ -62,16 +62,11 @@ const RateSection = memo<RateSectionProps>(({ rates, conditions, className, ...p
 				expOver={availableFilters.experienceMoreThanYear}
 			/>
 
+			<article className={styles.container__mobile}>
+				{ratesByFilter.map((rate) => renderCarRate(CarRateMobile, rate))}
+			</article>
 			<article className={styles.container}>
-				{ratesByFilter.map(({ id, current, footer, ...props }) => (
-					<CarRate
-						{...props}
-						key={id}
-						options={current?.options}
-						discount={current?.discount}
-						footer={generateFooter(footer, current?.cost)}
-					/>
-				))}
+				{ratesByFilter.map((rate) => renderCarRate(CarRate, rate))}
 			</article>
 
 			{conditions?.length ? (
@@ -87,6 +82,28 @@ const RateSection = memo<RateSectionProps>(({ rates, conditions, className, ...p
 		</Section>
 	)
 })
+
+type CarRateType = {
+	id: string | number
+	title: string
+	footer: string
+	description: string
+	current: RateWithConditions | undefined
+}
+
+const renderCarRate = (
+	Item: JSXElementConstructor<CarRateProps>,
+	{ id, title, description, current, footer }: CarRateType,
+) => (
+	<Item
+		key={id}
+		title={title}
+		description={description}
+		options={current?.options}
+		discount={current?.discount}
+		footer={generateFooter(footer, current?.cost)}
+	/>
+)
 
 export { RateSection }
 export type { RateSectionProps }
