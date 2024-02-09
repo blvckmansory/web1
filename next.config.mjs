@@ -46,8 +46,9 @@ const config = {
 		]
 	},
 	images: {
-		minimumCacheTTL: 60,
+		minimumCacheTTL: 31536000,
 		dangerouslyAllowSVG: true,
+		formats: ['image/webp'],
 		remotePatterns: [
 			{
 				protocol: 'https',

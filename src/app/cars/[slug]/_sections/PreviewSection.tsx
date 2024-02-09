@@ -69,25 +69,27 @@ const PreviewSection = ({
 						{!isWrapped ? <Tag>Без оклейки</Tag> : null}
 					</div>
 
-					{sideImages.map((_sideImage) => {
-						const sideImageId = String(_sideImage.id)
-						const isActive = sideImageId === activeSideImageId
-						const isInitial = sideImageId === initialSideImageId
-						return (
-							<Image
-								key={_sideImage.id}
-								width={1140}
-								height={510}
-								quality={100}
-								priority={isInitial}
-								alt="car-side-image"
-								src={_sideImage.image.url}
-								loading={isInitial ? 'eager' : 'lazy'}
-								sizes="(max-width: 768px) 100vw, 1200px"
-								className={clsx('w-full h-auto', !isActive ? 'hidden' : '')}
-							/>
-						)
-					})}
+					<div className="relative w-full aspect-[1024/455]">
+						{sideImages.map((_sideImage) => {
+							const sideImageId = String(_sideImage.id)
+							const isActive = String(sideImageId) === String(activeSideImageId)
+							const isInitial = String(sideImageId) === String(initialSideImageId)
+							return (
+								<img
+									key={_sideImage.id}
+									src={_sideImage.image.url}
+									fetchPriority={isInitial ? 'high' : 'auto'}
+									alt={`car-side-image-${_sideImage.color}`}
+									loading={isInitial ? 'eager' : 'lazy'}
+									sizes="(max-width: 768px) 100vw, 1200px"
+									className={clsx(
+										'absolute inset-0 transition-all',
+										isActive ? 'opacity-100' : 'opacity-0',
+									)}
+								/>
+							)
+						})}
+					</div>
 				</article>
 
 				<div className="flex flex-col gap-6">
