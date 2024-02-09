@@ -19,8 +19,7 @@ const Section = ({ as, children, className, bluredChildren, ...props }: SectionP
 			className={clsx(
 				'relative z-0 py-8 md:py-10 lg:py-12 px-4 md:px-10 lg:px-12 w-full flex flex-col bg-white rounded-xl overflow-hidden [&>*]:z-10',
 				className,
-			)}
-		>
+			)}>
 			{children}
 		</Comp>
 	)

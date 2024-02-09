@@ -8,7 +8,6 @@ import type { Car } from '~/shared/entities/car'
 
 import { Tag } from '~/client/ui/components/Tag'
 import { Title } from '~/client/ui/components/Text'
-import { Image } from '~/client/ui/components/Image'
 import { Breadcrumb } from '~/client/ui/components/Breadcrumb'
 import { RadioGroup, RadioColor } from '~/client/ui/components/Radio'
 

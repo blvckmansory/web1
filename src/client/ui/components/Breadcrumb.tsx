@@ -1,4 +1,7 @@
+'use client'
+
 import { Fragment } from 'react'
+import { useRouter } from 'next/navigation'
 
 import { clsx } from '~/lib/clsx'
 import type { MergeWithHTMLProps } from '~/lib/types'
@@ -21,12 +24,10 @@ type BreadcrumbProps = MergeWithHTMLProps<
 >
 
 const Breadcrumb = ({ items, className, ...props }: BreadcrumbProps) => {
-	if (!items) {
-		return null
-	}
+	const router = useRouter()
 
-	const last = items.at(-1) as BreadcrumbItem
-	const others = items.slice(0, items.length - 1)
+	const last = items?.pop() as BreadcrumbItem
+	const first = items?.shift() as BreadcrumbItem
 
 	return (
 		<ul
@@ -35,13 +36,27 @@ const Breadcrumb = ({ items, className, ...props }: BreadcrumbProps) => {
 				'w-full flex items-center gap-2 text-base pb-8 border-b-px border-b-divider',
 				className,
 			)}>
-			{others?.map((item) => (
+			{first ? (
+				<Text
+					onClick={() => router.back()}
+					className="cursor-pointer font-medium text-base text-link-default hover:text-link-active transition-all">
+					{first.text}
+				</Text>
+			) : null}
+
+			<ArrowIcon
+				size={10}
+				dir="right"
+				strokeWidth={2}
+			/>
+
+			{items?.map((item) => (
 				<Fragment key={item.href}>
 					<Link href={item.href}>{item.text}</Link>
 					<ArrowIcon
 						size={10}
-						strokeWidth={2}
 						dir="right"
+						strokeWidth={2}
 					/>
 				</Fragment>
 			))}

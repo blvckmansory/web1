@@ -3,7 +3,7 @@
 import { create } from 'zustand'
 
 type CarsFilter = {
-	wrapped: boolean
+	wrapped: boolean | null
 	carTypeId: string | null
 }
 
@@ -13,7 +13,7 @@ type CarsFilterStore = CarsFilter & {
 }
 
 const useCarsFilter = create<CarsFilterStore>((set) => ({
-	wrapped: true,
+	wrapped: null,
 	carTypeId: null,
 	setWrapped: (value: boolean) => set({ wrapped: value }),
 	setCarTypeId: (value: string | null) => set({ carTypeId: value }),

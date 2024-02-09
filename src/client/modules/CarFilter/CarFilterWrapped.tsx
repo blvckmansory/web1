@@ -12,7 +12,7 @@ import type { SelectableItem } from '~/client/ui/(utils)/types'
 
 import { useCarsFilter } from '~/client/features/car/useCarsFilter'
 
-import { renderOption, CAR_FILTER_WRAPPED } from './utils'
+import { renderOption, CAR_FILTER_WRAPPED, ALL_TYPE } from './utils'
 
 const CarFilterWrapped = ({ style, className }: StyleProps) => {
 	const { value, onChange } = useCarsFilter((store) => ({
@@ -20,7 +20,7 @@ const CarFilterWrapped = ({ style, className }: StyleProps) => {
 		onChange: store.setWrapped,
 	}))
 
-	const item = CAR_FILTER_WRAPPED.find((item) => item.id === value)
+	const item = CAR_FILTER_WRAPPED.find((item) => item.id === value) || ALL_TYPE
 
 	const handleChange = useCallback(
 		(_item?: SelectableItem) => {
@@ -39,6 +39,7 @@ const CarFilterWrapped = ({ style, className }: StyleProps) => {
 					<Tabs
 						item={item}
 						onChange={handleChange}>
+						{renderOption(Tab, ALL_TYPE)}
 						{CAR_FILTER_WRAPPED.map((tab) => renderOption(Tab, tab))}
 					</Tabs>
 				}
@@ -46,6 +47,7 @@ const CarFilterWrapped = ({ style, className }: StyleProps) => {
 					<Select
 						item={item}
 						onChange={handleChange}>
+						{renderOption(SelectItem, ALL_TYPE)}
 						{CAR_FILTER_WRAPPED.map((tab) => renderOption(SelectItem, tab))}
 					</Select>
 				}
