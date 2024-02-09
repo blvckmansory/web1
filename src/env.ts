@@ -11,3 +11,4 @@ export const STRAPI_API_KEY = (process.env.STRAPI_API_KEY ||
 
 export const GOOGLE_VERIFICATION = process.env.GOOGLE_VERIFICATION
 export const YANDEX_VERIFICATION = process.env.YANDEX_VERIFICATION
+export const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET || 'hello'
