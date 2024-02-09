@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { memo, useState, useCallback } from 'react'
 
 import { clsx } from '~/lib/clsx'
 
@@ -68,26 +68,15 @@ const PreviewSection = ({
 						{!isWrapped ? <Tag>Без оклейки</Tag> : null}
 					</div>
 
-					<div className="relative w-full aspect-[1024/455]">
-						{sideImages.map((_sideImage) => {
-							const sideImageId = String(_sideImage.id)
-							const isActive = String(sideImageId) === String(activeSideImageId)
-							const isInitial = String(sideImageId) === String(initialSideImageId)
-							return (
-								<img
-									key={_sideImage.id}
-									src={_sideImage.image.url}
-									fetchPriority={isInitial ? 'high' : 'auto'}
-									alt={`car-side-image-${_sideImage.color}`}
-									loading={isInitial ? 'eager' : 'lazy'}
-									sizes="(max-width: 768px) 100vw, 1200px"
-									className={clsx(
-										'absolute inset-0 transition-all',
-										isActive ? 'opacity-100' : 'opacity-0',
-									)}
-								/>
-							)
-						})}
+					<div className="relative w-full aspect-[9/4]">
+						{sideImages.map(({ id, image }) => (
+							<SideImage
+								key={id}
+								src={image.url}
+								active={String(id) === String(activeSideImageId)}
+								priority={String(id) === String(initialSideImageId)}
+							/>
+						))}
 					</div>
 				</article>
 
@@ -112,6 +101,27 @@ const PreviewSection = ({
 		</Section>
 	)
 }
+
+type SideImageProps = {
+	src: string
+
+	active?: boolean
+	priority?: boolean
+}
+
+const SideImage = memo<SideImageProps>(({ src, active, priority }) => (
+	<img
+		src={src}
+		alt={`car-side-image-${src}`}
+		loading={priority ? 'eager' : 'lazy'}
+		sizes="(max-width: 768px) 100vw, 1200px"
+		fetchPriority={priority ? 'high' : 'auto'}
+		className={clsx(
+			'absolute inset-0 transition-opacity ease-[revert] duration-700',
+			active ? 'opacity-100' : 'opacity-0',
+		)}
+	/>
+))
 
 export { PreviewSection }
 export type { PreviewSectionProps }
