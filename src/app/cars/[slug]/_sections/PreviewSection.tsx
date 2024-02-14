@@ -8,6 +8,7 @@ import type { Car } from '~/shared/entities/car'
 
 import { Tag } from '~/client/ui/components/Tag'
 import { Title } from '~/client/ui/components/Text'
+import { Image } from '~/client/ui/components/Image'
 import { Breadcrumb } from '~/client/ui/components/Breadcrumb'
 import { RadioGroup, RadioColor } from '~/client/ui/components/Radio'
 
@@ -110,7 +111,7 @@ type SideImageProps = {
 }
 
 const SideImage = memo<SideImageProps>(({ src, active, priority }) => (
-	<img
+	<Image
 		src={src}
 		alt={`car-side-image-${src}`}
 		loading={priority ? 'eager' : 'lazy'}
