@@ -8,7 +8,6 @@ import type { Car } from '~/shared/entities/car'
 
 import { Tag } from '~/client/ui/components/Tag'
 import { Title } from '~/client/ui/components/Text'
-import { Image } from '~/client/ui/components/Image'
 import { Breadcrumb } from '~/client/ui/components/Breadcrumb'
 import { RadioGroup, RadioColor } from '~/client/ui/components/Radio'
 
@@ -111,15 +110,14 @@ type SideImageProps = {
 }
 
 const SideImage = memo<SideImageProps>(({ src, active, priority }) => (
-	<Image
+	<img
 		src={src}
 		alt={`car-side-image-${src}`}
-		// loading={priority ? 'lazy' : 'lazy'}
+		loading={priority ? 'eager' : 'lazy'}
 		width={1140}
 		height={506.66}
 		sizes="(max-width: 768px) 100vw, 1200px"
-		priority={priority}
-		// fetchPriority={priority ? 'high' : 'auto'}
+		fetchPriority={priority ? 'high' : 'auto'}
 		className={clsx(
 			'absolute inset-0 transition-opacity ease-[revert] duration-700',
 			active ? 'opacity-100' : 'opacity-0',
