@@ -19,7 +19,9 @@ const CarPreview = ({
 	previewImage,
 	minMinuteRate,
 }: CarPreviewProps) => (
-	<Link href={`/cars/${id}`}>
+	<Link
+		prefetch
+		href={`/cars/${id}`}>
 		<article
 			style={style}
 			className={clsx(
