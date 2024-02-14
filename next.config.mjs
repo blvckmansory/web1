@@ -16,19 +16,19 @@ const config = {
 		},
 	],
 
-	images: {
-		minimumCacheTTL: 31536000,
-		dangerouslyAllowSVG: true,
-		formats: ['image/webp'],
-		remotePatterns: [
-			{
-				protocol: 'https',
-				port: '',
-				hostname: STRAPI_DOMAIN,
-				pathname: '/uploads/**',
-			},
-		],
-	},
+	// images: {
+	// 	minimumCacheTTL: 31536000,
+	// 	dangerouslyAllowSVG: true,
+	// 	formats: ['image/webp'],
+	// 	remotePatterns: [
+	// 		{
+	// 			protocol: 'https',
+	// 			port: '',
+	// 			hostname: STRAPI_DOMAIN,
+	// 			pathname: '/uploads/**',
+	// 		},
+	// 	],
+	// },
 }
 
 export default config
