@@ -114,9 +114,10 @@ const SideImage = memo<SideImageProps>(({ src, active, priority }) => (
 	<Image
 		src={src}
 		alt={`car-side-image-${src}`}
-		loading={priority ? 'lazy' : 'lazy'}
+		// loading={priority ? 'lazy' : 'lazy'}
 		sizes="(max-width: 768px) 100vw, 1200px"
-		fetchPriority={priority ? 'high' : 'auto'}
+		priority={priority}
+		// fetchPriority={priority ? 'high' : 'auto'}
 		className={clsx(
 			'absolute inset-0 transition-opacity ease-[revert] duration-700',
 			active ? 'opacity-100' : 'opacity-0',
