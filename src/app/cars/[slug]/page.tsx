@@ -61,19 +61,26 @@ const generateMetadata: GenerateMetadata<Params> = async ({ params }) => {
 		notFound()
 	}
 
+	const images = [car.previewImage.url]
+	const title = `${car.name} | Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске`
+	const description = title
+
 	return {
-		title: `${car.name} | Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
-		alternates: {
-			canonical: `/cars/${slug}`,
-		},
+		title,
+		description,
 		twitter: {
-			images: [car.previewImage.url],
-			title: `${car.name} | Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
+			title,
+			images,
+			description,
 		},
 		openGraph: {
+			title,
+			images,
+			description,
 			type: 'article',
-			images: [car.previewImage.url],
-			title: `${car.name} | Тарифы | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
+		},
+		alternates: {
+			canonical: `/cars/${slug}`,
 		},
 	}
 }

@@ -69,24 +69,28 @@ const generateMetadata: GenerateMetadata<Params> = async ({ params }) => {
 		notFound()
 	}
 
+	const images = [post.cover.url]
+	const title = `${post.title} | Новости | Каршеринг Hello - Поминутная аренда автомобилей в Минске`
+	const description = String(post.description)
+
 	return {
-		title: post.title,
-		keywords: post.description.split(' '),
-		description: post.description.toString(),
-		alternates: {
-			canonical: `/posts/${slug}`,
-		},
+		title,
+		description,
+		keywords: description.split(' '),
 		twitter: {
-			images: [post.cover],
-			description: post.description,
-			title: `${post.title} | Новости | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
+			title,
+			images,
+			description,
 		},
 		openGraph: {
+			title,
+			images,
+			description,
 			type: 'article',
-			images: [post.cover],
-			description: post.description,
 			publishedTime: post.publishedAt,
-			title: `${post.title} | Новости | Каршеринг Hello - Поминутная аренда автомобилей в Минске`,
+		},
+		alternates: {
+			canonical: `/posts/${slug}`,
 		},
 	}
 }
