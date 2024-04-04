@@ -27,7 +27,8 @@ const PostPreview = ({ id, title, cover, style, className, description }: PostPr
 			<Image
 				fill
 				src={cover.url}
-				sizes="100vw"
+				quality={75}
+				sizes="(min-width: 1200px) 50vw, 100vw"
 				alt="post-card-image"
 				className="object-cover"
 			/>
