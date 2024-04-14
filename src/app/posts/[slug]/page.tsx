@@ -18,7 +18,7 @@ type Params = {
 }
 
 const PostPage: Page<Params> = async ({ params }) => {
-	const slug = params.slug
+	const { slug } = params
 
 	const { data: post } = await fetchPost(slug)
 
@@ -32,7 +32,7 @@ const PostPage: Page<Params> = async ({ params }) => {
 				<Breadcrumb
 					items={[
 						{ href: '/posts', text: 'Новости' },
-						{ href: '#', text: post.title },
+						{ href: '#', text: post.title || '' },
 					]}
 				/>
 
@@ -42,9 +42,9 @@ const PostPage: Page<Params> = async ({ params }) => {
 					cover={post.cover}
 					publishedAt={post.publishedAt}
 					description={post.description}
-					className={styles.post_inner}>
-					{post.content}
-				</Post>
+					className={styles.post_inner}
+					content={post.content}
+				/>
 			</Section>
 
 			<PostSuggests excludeId={slug} />

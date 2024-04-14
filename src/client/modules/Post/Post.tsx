@@ -11,10 +11,10 @@ import styles from './styles.module.css'
 
 type PostProps = StyleProps &
 	PostPreview & {
-		children: string
+		content: string
 	}
 
-const Post = async ({ cover, title, style, className, children, publishedAt }: PostProps) => (
+const Post = async ({ cover, style, title, content, className, publishedAt }: PostProps) => (
 	<article
 		style={style}
 		className={clsx(styles.container, className)}>
@@ -32,7 +32,7 @@ const Post = async ({ cover, title, style, className, children, publishedAt }: P
 			/>
 		</div>
 
-		<MarkdownContent className="text-justify">{children}</MarkdownContent>
+		<MarkdownContent className="text-justify">{content}</MarkdownContent>
 	</article>
 )
 
