@@ -56,7 +56,7 @@ const PreviewSection = ({
 					},
 					{
 						href: '#',
-						text: name,
+						text: name || '',
 					},
 				]}
 			/>
