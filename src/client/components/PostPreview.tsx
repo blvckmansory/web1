@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Markdown from 'markdown-to-jsx'
 
 import { clsx } from '~/lib/clsx'
@@ -6,9 +7,8 @@ import type { StyleProps } from '~/lib/types'
 import type { PostPreview as PostPreviewType } from '~/shared/entities/post'
 
 import { Text } from '~/client/ui/components/Text'
+import { Icon } from '~/client/ui/components/Icon'
 import { Image } from '~/client/ui/components/Image'
-import { NavLink } from '~/client/ui/components/NavLink'
-import { ArrowIcon } from '~/client/ui/(icons)/ArrowIcon'
 
 type PostPreviewProps = StyleProps & PostPreviewType
 
@@ -46,15 +46,18 @@ const PostPreview = ({ id, title, cover, style, className, description }: PostPr
 			{description}
 		</Markdown>
 
-		<NavLink
+		<Link
+			prefetch
 			href={`/posts/${id}`}
-			className="group mt-3 text-link-default uppercase flex flex-row gap-x-2 items-center text-sm">
+			className="group mt-3 text-link-default font-medium uppercase flex flex-row gap-x-0 hover:text-link-active items-center text-sm transition-all">
 			<span>Подробнее</span>
-			<ArrowIcon
-				size={12}
-				className="group-hover:translate-x-0.5 group-focus:translate-x-0.5 transition-transform"
+			<Icon
+				size={18}
+				strokeWidth={2}
+				name="chevron-right"
+				className="group-hover:translate-x-[3px] group-focus:translate-x-[3px] transition-transform"
 			/>
-		</NavLink>
+		</Link>
 	</article>
 )
 

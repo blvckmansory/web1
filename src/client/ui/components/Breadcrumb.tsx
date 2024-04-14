@@ -1,15 +1,9 @@
-'use client'
-
-import { Fragment } from 'react'
-import { useRouter } from 'next/navigation'
-
 import { clsx } from '~/lib/clsx'
 import type { MergeWithHTMLProps } from '~/lib/types'
 
-import { ArrowIcon } from '../(icons)'
-
-import { Link } from './Link'
 import { Text } from './Text'
+import { Link } from './Link'
+import { Icon } from './Icon'
 
 type BreadcrumbItem = {
 	href: string
@@ -24,44 +18,31 @@ type BreadcrumbProps = MergeWithHTMLProps<
 >
 
 const Breadcrumb = ({ items, className, ...props }: BreadcrumbProps) => {
-	const router = useRouter()
-
-	const last = items?.pop() as BreadcrumbItem
-	const first = items?.shift() as BreadcrumbItem
+	const last = items?.at(-1) as BreadcrumbItem
+	const first = items?.at(0) as BreadcrumbItem
 
 	return (
 		<ul
 			{...props}
 			className={clsx(
-				'w-full flex items-center gap-2 text-base pb-8 border-b-px border-b-divider',
+				'w-full flex items-center gap-1 text-base pb-8 border-b-px border-b-divider',
 				className,
 			)}>
 			{first ? (
-				<Text
-					onClick={() => router.back()}
+				<Link
+					href={first.href}
 					className="cursor-pointer font-medium text-base text-link-default hover:text-link-active transition-all">
 					{first.text}
-				</Text>
+				</Link>
 			) : null}
 
-			<ArrowIcon
-				size={10}
-				dir="right"
+			<Icon
+				size="1.25em"
 				strokeWidth={2}
+				name="chevron-right"
 			/>
 
-			{items?.map((item) => (
-				<Fragment key={item.href}>
-					<Link href={item.href}>{item.text}</Link>
-					<ArrowIcon
-						size={10}
-						dir="right"
-						strokeWidth={2}
-					/>
-				</Fragment>
-			))}
-
-			<Text color="muted">{last.text}</Text>
+			<Text color="muted">{last?.text || 'Вы тут'}</Text>
 		</ul>
 	)
 }

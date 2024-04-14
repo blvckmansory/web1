@@ -69,11 +69,11 @@ const FooterNavGrid = ({ title, options, children, className, ...props }: Footer
 			mobile={
 				<Collapse
 					title={title}
-					iconProps={{ size: 14 }}
+					iconProps={{ size: 12 }}
 					classNames={{
 						container: 'border-0 rounded-none shadow-none',
 						trigger:
-							'px-0 pt-0 pb-2 border-b-px border-b-divider font-normal text-base',
+							'px-0 pt-0 pb-3 border-b-px border-b-divider font-normal text-base',
 						content: 'px-0 py-2 border-b-px border-b-divider',
 						openButton: 'text-xs',
 					}}>
