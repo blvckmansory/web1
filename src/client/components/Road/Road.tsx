@@ -16,7 +16,8 @@ const Road = ({ style, className, ...props }: RoadProps) => (
 		<div className="h-28 flex items-center">
 			<RoadCar
 				type="white"
-				style={{ right: `${(0.1 + Math.random() - 0.5) * 100}%` }}
+				style={{ right: -250 }}
+				className="animate-drivingLeft"
 			/>
 		</div>
 
@@ -25,7 +26,8 @@ const Road = ({ style, className, ...props }: RoadProps) => (
 		<div className="h-28 flex items-center">
 			<RoadCar
 				type="black"
-				style={{ left: `${(0.1 + Math.random() - 0.5) * 100}%` }}
+				style={{ left: -250 }}
+				className="animate-drivingRight"
 			/>
 		</div>
 	</div>
@@ -52,10 +54,11 @@ type RoadCarProps = StyleProps & {
 const RoadCar = ({ style, className, type = 'black' }: RoadCarProps) => (
 	<Image
 		alt={`road-car-${type}`}
-		width={40}
+		width={88}
+		height={40}
 		style={style}
 		src={`/assets/car-road-${type}.png`}
-		className={clsx('absolute h-auto w-10 -rotate-90 pointer-events-none', className)}
+		className={clsx('absolute h-14 w-auto pointer-events-none', className)}
 	/>
 )
 

@@ -61,6 +61,24 @@ const config: Config = {
 				2: '2px',
 				3: '3px',
 			},
+
+			keyframes: {
+				drivingLeft: {
+					'0%': { transform: 'translateX(250px)' },
+					'80%': { transform: 'translateX(calc(-250px - 100vw))' },
+					'100%': { transform: 'translateX(calc(-250px - 100vw))' },
+				},
+				drivingRight: {
+					'0%': { transform: 'translateX(-250px)' },
+					'80%': { transform: 'translateX(calc(300px + 100vw))' },
+					'100%': { transform: 'translateX(calc(300px + 100vw))' },
+				},
+			},
+			animation: {
+				drivingLeft: 'drivingLeft 7s linear infinite',
+				drivingRight: 'drivingRight 7s linear 2s infinite',
+			},
+
 			textColor: (utils) => ({
 				...utils.theme('colors'),
 				muted: '#969696',
