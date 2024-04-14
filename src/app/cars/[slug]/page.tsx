@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import type { Page, GenerateMetadata } from '~/lib/types'
 
@@ -20,7 +20,7 @@ const CarPage: Page<Params> = async ({ params }) => {
 	const { data: car } = await fetchCar(slug)
 
 	if (!car) {
-		redirect('/cars')
+		notFound()
 	}
 
 	return (
