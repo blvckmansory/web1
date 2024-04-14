@@ -33,6 +33,11 @@ type GenerateMetadata<P = {}, S = {}> = (
 	parent?: ResolvingMetadata,
 ) => Promise<Metadata> | Metadata
 
+type HTMLImageProps = React.DetailedHTMLProps<
+	React.ImgHTMLAttributes<HTMLImageElement>,
+	HTMLImageElement
+>
+
 type FormProps<Values = unknown> = StyleProps &
 	Partial<{
 		formId: string
@@ -55,6 +60,7 @@ export type {
 	ReactPropsOf,
 	ReactChildren,
 	ArrowFunction,
+	HTMLImageProps,
 	GenerateMetadata,
 	MergeWithHTMLProps,
 }
