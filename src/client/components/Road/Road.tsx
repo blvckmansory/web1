@@ -57,7 +57,7 @@ const RoadCar = ({ style, className, type = 'black' }: RoadCarProps) => (
 		width={88}
 		height={40}
 		style={style}
-		src={`/assets/car-road-${type}.png`}
+		src={`/assets/car-road-${type}-1.png`}
 		className={clsx('absolute h-14 w-auto pointer-events-none', className)}
 	/>
 )

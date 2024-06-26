@@ -122,3 +122,5 @@ exports
 dist
 build
 .next
+
+certificates
