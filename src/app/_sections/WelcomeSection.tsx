@@ -42,9 +42,12 @@ const WelcomeSection = async ({ style, className }: SectionProps) => {
 
 				<Spacer className="md:flex-1" />
 
-				<SocialMediaGroup className="self-center md:self-start" />
+				<SocialMediaGroup className="self-center md:self-start z-50" />
 
-				<WelcomeImage src={data?.cover.url || '/assets/landing-welcome.svg'} />
+				<WelcomeImage
+					className="lg:-right-16 lg:top-5"
+					src={data?.cover.url || '/assets/landing-welcome.svg'}
+				/>
 			</div>
 		</Section>
 	)

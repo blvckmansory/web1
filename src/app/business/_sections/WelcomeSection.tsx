@@ -21,7 +21,7 @@ const WelcomeSection = ({ cover, style, className }: WelcomeSectionProps) => (
 		id="welcome"
 		style={style}
 		className={clsx('py-8 md:!py-14', className)}>
-		<div className="relative min-h-[70vh] flex flex-col gap-7 2xl:max-w-screen-2xl 2xl:min-w-[1536px] 2xl:mx-auto">
+		<div className="relative min-h-[60vh] flex flex-col gap-7 2xl:max-w-screen-2xl 2xl:min-w-[1536px] 2xl:mx-auto">
 			<BluredEllipse
 				size={800}
 				className="opacity-20 -left-1/4 -bottom-full"
@@ -51,7 +51,7 @@ const WelcomeSection = ({ cover, style, className }: WelcomeSectionProps) => (
 
 			<Spacer full />
 
-			<SocialMediaGroup className="self-center md:self-start" />
+			<SocialMediaGroup className="self-center md:self-start z-50" />
 
 			<WelcomeImage src={cover || '/assets/business-welcome.svg'} />
 		</div>
