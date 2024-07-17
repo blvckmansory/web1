@@ -12,19 +12,7 @@ const selectFilteredCars = (data: Data, filter: CarsFilter) => {
 		].every(Boolean),
 	)
 
-	const sortedData = filteredData.sort((it1, it2) => {
-		if (it1.isWrapped === it2.isWrapped) {
-			return 0
-		}
-
-		if (it1.isWrapped) {
-			return -1
-		}
-
-		return 1
-	})
-
-	return sortedData
+	return filteredData
 }
 
 export { selectFilteredCars }
