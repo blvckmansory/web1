@@ -116,7 +116,7 @@ const SideImage = memo<SideImageProps>(({ src, active, priority }) => (
 		loading={priority ? 'eager' : 'lazy'}
 		width={1140}
 		height={506.66}
-		sizes="(max-width: 768px) 100vw, 1200px"
+		sizes="(max-width: 768px) 100vw, 1400px"
 		fetchPriority={priority ? 'high' : 'auto'}
 		className={clsx(
 			'absolute inset-0 transition-opacity ease-[revert] duration-700',
