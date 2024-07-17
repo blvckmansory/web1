@@ -16,7 +16,7 @@ const WelcomeImage = ({ src, style, className }: WelcomeImageProps) => (
 		style={style}
 		sizes="(min-width: 769px) 100vw, 80vw"
 		className={clsx(
-			'w-full h-[70vw] lg:w-auto lg:h-[85%] lg:absolute lg:right-5 lg:top-[10%]',
+			'w-full h-[70vw] lg:w-auto lg:h-[100%] lg:absolute lg:right-5 lg:top-0',
 			className,
 		)}
 	/>
