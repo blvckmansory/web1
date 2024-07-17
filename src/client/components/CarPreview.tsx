@@ -32,11 +32,12 @@ const CarPreview = ({
 			<div className="relative w-full aspect-[3/1]">
 				<Image
 					fill
+					key={id}
+					quality={100}
 					src={previewImage.url}
 					alt="car-card-image"
-					quality={75}
-					sizes="(min-width: 606px) 330px, 200px"
 					className="object-cover"
+					sizes="(min-width: 606px) 400px, 200px"
 				/>
 			</div>
 
