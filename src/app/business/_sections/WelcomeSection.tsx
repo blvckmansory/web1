@@ -20,39 +20,41 @@ const WelcomeSection = ({ cover, style, className }: WelcomeSectionProps) => (
 	<Section
 		id="welcome"
 		style={style}
-		className={clsx('py-8 md:!py-14 md:min-h-[70vh] gap-7', className)}>
-		<BluredEllipse
-			size={800}
-			className="opacity-40 -left-1/4 -bottom-full"
-		/>
-		<AbsoluteImage
-			src="/assets/potato-4.svg"
-			className="invisible md:visible h-1/4 bottom-0 left-1/4"
-		/>
+		className={clsx('py-8 md:!py-14', className)}>
+		<div className="relative min-h-[70vh] flex flex-col gap-7 2xl:max-w-screen-2xl 2xl:min-w-[1536px] 2xl:mx-auto">
+			<BluredEllipse
+				size={800}
+				className="opacity-20 -left-1/4 -bottom-full"
+			/>
+			<AbsoluteImage
+				src="/assets/potato-4.svg"
+				className="invisible md:visible h-1/4 -bottom-14 left-1/4"
+			/>
 
-		<Title className="lg:text-6xl">
-			Hello Каршеринг <br /> для <b className="text-brand">Бизнеса!</b>
-		</Title>
+			<Title className="lg:text-6xl">
+				Hello Каршеринг <br /> для <b className="text-brand">Бизнеса!</b>
+			</Title>
 
-		<Text className="leading-6">
-			<b>С нас:</b> <br /> Топливо, страховка, техосмотр и техобслуживание, мойка
-		</Text>
+			<Text className="leading-6">
+				<b>С нас:</b> <br /> Топливо, страховка, техосмотр и техобслуживание, мойка
+			</Text>
 
-		<Text className="leading-6">
-			<b>С вас:</b> <br /> Заключение договора
-		</Text>
+			<Text className="leading-6">
+				<b>С вас:</b> <br /> Заключение договора
+			</Text>
 
-		<Link
-			href="/cars"
-			className="w-max">
-			<Button className="w-full md:w-fit">Смотреть тарифы</Button>
-		</Link>
+			<Link
+				href="/cars"
+				className="w-max">
+				<Button className="w-full md:w-fit">Смотреть тарифы</Button>
+			</Link>
 
-		<Spacer full />
+			<Spacer full />
 
-		<SocialMediaGroup className="self-center md:self-start" />
+			<SocialMediaGroup className="self-center md:self-start" />
 
-		<WelcomeImage src={cover || '/assets/business-welcome.svg'} />
+			<WelcomeImage src={cover || '/assets/business-welcome.svg'} />
+		</div>
 	</Section>
 )
 
