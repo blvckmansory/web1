@@ -49,16 +49,18 @@ const CarFilterType = ({ style, className, options }: CarFilterTypeProps) => {
 		<div>
 			{options
 				.filter((option) => !!option.image)
-				.map((option) => (
-					<Image
-						width={250}
-						height={125}
-						className="hidden"
-						// @ts-expect-error
-						src={option.image.url}
-						style={{ width: 0, height: 0 }}
-					/>
-				))}
+				.map((option) =>
+					option.image ? (
+						<Image
+							key={option.id}
+							width={250}
+							height={125}
+							className="hidden"
+							src={option.image.url}
+							style={{ width: 0, height: 0 }}
+						/>
+					) : null,
+				)}
 			<Label>Тип машины</Label>
 			<Responsive
 				style={style}
