@@ -18,18 +18,20 @@ const Posts: Page<{}, SearchParams> = async ({ searchParams }) => {
 
 	return (
 		<Section className={styles.page}>
-			<Text
-				as="h1"
-				uppercase
-				weight={700}
-				className={styles.title}>
-				Новости
-			</Text>
+			<div className={styles.inner}>
+				<Text
+					as="h1"
+					uppercase
+					weight={700}
+					className={styles.title}>
+					Новости
+				</Text>
 
-			<PostContainer
-				page={page}
-				perPage={4}
-			/>
+				<PostContainer
+					page={page}
+					perPage={4}
+				/>
+			</div>
 		</Section>
 	)
 }

@@ -16,45 +16,47 @@ import styles from './styles.module.css'
 
 const Contacts: Page = () => (
 	<Section className={styles.page}>
-		<Title>Контакты</Title>
+		<div className={styles.inner}>
+			<Title>Контакты</Title>
 
-		<Divider dir="x" />
+			<Divider dir="x" />
 
-		<article className={styles.methods}>
-			{CONTACTS_CONFIG.map((config) => (
-				<Fragment key={config.title}>
-					<CommunicationMethod {...config} />
-					<Divider
-						dir="x"
-						className="block md:hidden"
-					/>
-				</Fragment>
-			))}
-		</article>
+			<article className={styles.methods}>
+				{CONTACTS_CONFIG.map((config) => (
+					<Fragment key={config.title}>
+						<CommunicationMethod {...config} />
+						<Divider
+							dir="x"
+							className="block md:hidden"
+						/>
+					</Fragment>
+				))}
+			</article>
 
-		<Divider
-			dir="x"
-			className="hidden md:block"
-		/>
+			<Divider
+				dir="x"
+				className="hidden md:block"
+			/>
 
-		<article className={styles.info}>
-			<Text
-				as="h2"
-				uppercase
-				size={20}
-				weight={700}>
-				Реквизиты
-			</Text>
-			<Hint className={styles.organization__info}>
-				<span>
-					Зарегистрировано Мингорисполкомом 31.01.2018 г. Республика Беларусь, 220035 г.
-					Минск, ул. Тимирязева, д. 23, корп. 1, каб. 5{' '}
-				</span>
-				<span>УНП 193029077</span>
-				<span>р/с BY40BLNB30120000287647000933 в ОАО «БНБ-Банк»</span>
-				<span>код банка BLNBBY2X, г. Минск, пр. Независимости, 87А</span>
-			</Hint>
-		</article>
+			<article className={styles.info}>
+				<Text
+					as="h2"
+					uppercase
+					size={20}
+					weight={700}>
+					Реквизиты
+				</Text>
+				<Hint className={styles.organization__info}>
+					<span>
+						Зарегистрировано Мингорисполкомом 31.01.2018 г. Республика Беларусь, 220035
+						г. Минск, ул. Тимирязева, д. 23, корп. 1, каб. 5{' '}
+					</span>
+					<span>УНП 193029077</span>
+					<span>р/с BY40BLNB30120000287647000933 в ОАО «БНБ-Банк»</span>
+					<span>код банка BLNBBY2X, г. Минск, пр. Независимости, 87А</span>
+				</Hint>
+			</article>
+		</div>
 	</Section>
 )
 

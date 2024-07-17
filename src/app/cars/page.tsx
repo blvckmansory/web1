@@ -23,24 +23,26 @@ const CarsPage: Page = async () => {
 
 	return (
 		<Section className={styles.container}>
-			<Text
-				as="h1"
-				uppercase
-				weight={700}
-				className={styles.title}>
-				Тарифы
-			</Text>
+			<div className={styles.inner}>
+				<Text
+					as="h1"
+					uppercase
+					weight={700}
+					className={styles.title}>
+					Тарифы
+				</Text>
 
-			<div className={styles.filter}>
-				<CarFilterType options={carTypes} />
-				<CarFilterWrapped />
-			</div>
+				<div className={styles.filter}>
+					<CarFilterType options={carTypes} />
+					<CarFilterWrapped />
+				</div>
 
-			<Divider />
+				<Divider />
 
-			<div className={styles.list}>
-				<CarContainerName options={carTypes} />
-				<CarContainer initialData={cars} />
+				<div className={styles.list}>
+					<CarContainerName options={carTypes} />
+					<CarContainer initialData={cars} />
+				</div>
 			</div>
 		</Section>
 	)
