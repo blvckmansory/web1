@@ -35,6 +35,7 @@ type Car = StrapiSchema<{
 	name: string
 	minMinuteRate: number
 
+	orderID?: number
 	isNew?: boolean
 	isHot?: boolean
 	isWrapped?: boolean
@@ -60,7 +61,15 @@ type CarMetadata = Pick<Car, 'name' | 'carType' | 'minMinuteRate' | 'previewImag
 
 type CarPreview = Pick<
 	Car,
-	'name' | 'minMinuteRate' | 'isWrapped' | 'isNew' | 'isHot' | 'carType' | 'id' | 'previewImage'
+	| 'name'
+	| 'minMinuteRate'
+	| 'isWrapped'
+	| 'isNew'
+	| 'isHot'
+	| 'carType'
+	| 'id'
+	| 'previewImage'
+	| 'orderID'
 >
 
 export type {
