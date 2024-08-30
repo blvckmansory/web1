@@ -34,7 +34,7 @@ const Dialog = memo(
 				children,
 				className,
 				open = false,
-				overflow = 'scroll',
+				overflow = 'auto',
 				position = 'center',
 				preventClose = false,
 				...props

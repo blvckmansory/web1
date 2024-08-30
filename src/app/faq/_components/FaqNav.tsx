@@ -12,7 +12,7 @@ const FaqNav = ({ className, ...props }: StyleProps) => (
 		{...props}
 		className={clsx('space-y-5', className)}>
 		<Title size={30}>{FAQ_NAV_CONFIG.title}</Title>
-		<ul className="overflow-x-scroll py-5 flex flex-wrap items-center gap-x-1.5 gap-y-6">
+		<ul className="overflow-x-auto py-5 flex flex-wrap items-center gap-x-1.5 gap-y-6">
 			{FAQ_NAV_CONFIG.options.map((link) => (
 				<li
 					key={link.href}
