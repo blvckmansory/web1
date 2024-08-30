@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 
 import { Status, Wrapper } from '@googlemaps/react-wrapper'
 
+import { GOOGLE_API_TOKEN } from '~/env'
+
 import { clsx } from '~/lib/clsx'
 import { StyleProps } from '~/lib/types'
 
@@ -39,12 +41,9 @@ const render = (status: Status, props: MapProps) => {
 	}
 }
 
-const DEV_API_KEY = 'AIzaSyAPrBuZghbgbcX33vGCN5wmZyH4zZdwpzg'
-const PRODUCTION_API_KEY = 'AIzaSyCvynUtmywoW2A6QtcZ-0Usy18KSjiAgnI'
-
 const MapWrapper = (props: MapProps) => (
 	<Wrapper
-		apiKey={DEV_API_KEY}
+		apiKey={GOOGLE_API_TOKEN}
 		render={(status) => render(status, props)}
 	/>
 )

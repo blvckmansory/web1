@@ -4,6 +4,8 @@ import type { Metadata, Viewport } from 'next'
 
 import { DOMAIN_URL, GOOGLE_VERIFICATION, YANDEX_VERIFICATION } from '~/env'
 
+import { Cookies } from '~/client/components/Cookies'
+
 import { AppHeader } from './_components/AppHeader'
 import { AppFooter } from './_components/AppFooter'
 
@@ -16,6 +18,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => (
 			<AppHeader />
 			<main className="w-full flex flex-col gap-y-[3px] px-[3px]">{children}</main>
 			<AppFooter />
+			<Cookies />
 		</body>
 	</html>
 )
