@@ -7,7 +7,10 @@ import NextLink, { type LinkProps as NextLinkProps } from 'next/link'
 import { clsx } from '~/lib/clsx'
 import type { StyleProps, ReactChildren } from '~/lib/types'
 
-type NavLinkProps = NextLinkProps &
+type NativeLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof NextLinkProps> &
+	NextLinkProps
+
+type NavLinkProps = NativeLinkProps &
 	StyleProps & {
 		activeStyle?: CSSProperties
 		activeClassName?: string
@@ -35,6 +38,7 @@ const NavLink = ({
 		<NextLink
 			{...props}
 			href={href}
+			target=""
 			style={{ ...style }}
 			className={clsx(
 				'w-max min-h-max font-medium text-base text-link-default hover:text-link-active transition-all',
