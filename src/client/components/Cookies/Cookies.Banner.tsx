@@ -1,7 +1,7 @@
 import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
-import { Text, Title, Button, NavLink } from '~/client/ui/components'
+import { Text, Button } from '~/client/ui/components'
 
 type CookiesBannerProps = StyleProps & {
 	show?: boolean
@@ -41,16 +41,20 @@ const CookiesBanner = ({ style, confirm, className, show = false }: CookiesBanne
 					Продолжая использовать сайт, Вы соглашаетесь и использованием файлов куков и
 					подтверждаете, что ознакомились с условиями:
 				</Text>
-				<NavLink
-					href="/"
-					text="Больше информации"
-				/>
+
+				<a
+					target="_blank"
+					href="/legal/cookies.pdf"
+					className="w-max min-h-max font-medium text-base text-link-default hover:text-link-active transition-all">
+					Больше информации
+				</a>
 			</div>
+
 			<Button
 				auto
 				size="sm"
 				type="submit"
-				className="ml-auto self-start py-3 max-md:w-full md:self-center px-4">
+				className="ml-auto self-start py-2.5 max-md:w-full md:self-center px-4">
 				Понимаю
 			</Button>
 		</form>
