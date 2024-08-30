@@ -2,7 +2,7 @@ import './globals.css'
 
 import type { Metadata, Viewport } from 'next'
 
-import { DOMAIN_URL, GOOGLE_VERIFICATION, YANDEX_VERIFICATION } from '~/env'
+import { DOMAIN_URL, FACEBOOK_VERIFICATION, GOOGLE_VERIFICATION, YANDEX_VERIFICATION } from '~/env'
 
 import { Cookies } from '~/client/components/Cookies'
 
@@ -43,11 +43,17 @@ export const metadata: Metadata = {
 	verification: {
 		google: GOOGLE_VERIFICATION,
 		yandex: YANDEX_VERIFICATION,
+
+		other: {
+			['facebook-domain-verification']: FACEBOOK_VERIFICATION,
+		},
 	},
+
 	icons: {
 		icon: '/favicon.ico',
 		shortcut: '/favicon.ico',
 	},
+	applicationName: 'Hello.by',
 	generator: 'Next.JS',
 	metadataBase: new URL(DOMAIN_URL),
 	robots: { index: true, follow: true },
