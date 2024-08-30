@@ -43,7 +43,7 @@ const Cookies = ({ style, className, hide = false }: CookiesProps) => {
 						paddingBottom: SCREEN_OFFSET,
 					}}
 					className={clsx(
-						'z-50 fixed bottom-0 md:bottom-5 mx-auto max-w-5xl h-fit',
+						'z-50 fixed bottom-0 md:bottom-5 mx-auto md:max-w-3xl lg:max-w-5xl h-fit',
 						className,
 					)}>
 					<CookiesBanner
