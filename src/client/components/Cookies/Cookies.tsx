@@ -7,6 +7,7 @@ import { clsx } from '~/lib/clsx'
 import type { StyleProps } from '~/lib/types'
 
 import { useCookie } from '~/client/hooks/useCookie'
+import { useResponsive } from '~/client/features/responsive'
 import { TRANSTION_TRANSLATES } from '~/client/ui/(utils)/framer-motion'
 
 import { CookiesBanner } from './Cookies.Banner'
@@ -17,6 +18,7 @@ type CookiesProps = StyleProps & {
 
 const Cookies = ({ style, className, hide = false }: CookiesProps) => {
 	const [agreed, setAgreed] = useCookie<boolean>(COOKIES_AGREED_KEY)
+	const { isDesktop } = useResponsive(767)
 
 	const confirm = useCallback(() => {
 		setAgreed(true, {
@@ -38,12 +40,10 @@ const Cookies = ({ style, className, hide = false }: CookiesProps) => {
 					variants={TRANSTION_TRANSLATES.bottom}
 					style={{
 						...style,
-						left: SCREEN_OFFSET,
-						right: SCREEN_OFFSET,
-						paddingBottom: SCREEN_OFFSET,
+						paddingBottom: isDesktop ? 20 : 0,
 					}}
 					className={clsx(
-						'z-50 fixed bottom-0 md:bottom-5 mx-auto md:max-w-3xl lg:max-w-5xl h-fit',
+						'z-50 fixed inset-x-0 bottom-0 mx-auto md:max-w-3xl lg:max-w-5xl h-fit',
 						className,
 					)}>
 					<CookiesBanner

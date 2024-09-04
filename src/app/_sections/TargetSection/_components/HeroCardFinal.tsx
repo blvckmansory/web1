@@ -6,7 +6,11 @@ import { AbsoluteImage } from '~/client/ui/components/Image'
 
 import { HeroCard, type HeroCardProps } from '~/client/components/cards/HeroCard'
 
-const HeroCardFinal = ({ imageUrl }: Pick<HeroCardProps, 'imageUrl'>) => (
+type HeroCardFinalProps = Pick<HeroCardProps, 'imageUrl'> & {
+	minPrice?: number
+}
+
+const HeroCardFinal = ({ imageUrl, minPrice = 0.43 }: HeroCardFinalProps) => (
 	<HeroCard
 		color="#EC1919"
 		imageUrl={imageUrl}
@@ -39,7 +43,7 @@ const HeroCardFinal = ({ imageUrl }: Pick<HeroCardProps, 'imageUrl'>) => (
 		</Title>
 
 		<Text>
-			Стоимость проезда от <b>0.43 BYN</b>
+			Стоимость проезда от <b>{minPrice} BYN</b>
 		</Text>
 
 		<Link

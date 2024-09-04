@@ -6,7 +6,11 @@ import { AbsoluteImage } from '~/client/ui/components/Image'
 
 import { HeroCard, type HeroCardProps } from '~/client/components/cards/HeroCard'
 
-const HeroCardFirst = ({ imageUrl }: Pick<HeroCardProps, 'imageUrl'>) => (
+type HeroCardFirstProps = Pick<HeroCardProps, 'imageUrl'> & {
+	carsCount?: number
+}
+
+const HeroCardFirst = ({ imageUrl, carsCount = 30 }: HeroCardFirstProps) => (
 	<HeroCard
 		color="#22FF01"
 		imageUrl={imageUrl}
@@ -30,7 +34,7 @@ const HeroCardFirst = ({ imageUrl }: Pick<HeroCardProps, 'imageUrl'>) => (
 		<Title
 			weight={800}
 			className="leading-[9rem] !text-[9rem] text-brand lg:!leading-0">
-			30+
+			{roundToNearest(carsCount, 10)}+
 		</Title>
 		<Title
 			uppercase
@@ -45,5 +49,7 @@ const HeroCardFirst = ({ imageUrl }: Pick<HeroCardProps, 'imageUrl'>) => (
 		</Link>
 	</HeroCard>
 )
+
+const roundToNearest = (num: number, nearest: number) => Math.round(num / nearest) * nearest
 
 export { HeroCardFirst }

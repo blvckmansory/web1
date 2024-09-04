@@ -10,7 +10,6 @@ import { useToggle } from '~/client/ui/(hooks)/useToggle'
 import { AbsoluteImage } from '~/client/ui/components/Image'
 
 import { BurgerButton } from '~/client/components/buttons/BurgerButton'
-import { SupportButton } from '~/client/components/SupportButton'
 import {
 	AdaptiveDialog,
 	AdaptiveDialogBody,

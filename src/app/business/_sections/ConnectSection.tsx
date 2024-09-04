@@ -20,14 +20,18 @@ const ConnectSection = ({ style, className, contractSrc }: ConnectSectionProps) 
 			Подключение <br /> <b className="uppercase text-brand text-5xl">Онлайн</b>
 		</Title>
 
-		<ul className="w-full md:w-fit flex flex-col md:flex-row gap-4">
+		<ul className="w-full md:w-fit flex flex-col md:max-w-lg md:justify-center md:flex-row md:flex-wrap gap-4">
 			<ConnectSectionButton
 				href="/cars"
 				text="Тарифы"
 			/>
 			<ConnectSectionButton
 				href={contractSrc}
-				text="Договор"
+				text="Образец договора"
+			/>
+			<ConnectSectionButton
+				href="/legal/business-rules.pdf"
+				text="Правила пользования сервисом"
 			/>
 			<ConnectSectionButton
 				href="/contacts"
@@ -50,14 +54,14 @@ const ConnectSectionButton = ({ href, text }: ConnectSectionButtonProps) => (
 				href={href}>
 				<Button
 					color="secondary"
-					className="w-full md:w-36">
+					className="w-full md:w-fit md:min-w-36 line-clamp-1">
 					{text}
 				</Button>
 			</Link>
 		) : (
 			<Button
 				color="secondary"
-				className="w-full md:w-36">
+				className="w-full md:w-fit md:min-w-36">
 				{text}
 			</Button>
 		)}
