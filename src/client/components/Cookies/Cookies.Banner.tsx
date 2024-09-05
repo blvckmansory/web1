@@ -38,8 +38,7 @@ const CookiesBanner = ({ style, confirm, className, show = false }: CookiesBanne
 
 			<div className="self-start flex flex-col gap-y-1.5 max-md:mb-2">
 				<Text className="max-w-3xl text-base leading-snug cursor-default">
-					Продолжая использовать сайт, Вы соглашаетесь с использованием файлов кук и
-					подтверждаете, что ознакомились с условиями:
+					На нашем сайте мы обрабатываем cookie:
 				</Text>
 
 				<a
