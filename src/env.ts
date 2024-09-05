@@ -16,3 +16,5 @@ export const FACEBOOK_VERIFICATION = process.env.FACEBOOK_VERIFICATION || ''
 export const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET || 'hello'
 
 export const GOOGLE_API_TOKEN = process.env.GOOGLE_API_TOKEN || ''
+export const ZONES_API_URL =
+	process.env.ZONES_API_URL || 'https://hellominsk5.cartrek.online/api/zones'

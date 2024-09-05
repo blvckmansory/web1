@@ -1,8 +1,10 @@
+import { ZONES_API_URL } from '~/env'
+
 import type { ZonesAPI } from '~/shared/entities/zones'
 
 const fetchZones = async () => {
 	try {
-		const json = (await fetch('https://hellominsk1.cartrek.online/api/zones', {
+		const json = (await fetch(ZONES_API_URL, {
 			next: { revalidate: 60 * 60 * 24 },
 		}).then((res) => res.json())) as ZonesAPI
 
