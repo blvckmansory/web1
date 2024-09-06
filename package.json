@@ -1,52 +1,52 @@
 {
-  "name": "@hello/web",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --watch",
-    "test:coverage": "NODE_ENV=test jest --coverage",
-    "test:cypress": "NODE_ENV=test cypress open",
-    "lint": "eslint .",
-    "lint:watch": "esw . --watch --cache",
-    "lint:watchAll": "esw . --watch",
-    "circleci:run": "circleci local execute --job $JOB"
-  },
-  "dependencies": {
-    "@googlemaps/js-api-loader": "1.16.2",
-    "@googlemaps/react-wrapper": "1.1.35",
-    "embla-carousel-autoplay": "^8.0.0-rc21",
-    "embla-carousel-react": "^8.0.0-rc21",
-    "framer-motion": "^10.16.1",
-    "lodash.uniqby": "4.7.0",
-    "lucide-react": "^0.268.0",
-    "maplibre-gl": "3.6.2",
-    "markdown-to-jsx": "^7.3.2",
-    "next": "14.1.4",
-    "react": "18.2.0",
-    "react-cookie": "^7.2.0",
-    "react-dom": "18.2.0",
-    "tailwind-variants": "^0.1.13",
-    "zustand": "^4.5.0"
-  },
-  "devDependencies": {
-    "@next/eslint-plugin-next": "^13.4.19",
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/google.maps": "3.54.10",
-    "@types/lodash.uniqby": "4.7.9",
-    "@types/node": "20.5.2",
-    "@types/react": "18.2.45",
-    "@types/react-dom": "18.2.18",
-    "autoprefixer": "10.4.15",
-    "postcss": "^8.4.33",
-    "prettier": "^3.0.2",
-    "tailwindcss": "3.3.3",
-    "typescript": "^5.2.2"
-  },
-  "engines": {
-    "node": ">=18.0.0 <=20.x.x"
-  }
+	"name": "@hello/web",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"test": "NODE_ENV=test jest",
+		"test:watch": "NODE_ENV=test jest --watch",
+		"test:coverage": "NODE_ENV=test jest --coverage",
+		"test:cypress": "NODE_ENV=test cypress open",
+		"lint": "bunx eslint .",
+		"lint:watch": "esw . --watch --cache",
+		"lint:watchAll": "esw . --watch",
+		"circleci:run": "circleci local execute --job $JOB"
+	},
+	"dependencies": {
+		"@googlemaps/js-api-loader": "1.16.2",
+		"@googlemaps/react-wrapper": "1.1.35",
+		"embla-carousel-autoplay": "^8.0.0-rc21",
+		"embla-carousel-react": "^8.0.0-rc21",
+		"framer-motion": "^10.16.1",
+		"lodash.uniqby": "4.7.0",
+		"lucide-react": "^0.268.0",
+		"maplibre-gl": "3.6.2",
+		"markdown-to-jsx": "^7.3.2",
+		"next": "14.1.4",
+		"react": "18.2.0",
+		"react-cookie": "^7.2.0",
+		"react-dom": "18.2.0",
+		"tailwind-variants": "^0.1.13",
+		"zustand": "^4.5.0"
+	},
+	"devDependencies": {
+		"@next/eslint-plugin-next": "^13.4.19",
+		"@tailwindcss/typography": "^0.5.10",
+		"@types/google.maps": "3.54.10",
+		"@types/lodash.uniqby": "4.7.9",
+		"@types/node": "20.5.2",
+		"@types/react": "18.2.45",
+		"@types/react-dom": "18.2.18",
+		"autoprefixer": "10.4.15",
+		"postcss": "^8.4.33",
+		"prettier": "^3.0.2",
+		"tailwindcss": "3.3.3",
+		"typescript": "^5.2.2"
+	},
+	"engines": {
+		"node": ">=18.0.0 <=20.x.x"
+	}
 }
