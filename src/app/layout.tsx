@@ -12,7 +12,7 @@ import { AppFooter } from './_components/AppFooter'
 const AppLayout = ({ children }: { children: React.ReactNode }) => (
 	<html
 		dir="ltr"
-		lang="en"
+		lang="ru"
 		suppressHydrationWarning>
 		<body className="w-screen min-h-screen flex flex-col overflow-x-clip">
 			<AppHeader />
@@ -66,8 +66,10 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: '/',
 		languages: {
-			ru: 'ru',
-			'ru-RU': 'ru-RU',
+			en: '',
+			'en-US': '',
+			ru: '',
+			'ru-RU': '',
 		},
 	},
 }
