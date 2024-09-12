@@ -1,4 +1,4 @@
-const STRAPI_DOMAIN = process.env.STRAPI_DOMAIN 
+const STRAPI_DOMAIN = process.env.STRAPI_DOMAIN
 
 /** @type {import('next').NextConfig} */
 const config = {
