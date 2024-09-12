@@ -60,7 +60,7 @@ const FEATURE_BUSINESS_CARD_CONFIG = [
 	{
 		icon: 'scroll-text',
 		title: 'Предоставление отчёта',
-		description: 'Ежемесячный отчёт предоставляется до **14 числа.**',
+		description: 'Ежемесячный отчёт предоставляется до **16 числа.**',
 	},
 	{
 		icon: 'blocks',
